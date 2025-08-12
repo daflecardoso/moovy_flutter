@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -51,9 +53,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               id: 'period',
               label: const Text('Period of expense'),
               width: 350,
-              description: const Text(
-                'If has not end date, pick the start date.',
-              ),
+              description: const Text('If has not end date, pick the start date.'),
               validator: (v) {
                 if (v == null) return 'Start or range of dates is required.';
                 if (v.start == null) {
@@ -81,9 +81,9 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               child: const Text('Save'),
               onPressed: () {
                 if (formKey.currentState!.saveAndValidate()) {
-                  print(
-                    'validation succeeded with ${formKey.currentState!.value}',
-                  );
+                  print('validation succeeded with ${formKey.currentState!.value}');
+                  final cubit = context.read<IncomeExpenseCubit>();
+                  cubit.createMovement(data: formKey.currentState!.value);
                 } else {
                   print('validation failed');
                 }

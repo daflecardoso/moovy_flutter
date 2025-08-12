@@ -10,9 +10,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:moovy/expense/expense_screen.dart' as _i2;
+import 'package:moovy/income_expense/pages/expense_screen.dart' as _i2;
 import 'package:moovy/expense_list/view/expense_list_screen.dart' as _i1;
-import 'package:moovy/income/income_screen.dart' as _i4;
+import 'package:moovy/income_expense/pages/income_screen.dart' as _i4;
 import 'package:moovy/income_expense/income_exepense_screen.dart' as _i3;
 import 'package:moovy/profile/profile_screen.dart' as _i5;
 

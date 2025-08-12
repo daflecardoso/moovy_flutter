@@ -16,4 +16,12 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
   void setTab(IncomeExpenseTabs tab) {
     this.tab = tab;
   }
+
+  Future<void> createMovement({ required Map<Object, dynamic> data }) async {
+    try {
+      print("✅ ${data}");
+    } catch(e, s) {
+      debugPrintStack(stackTrace: s);
+    }
+  }
 }

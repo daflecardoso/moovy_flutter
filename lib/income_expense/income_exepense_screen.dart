@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
-import 'package:moovy/expense/expense_screen.dart';
-import 'package:moovy/income/income_screen.dart';
+import 'package:moovy/income_expense/pages/expense_screen.dart';
+import 'package:moovy/income_expense/pages/income_screen.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
