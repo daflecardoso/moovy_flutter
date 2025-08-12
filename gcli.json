@@ -1,0 +1,10 @@
+{
+  "name": "moovy",
+  "color": "#00FF00",
+  "showTutorial": false,
+  "scopes": [
+    "expenseList",
+	"expense",
+    "core"
+  ]
+}
