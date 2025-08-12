@@ -37,7 +37,7 @@ class MovementListPage extends StatelessWidget {
               final movement = movements[index];
               return ListTile(
                 leading: Text(
-                  movement.dueDate?.format(DateTimeFormat.dd) ?? '-',
+                  movement.dueDate?.format(DateTimeFormat.dd) ?? movement.incomeDate?.format(DateTimeFormat.dd) ?? '-',
                   style: ShadTheme.of(context).textTheme.small,
                 ),
                 title: Text(movement.description, style: ShadTheme.of(context).textTheme.small),
