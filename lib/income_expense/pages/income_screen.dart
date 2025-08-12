@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -84,6 +86,8 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   print(
                     'validation succeeded with ${formKey.currentState!.value}',
                   );
+                  final cubit = context.read<IncomeExpenseCubit>();
+                  cubit.createMovement(data: formKey.currentState!.value);
                 } else {
                   print('validation failed');
                 }

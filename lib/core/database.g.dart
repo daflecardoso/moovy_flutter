@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Movement` (`id` INTEGER NOT NULL, `description` TEXT NOT NULL, `amount` INTEGER NOT NULL, `incomeDate` INTEGER NOT NULL, `dueDate` INTEGER NOT NULL, `startDate` INTEGER NOT NULL, `endDate` INTEGER NOT NULL, `type` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Movement` (`id` INTEGER, `description` TEXT NOT NULL, `amount` INTEGER NOT NULL, `incomeDate` INTEGER, `dueDate` INTEGER, `startDate` INTEGER, `endDate` INTEGER, `type` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -142,13 +142,13 @@ class _$MovementDao extends MovementDao {
   Future<List<Movement>> findAll() async {
     return _queryAdapter.queryList('SELECT * FROM Movement',
         mapper: (Map<String, Object?> row) => Movement(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             description: row['description'] as String,
             amount: row['amount'] as int,
-            incomeDate: _dateTimeConverter.decode(row['incomeDate'] as int),
-            dueDate: _dateTimeConverter.decode(row['dueDate'] as int),
-            startDate: _dateTimeConverter.decode(row['startDate'] as int),
-            endDate: _dateTimeConverter.decode(row['endDate'] as int),
+            incomeDate: _dateTimeConverter.decode(row['incomeDate'] as int?),
+            dueDate: _dateTimeConverter.decode(row['dueDate'] as int?),
+            startDate: _dateTimeConverter.decode(row['startDate'] as int?),
+            endDate: _dateTimeConverter.decode(row['endDate'] as int?),
             type: MovementType.values[row['type'] as int]));
   }
 
@@ -156,13 +156,13 @@ class _$MovementDao extends MovementDao {
   Stream<Movement?> findById(int id) {
     return _queryAdapter.queryStream('SELECT * FROM Movement WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Movement(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             description: row['description'] as String,
             amount: row['amount'] as int,
-            incomeDate: _dateTimeConverter.decode(row['incomeDate'] as int),
-            dueDate: _dateTimeConverter.decode(row['dueDate'] as int),
-            startDate: _dateTimeConverter.decode(row['startDate'] as int),
-            endDate: _dateTimeConverter.decode(row['endDate'] as int),
+            incomeDate: _dateTimeConverter.decode(row['incomeDate'] as int?),
+            dueDate: _dateTimeConverter.decode(row['dueDate'] as int?),
+            startDate: _dateTimeConverter.decode(row['startDate'] as int?),
+            endDate: _dateTimeConverter.decode(row['endDate'] as int?),
             type: MovementType.values[row['type'] as int]),
         arguments: [id],
         queryableName: 'Movement',
