@@ -85,7 +85,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                   debugPrint('validation succeeded with ${formKey.currentState!.value}');
                   final cubit = context.read<IncomeExpenseCubit>();
                   await cubit.createMovement(data: formKey.currentState!.value);
-                  this.context.router.pop();
+                  this.context.router.popForced();
                 } else {
                   debugPrint('validation failed');
                 }

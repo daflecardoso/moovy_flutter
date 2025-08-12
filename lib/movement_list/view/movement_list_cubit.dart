@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:moovy/database/database.dart';
 import 'package:moovy/database/domain/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
+import 'package:moovy/extensions/list_int_extension.dart';
 
-part 'expense_list_state.dart';
+part 'movement_list_state.dart';
 
 class MonthTab {
   final DateTime date;
@@ -14,11 +14,11 @@ class MonthTab {
   String get title => date.format(DateTimeFormat.MMMMyyyy);
 }
 
-class ExpenseListCubit extends Cubit<ExpenseListState> {
+class MovementListCubit extends Cubit<MovementListState> {
   final DatabaseInstance _databaseInstance;
-  ExpenseListCubit(DatabaseInstance databaseInstance)
+  MovementListCubit(DatabaseInstance databaseInstance)
     : _databaseInstance = databaseInstance,
-      super(ExpenseListInitial()) {
+      super(MovementListInitial()) {
     _init();
   }
 
@@ -33,7 +33,7 @@ class ExpenseListCubit extends Cubit<ExpenseListState> {
       months.add(MonthTab(DateTime(now.year, i + 1, 1)));
     }
     onTabChange(initialIndex);
-    emit(ExpenseListSuccess(months: months, movements: []));
+    emit(MovementListSuccess(months: months, movements: [], totalExpense: 0, totalIncome: 0, total: 0));
   }
 
   Future<void> onTabChange(int index) async {
@@ -42,7 +42,25 @@ class ExpenseListCubit extends Cubit<ExpenseListState> {
       final db = await _databaseInstance.get();
       final currentMonthYear = month.date.format(DateTimeFormat.yyyyMM);
       final movements = await db.movementDao.findByMonthYear(currentMonthYear);
-      emit(ExpenseListSuccess(months: months, movements: movements));
+      final totalExpense = movements
+          .where((e) => e.type == MovementType.expense)
+          .map((e) => e.amount)
+          .toList()
+          .sum;
+      final totalIncome = movements
+          .where((e) => e.type == MovementType.income)
+          .map((e) => e.amount)
+          .toList()
+          .sum;
+      emit(
+        MovementListSuccess(
+          months: months,
+          movements: movements,
+          totalExpense: totalExpense,
+          totalIncome: totalIncome,
+          total: totalIncome - totalExpense,
+        ),
+      );
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
     }

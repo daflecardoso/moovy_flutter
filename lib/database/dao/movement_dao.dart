@@ -12,8 +12,9 @@ abstract class MovementDao {
   @Query("""
   SELECT *
   FROM Movement
-  WHERE strftime('%Y-%m', startDate / 1000, 'unixepoch') <= :dateTime
-  AND strftime('%Y-%m', endDate / 1000, 'unixepoch') >= :dateTime
+  WHERE :dateTime
+  BETWEEN strftime('%Y-%m', startDate / 1000, 'unixepoch')
+  AND COALESCE(strftime('%Y-%m', endDate / 1000, 'unixepoch'), '9999-12');
   """)
   Future<List<Movement>> findByMonthYear(String dateTime);
 

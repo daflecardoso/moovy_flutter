@@ -89,7 +89,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   );
                   final cubit = context.read<IncomeExpenseCubit>();
                   await cubit.createMovement(data: formKey.currentState!.value);
-                  this.context.router.pop();
+                  this.context.router.popForced();
                 } else {
                   debugPrint('validation failed');
                 }

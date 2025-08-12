@@ -1,27 +1,27 @@
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
-import 'package:moovy/expense_list/view/expense_list_cubit.dart';
-import 'package:moovy/expense_list/view/expense_list_page.dart';
+import 'package:moovy/movement_list/view/movement_list_cubit.dart';
+import 'package:moovy/movement_list/view/movement_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
-class ExpenseListScreen extends StatefulWidget {
-  const ExpenseListScreen({super.key});
+class MovementListScreen extends StatefulWidget {
+  const MovementListScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ExpenseListScreenState();
+  State<StatefulWidget> createState() => _MovementListScreenState();
 }
 
-class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTickerProviderStateMixin {
+class _MovementListScreenState extends State<MovementListScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final ExpenseListCubit cubit = ExpenseListCubit(getIt.get());
+  final MovementListCubit cubit = MovementListCubit(getIt.get());
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.initialIndex-1);
+    _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.initialIndex - 1);
     _tabController.addListener(() {
       if (_tabController.index == _tabController.animation?.value.round()) {
         cubit.onTabChange(_tabController.index);
@@ -39,22 +39,22 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTicker
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => cubit,
-      child: BlocBuilder<ExpenseListCubit, ExpenseListState>(
-        builder: (BuildContext context, ExpenseListState state) {
+      child: BlocBuilder<MovementListCubit, MovementListState>(
+        builder: (BuildContext context, MovementListState state) {
           switch (state) {
-            case ExpenseListInitial():
+            case MovementListInitial():
               return SizedBox.shrink();
-            case ExpenseListSuccess():
+            case MovementListSuccess():
               return SafeArea(
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text('Expenses', style: ShadTheme.of(context).textTheme.large),
+                    title: Text('Movements', style: ShadTheme.of(context).textTheme.large),
                     actions: [
                       Padding(
                         padding: EdgeInsets.only(right: 16),
                         child: ShadIconButton(
                           onPressed: () {
-                            context.router.navigatePath(AppRouter.incomeExpense);
+                            context.router.navigateNamed(AppRouter.incomeExpense);
                           },
                           icon: const Icon(LucideIcons.plus),
                         ),
@@ -74,7 +74,16 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTicker
                   ),
                   body: TabBarView(
                     controller: _tabController,
-                    children: cubit.months.map((e) => ExpenseListPage(movements: state.movements)).toList(),
+                    children: cubit.months
+                        .map(
+                          (e) => MovementListPage(
+                            movements: state.movements,
+                            totalExpense: state.totalExpense,
+                            totalIncome: state.totalIncome,
+                            total: state.total,
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
               );
