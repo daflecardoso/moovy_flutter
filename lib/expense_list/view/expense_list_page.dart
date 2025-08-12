@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/extensions/date_time_extensions.dart';
+import 'package:moovy/extensions/int_extensions.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class ExpenseListPage extends StatelessWidget {
-  const ExpenseListPage({super.key});
+  final List<Movement> movements;
+  const ExpenseListPage({super.key, required this.movements});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +25,13 @@ class ExpenseListPage extends StatelessWidget {
         Divider(height: 1),
         Expanded(
           child: ListView.separated(
-            itemCount: 100,
-            itemBuilder: (_, _) {
+            itemCount: movements.length,
+            itemBuilder: (_, index) {
+              final movement = movements[index];
               return ListTile(
-                leading: Text('10', style: ShadTheme.of(context).textTheme.small),
-                title: Text('Installment Credit Card PF', style: ShadTheme.of(context).textTheme.small),
-                trailing: Text("\$5600,90", style: ShadTheme.of(context).textTheme.list),
+                leading: Text(movement.dueDate?.format(DateTimeFormat.dd) ?? '-', style: ShadTheme.of(context).textTheme.small),
+                title: Text(movement.description, style: ShadTheme.of(context).textTheme.small),
+                trailing: Text(movement.amount.currency(), style: ShadTheme.of(context).textTheme.list),
                 onTap: () {},
               );
             },

@@ -1,8 +1,10 @@
 import 'package:moovy/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:moovy/di.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
+  configureDependencies();
   runApp(App());
 }
 

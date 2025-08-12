@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:moovy/di.dart';
 import 'package:moovy/income_expense/pages/expense_screen.dart';
 import 'package:moovy/income_expense/pages/income_screen.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
@@ -13,7 +14,7 @@ class IncomeExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => IncomeExpenseCubit(),
+      create: (context) => IncomeExpenseCubit(getIt.get()),
       child: BlocBuilder<IncomeExpenseCubit, IncomeExpenseState>(
         builder: (context, state) {
           switch (state) {

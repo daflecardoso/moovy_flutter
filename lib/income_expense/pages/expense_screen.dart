@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,13 +80,14 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             ),
             ShadButton(
               child: const Text('Save'),
-              onPressed: () {
+              onPressed: () async {
                 if (formKey.currentState!.saveAndValidate()) {
-                  print('validation succeeded with ${formKey.currentState!.value}');
+                  debugPrint('validation succeeded with ${formKey.currentState!.value}');
                   final cubit = context.read<IncomeExpenseCubit>();
-                  cubit.createMovement(data: formKey.currentState!.value);
+                  await cubit.createMovement(data: formKey.currentState!.value);
+                  this.context.router.pop();
                 } else {
-                  print('validation failed');
+                  debugPrint('validation failed');
                 }
               },
             ),

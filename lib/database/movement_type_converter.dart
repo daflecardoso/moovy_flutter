@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:moovy/storage/domain/movement.dart';
+import 'package:moovy/database/domain/movement.dart';
 
 class MovementTypeConverter extends TypeConverter<MovementType?, String?> {
   @override

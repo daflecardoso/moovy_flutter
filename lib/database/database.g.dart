@@ -170,6 +170,14 @@ class _$MovementDao extends MovementDao {
   }
 
   @override
+  Future<List<Movement>> findByMonthYear(String dateTime) async {
+    return _queryAdapter.queryList(
+        'SELECT *   FROM Movement   WHERE strftime(\'%Y-%m\', startDate / 1000, \'unixepoch\') <= ?1   AND strftime(\'%Y-%m\', endDate / 1000, \'unixepoch\') >= ?1',
+        mapper: (Map<String, Object?> row) => Movement(id: row['id'] as int?, description: row['description'] as String, amount: row['amount'] as int, incomeDate: _dateTimeConverter.decode(row['incomeDate'] as int?), dueDate: _dateTimeConverter.decode(row['dueDate'] as int?), startDate: _dateTimeConverter.decode(row['startDate'] as int?), endDate: _dateTimeConverter.decode(row['endDate'] as int?), type: MovementType.values[row['type'] as int]),
+        arguments: [dateTime]);
+  }
+
+  @override
   Future<void> insertMovement(Movement movement) async {
     await _movementInsertionAdapter.insert(movement, OnConflictStrategy.abort);
   }

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moovy/core/database.dart';
-import 'package:moovy/storage/domain/movement.dart';
+import 'package:moovy/database/database.dart';
+import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/extensions/string_extensions.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 part 'income_expense_state.dart';
 
-enum IncomeExpenseTabs {
-  expense,
-  income,
-}
+enum IncomeExpenseTabs { expense, income }
 
 class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
-  IncomeExpenseCubit() : super(IncomeExpenseInitial());
+  final DatabaseInstance _databaseInstance;
+  IncomeExpenseCubit(DatabaseInstance databaseInstance)
+    : _databaseInstance = databaseInstance,
+      super(IncomeExpenseInitial());
 
   IncomeExpenseTabs tab = IncomeExpenseTabs.expense;
 
@@ -20,11 +21,9 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
     this.tab = tab;
   }
 
-  Future<void> createMovement({ required Map<Object, dynamic> data }) async {
+  Future<void> createMovement({required Map<Object, dynamic> data}) async {
     try {
-      final database = await $FloorAppDatabase.databaseBuilder('moovy.db')
-          .build();
-      print("✅ ${database.database.database.path}");
+      final database = await _databaseInstance.get();
       String description = data['description'];
       ShadDateTimeRange period = data['period'];
       String amount = data['amount'];
@@ -32,18 +31,17 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       DateTime? dueDate = data['dueDate'];
 
       final movement = Movement(
-          id: null,
-          description: description,
-          amount: int.parse(amount.replaceAll(RegExp(r'[^0-9]'), '')),
-          incomeDate: incomeDate,
-          dueDate: dueDate,
-          startDate: period.start,
-          endDate: period.end,
-          type: MovementType.fromName(tab.name)
+        id: null,
+        description: description,
+        amount: amount.digits().toInt(),
+        incomeDate: incomeDate,
+        dueDate: dueDate,
+        startDate: period.start,
+        endDate: period.end,
+        type: MovementType.fromName(tab.name),
       );
       await database.movementDao.insertMovement(movement);
-      print("✅ ${movement.toJson()}");
-    } catch(e, s) {
+    } catch (e, s) {
       debugPrintStack(stackTrace: s);
     }
   }

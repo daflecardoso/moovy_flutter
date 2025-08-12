@@ -1,4 +1,5 @@
 import 'package:moovy/app_router.dart';
+import 'package:moovy/di.dart';
 import 'package:moovy/expense_list/view/expense_list_cubit.dart';
 import 'package:moovy/expense_list/view/expense_list_page.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,16 @@ class ExpenseListScreen extends StatefulWidget {
 
 class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  final ExpenseListCubit cubit = ExpenseListCubit(getIt.get());
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 5);
+    _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.initialIndex-1);
+    _tabController.addListener(() {
+      if (_tabController.index == _tabController.animation?.value.round()) {
+        cubit.onTabChange(_tabController.index);
+      }
+    });
   }
 
   @override
@@ -32,7 +38,7 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTicker
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ExpenseListCubit(),
+      create: (_) => cubit,
       child: BlocBuilder<ExpenseListCubit, ExpenseListState>(
         builder: (BuildContext context, ExpenseListState state) {
           switch (state) {
@@ -63,12 +69,12 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> with SingleTicker
                       unselectedLabelStyle: ShadTheme.of(context).textTheme.small,
                       labelStyle: ShadTheme.of(context).textTheme.large,
                       indicatorPadding: EdgeInsets.zero,
-                      tabs: context.read<ExpenseListCubit>().months.map((e) => Tab(text: '$e 2025')).toList(),
+                      tabs: cubit.months.map((e) => Tab(text: e.title)).toList(),
                     ),
                   ),
                   body: TabBarView(
                     controller: _tabController,
-                    children: context.read<ExpenseListCubit>().months.map((e) => ExpenseListPage()).toList(),
+                    children: cubit.months.map((e) => ExpenseListPage(movements: state.movements)).toList(),
                   ),
                 ),
               );
