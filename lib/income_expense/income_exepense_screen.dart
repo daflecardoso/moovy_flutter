@@ -25,8 +25,8 @@ class IncomeExpenseScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: ShadTabs(
             value: tab,
-            tabBarConstraints: const BoxConstraints(maxWidth: 400),
-            contentConstraints: const BoxConstraints(maxWidth: 400),
+            tabBarConstraints: const BoxConstraints(maxWidth: 450),
+            contentConstraints: const BoxConstraints(maxWidth: 450),
             onChanged: (value) {
               cubit.setTab(value);
             },

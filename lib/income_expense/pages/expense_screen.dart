@@ -30,7 +30,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             return ShadForm(
               key: formKey,
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 350),
+                constraints: const BoxConstraints(maxWidth: 450),
                 child: Column(
                   spacing: 16,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -54,7 +54,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       id: 'dueDate',
                       initialValue: state.expense?.dueDate,
                       label: const Text('Due date of expense'),
-                      width: 350,
+                      width: 450,
                       validator: (v) {
                         if (v == null) return 'Due date is required.';
                         return null;
@@ -64,7 +64,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       id: 'period',
                       initialValue: ShadDateTimeRange(start: state.expense?.startDate, end: state.expense?.endDate),
                       label: const Text('Period of expense'),
-                      width: 350,
+                      width: 450,
                       description: const Text('If has not end date, pick the start date.'),
                       validator: (v) {
                         if (v == null) return 'Start or range of dates is required.';
