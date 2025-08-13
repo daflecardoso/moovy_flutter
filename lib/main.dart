@@ -1,6 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/main_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
@@ -15,24 +17,28 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadApp.custom(
-      themeMode: ThemeMode.dark,
-      darkTheme: ShadThemeData(
-          brightness: Brightness.dark, colorScheme: const ShadSlateColorScheme.dark()
+    return BlocProvider(
+      create: (BuildContext context) => MainCubit(),
+      child: BlocBuilder<MainCubit, MainState>(
+        builder: (BuildContext context, MainState state) {
+          switch (state) {
+            case MainInitial():
+              return ShadApp.custom(
+                themeMode: state.themeMode,
+                darkTheme: ShadThemeData(brightness: Brightness.dark, colorScheme: const ShadSlateColorScheme.dark()),
+                appBuilder: (context) {
+                  return MaterialApp.router(
+                    routerConfig: _appRouter.config(),
+                    theme: Theme.of(context),
+                    builder: (context, child) {
+                      return ShadAppBuilder(child: Material(child: child));
+                    },
+                  );
+                },
+              );
+          }
+        },
       ),
-      appBuilder: (context) {
-        return MaterialApp.router(
-          routerConfig: _appRouter.config(),
-          theme: Theme.of(context),
-          builder: (context, child) {
-            return ShadAppBuilder(
-              child: Material(
-                child: child,
-              ),
-            );
-          },
-        );
-      },
     );
   }
 }

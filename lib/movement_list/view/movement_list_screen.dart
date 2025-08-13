@@ -1,5 +1,6 @@
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/main_cubit.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/movement_list_page.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,9 @@ class _MovementListScreenState extends State<MovementListScreen> with SingleTick
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text('Movements', style: ShadTheme.of(context).textTheme.large),
+                    leading: IconButton(onPressed: () {
+                      context.read<MainCubit>().toggleTheme();
+                    }, icon: Icon(LucideIcons.moon)),
                     actions: [
                       Padding(
                         padding: EdgeInsets.only(right: 16),
