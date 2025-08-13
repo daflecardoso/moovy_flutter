@@ -38,6 +38,10 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    ShadBadge(
+                      backgroundColor: Colors.green,
+                      child: const Text('Income'),
+                    ),
                     DescriptionInput(
                       initialValue: state.income?.description,
                       title: 'Income Description',

@@ -37,6 +37,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    ShadBadge(
+                      backgroundColor: Colors.orange,
+                      child: const Text('Expense'),
+                    ),
                     DescriptionInput(
                         initialValue: state.expense?.description,
                         title: 'Expense Description',

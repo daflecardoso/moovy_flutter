@@ -31,8 +31,16 @@ class IncomeExpenseScreen extends StatelessWidget {
               cubit.setTab(value);
             },
             tabs: [
-              ShadTab(value: IncomeExpenseTabs.expense, content: ExpenseScreen(), child: Text('Expense')),
-              ShadTab(value: IncomeExpenseTabs.income, content: IncomeScreen(), child: Text('Income')),
+              ShadTab(
+                value: IncomeExpenseTabs.expense,
+                content: ExpenseScreen(),
+                child: Text('Expense'),
+              ),
+              ShadTab(
+                value: IncomeExpenseTabs.income,
+                content: IncomeScreen(),
+                child: Text('Income'),
+              ),
             ],
           ),
         ),
