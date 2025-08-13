@@ -51,35 +51,61 @@ class MovementListPage extends StatelessWidget {
                 final movement = movements[index];
                 return InkWell(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.only(left: 8),
                     child: Row(
-                      spacing: 16,
                       children: [
-                        Icon(LucideIcons.coins),
+                        Icon(switch (movement.type) {
+                          MovementType.expense => LucideIcons.arrowBigUp,
+                          MovementType.income => LucideIcons.arrowBigDown,
+                        }),
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Text(movement.description, style: ShadTheme.of(context).textTheme.p),
-                              Text(
-                                movement.dueDate?.format(DateTimeFormat.ddMM) ??
-                                    movement.incomeDate?.format(DateTimeFormat.ddMM) ??
-                                    '-',
-                                style: ShadTheme.of(context).textTheme.small.copyWith(fontSize: 10),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  movement.description,
+                                  style: ShadTheme.of(context).textTheme.p.copyWith(
+                                    color: movement.paid ? Colors.grey : null,
+                                    decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  movement.dueDate?.format(DateTimeFormat.ddMM) ??
+                                      movement.incomeDate?.format(DateTimeFormat.ddMM) ??
+                                      '-',
+                                  style: ShadTheme.of(context).textTheme.small.copyWith(
+                                    fontSize: 10,
+                                    color: movement.paid ? Colors.grey : null,
+                                    decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Text(
                           movement.amount.currency(),
                           style: ShadTheme.of(context).textTheme.list.apply(
-                            color: switch (movement.type) {
-                              MovementType.expense => Colors.orange,
-                              MovementType.income => Colors.green,
-                            },
+                            color: movement.paid
+                                ? Colors.grey
+                                : switch (movement.type) {
+                                    MovementType.expense => Colors.orange,
+                                    MovementType.income => Colors.green,
+                                  },
+                            decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                           ),
                         ),
-                        Checkbox(value: true, onChanged: (isChecked) {}),
+                        Checkbox(
+                          value: movement.paid,
+                          onChanged: (isChecked) {
+                            final cubit = context.read<MovementListCubit>();
+                            cubit.togglePaid(movement);
+                          },
+                        ),
                       ],
                     ),
                   ),

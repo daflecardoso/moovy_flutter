@@ -16,4 +16,12 @@ final class MovementListSuccess extends MovementListState {
     required this.totalExpense,
     required this.total,
   });
+
+  MovementListSuccess copyWith({List<Movement>? movements}) => MovementListSuccess(
+    months: months,
+    movements: movements ?? this.movements,
+    totalExpense: totalExpense,
+    totalIncome: totalIncome,
+    total: total,
+  );
 }

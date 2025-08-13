@@ -60,8 +60,19 @@ class MovementListCubit extends Cubit<MovementListState> {
         ),
       );
     } catch (e, s) {
-      print(e.toString());
+      debugPrint(e.toString());
       debugPrintStack(stackTrace: s);
+    }
+  }
+
+  Future<void> togglePaid(Movement movement) async {
+    movement.paid = !movement.paid;
+    await movementDao.updateMovement(movement);
+    final state = this.state;
+    if (state is MovementListSuccess) {
+      final index = state.movements.indexOf(movement);
+      state.movements[index] = movement;
+      emit(state.copyWith(movements: state.movements));
     }
   }
 }

@@ -11,7 +11,7 @@ class Movement {
   final DateTime? incomeDate, dueDate, endDate;
   final DateTime startDate, createdAt, updatedAt;
   @BoolFlexConverter()
-  final bool paid;
+  bool paid;
   final MovementType type;
 
   Movement({

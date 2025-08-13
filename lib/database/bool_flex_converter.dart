@@ -16,5 +16,5 @@ class BoolFlexConverter implements JsonConverter<bool, Object?> {
   }
 
   @override
-  Object toJson(bool value) => value;
+  Object toJson(bool value) => value ? 1 : 0;
 }
