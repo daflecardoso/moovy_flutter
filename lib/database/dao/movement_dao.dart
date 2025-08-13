@@ -1,29 +1,48 @@
-import 'package:floor/floor.dart';
+import 'package:injectable/injectable.dart';
+import 'package:moovy/database/database.dart';
 import 'package:moovy/database/domain/movement.dart';
 
-@dao
-abstract class MovementDao {
-  @Query('SELECT * FROM Movement')
-  Future<List<Movement>> findAll();
+@injectable
+class MovementDao {
+  AppDatabase appDatabase;
+  MovementDao(this.appDatabase);
 
-  @Query('SELECT * FROM Movement WHERE id = :id')
-  Future<Movement?> findById(int id);
+  Future<List<Movement>> findAll() async {
+    final sqlite = await appDatabase.sqlite;
+    final movements = await sqlite.rawQuery('SELECT * FROM Movement');
+    return movements.map((item) => Movement.fromJson(item)).toList();
+  }
 
-  @Query("""
-  SELECT *
-  FROM Movement
-  WHERE :dateTime
-  BETWEEN strftime('%Y-%m', startDate / 1000, 'unixepoch')
-  AND COALESCE(strftime('%Y-%m', endDate / 1000, 'unixepoch'), '9999-12');
-  """)
-  Future<List<Movement>> findByMonthYear(String dateTime);
+  Future<Movement?> findById(int id) async {
+    final sqlite = await appDatabase.sqlite;
+    final movements = await sqlite.rawQuery('SELECT * FROM Movement WHERE id = $id');
+    if (movements.firstOrNull case final movement?) {
+      return Movement.fromJson(movement);
+    }
+    return null;
+  }
 
-  @insert
-  Future<void> insertMovement(Movement movement);
+  Future<List<Movement>> findByMonthYear(String dateTime) async {
+    final sqlite = await appDatabase.sqlite;
+    final movements = await sqlite.rawQuery(''' 
+    SELECT *
+    FROM Movement
+    WHERE '$dateTime'
+    BETWEEN strftime('%Y-%m', start_date)
+    AND COALESCE(strftime('%Y-%m', end_date), '9999-12');
+    ''');
+    return movements.map((item) => Movement.fromJson(item)).toList();
+  }
 
-  @update
-  Future<void> updateMovement(Movement movement);
+  Future<void> insertMovement(Movement movement) async {
+    await appDatabase.insert(AppDatabaseTable.movement, movement.toJSON());
+  }
 
-  @Query('DELETE FROM Movement WHERE id = :id')
-  Future<void> deleteById(int id);
+  Future<void> updateMovement(Movement movement) async {
+    await appDatabase.update(AppDatabaseTable.movement, movement.toJSON(), where: 'id = ?', whereArgs: [movement.id]);
+  }
+
+  Future<void> deleteById(int id) async {
+    await appDatabase.delete(AppDatabaseTable.movement, where: 'id = ?', whereArgs: [id]);
+  }
 }

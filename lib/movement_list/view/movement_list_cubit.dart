@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:moovy/database/database.dart';
+import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/list_int_extension.dart';
@@ -15,10 +15,8 @@ class MonthTab {
 }
 
 class MovementListCubit extends Cubit<MovementListState> {
-  final DatabaseInstance _databaseInstance;
-  MovementListCubit(DatabaseInstance databaseInstance)
-    : _databaseInstance = databaseInstance,
-      super(MovementListInitial()) {
+  final MovementDao movementDao;
+  MovementListCubit(this.movementDao) : super(MovementListInitial()) {
     _init();
   }
 
@@ -40,9 +38,8 @@ class MovementListCubit extends Cubit<MovementListState> {
     try {
       tabIndex = index;
       final month = months[index];
-      final db = await _databaseInstance.get();
       final currentMonthYear = month.date.format(DateTimeFormat.yyyyMM);
-      final movements = await db.movementDao.findByMonthYear(currentMonthYear);
+      final movements = await movementDao.findByMonthYear(currentMonthYear);
       final totalExpense = movements
           .where((e) => e.type == MovementType.expense)
           .map((e) => e.amount)
@@ -63,6 +60,7 @@ class MovementListCubit extends Cubit<MovementListState> {
         ),
       );
     } catch (e, s) {
+      print(e.toString());
       debugPrintStack(stackTrace: s);
     }
   }

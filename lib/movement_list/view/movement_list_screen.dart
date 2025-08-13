@@ -54,7 +54,7 @@ class _MovementListScreenState extends State<MovementListScreen> with SingleTick
                         padding: EdgeInsets.only(right: 16),
                         child: ShadIconButton(
                           onPressed: () {
-                            context.router.navigateNamed(AppRouter.incomeExpense);
+                            context.router.navigatePath(AppRouter.incomeExpense);
                           },
                           icon: const Icon(LucideIcons.plus),
                         ),

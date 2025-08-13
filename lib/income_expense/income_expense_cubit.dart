@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moovy/database/database.dart';
+import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement.dart';
 import 'package:moovy/extensions/string_extensions.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -10,10 +10,10 @@ part 'income_expense_state.dart';
 enum IncomeExpenseTabs { expense, income }
 
 class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
-  final DatabaseInstance databaseInstance;
+  final MovementDao movementDao;
   final int? id;
   IncomeExpenseTabs tab;
-  IncomeExpenseCubit(this.databaseInstance, this.id, this.tab) : super(IncomeExpenseInitial()) {
+  IncomeExpenseCubit(this.movementDao, this.id, this.tab) : super(IncomeExpenseInitial()) {
     getById();
   }
 
@@ -24,8 +24,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
   Future<void> getById() async {
     if (id case final id?) {
       try {
-        final database = await databaseInstance.get();
-        final movement = await database.movementDao.findById(id);
+        final movement = await movementDao.findById(id);
         if (movement != null) {
           emit(IncomeExpenseForm(movement, movement));
         } else {
@@ -41,7 +40,6 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
 
   Future<void> createMovement({required Map<Object, dynamic> data}) async {
     try {
-      final database = await databaseInstance.get();
       String description = data['description'];
       ShadDateTimeRange period = data['period'];
       String amount = data['amount'];
@@ -54,14 +52,17 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
         amount: amount.digits().toInt(),
         incomeDate: incomeDate,
         dueDate: dueDate,
-        startDate: period.start,
+        startDate: period.start!,
         endDate: period.end,
         type: MovementType.fromName(tab.name),
+        paid: false,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
       );
       if (id == null) {
-        await database.movementDao.insertMovement(movement);
+        await movementDao.insertMovement(movement);
       } else {
-        await database.movementDao.updateMovement(movement);
+        await movementDao.updateMovement(movement);
       }
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
@@ -70,8 +71,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
 
   Future<void> delete() async {
     if (id case final id?) {
-      final database = await databaseInstance.get();
-      await database.movementDao.deleteById(id);
+      await movementDao.deleteById(id);
     }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +98,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                             child: const Text('Delete'),
                             onPressed: () {
                               cubit.delete();
-                              context.router.popForced();
+                              context.router.pop();
                             },
                           ),
                         ShadButton(
@@ -109,7 +108,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                               debugPrint('validation succeeded with ${formKey.currentState!.value}');
                               final cubit = context.read<IncomeExpenseCubit>();
                               await cubit.createMovement(data: formKey.currentState!.value);
-                              this.context.router.popForced();
+                              this.context.router.pop();
                             } else {
                               debugPrint('validation failed');
                             }

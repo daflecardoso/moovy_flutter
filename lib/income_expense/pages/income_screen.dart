@@ -99,7 +99,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                             child: const Text('Delete'),
                             onPressed: () {
                               cubit.delete();
-                              context.router.popForced();
+                              context.router.pop();
                             },
                           ),
                         ShadButton(
@@ -109,7 +109,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                               debugPrint('validation succeeded with ${formKey.currentState!.value}');
                               final cubit = context.read<IncomeExpenseCubit>();
                               await cubit.createMovement(data: formKey.currentState!.value);
-                              this.context.router.popForced();
+                              this.context.router.pop();
                             } else {
                               debugPrint('validation failed');
                             }

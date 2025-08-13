@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -20,10 +21,7 @@ import 'package:moovy/profile/profile_screen.dart' as _i5;
 /// [_i1.ExpenseScreen]
 class ExpenseRoute extends _i6.PageRouteInfo<void> {
   const ExpenseRoute({List<_i6.PageRouteInfo>? children})
-      : super(
-          ExpenseRoute.name,
-          initialChildren: children,
-        );
+    : super(ExpenseRoute.name, initialChildren: children);
 
   static const String name = 'ExpenseRoute';
 
@@ -44,16 +42,12 @@ class IncomeExpenseRoute extends _i6.PageRouteInfo<IncomeExpenseRouteArgs> {
     String tab = 'expense',
     List<_i6.PageRouteInfo>? children,
   }) : super(
-          IncomeExpenseRoute.name,
-          args: IncomeExpenseRouteArgs(
-            key: key,
-            id: id,
-            tab: tab,
-          ),
-          rawPathParams: {'id': id},
-          rawQueryParams: {'tab': tab},
-          initialChildren: children,
-        );
+         IncomeExpenseRoute.name,
+         args: IncomeExpenseRouteArgs(key: key, id: id, tab: tab),
+         rawPathParams: {'id': id},
+         rawQueryParams: {'tab': tab},
+         initialChildren: children,
+       );
 
   static const String name = 'IncomeExpenseRoute';
 
@@ -63,28 +57,19 @@ class IncomeExpenseRoute extends _i6.PageRouteInfo<IncomeExpenseRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final queryParams = data.queryParams;
       final args = data.argsAs<IncomeExpenseRouteArgs>(
-          orElse: () => IncomeExpenseRouteArgs(
-                id: pathParams.optInt('id'),
-                tab: queryParams.getString(
-                  'tab',
-                  'expense',
-                ),
-              ));
-      return _i2.IncomeExpenseScreen(
-        key: args.key,
-        id: args.id,
-        tab: args.tab,
+        orElse:
+            () => IncomeExpenseRouteArgs(
+              id: pathParams.optInt('id'),
+              tab: queryParams.getString('tab', 'expense'),
+            ),
       );
+      return _i2.IncomeExpenseScreen(key: args.key, id: args.id, tab: args.tab);
     },
   );
 }
 
 class IncomeExpenseRouteArgs {
-  const IncomeExpenseRouteArgs({
-    this.key,
-    this.id,
-    this.tab = 'expense',
-  });
+  const IncomeExpenseRouteArgs({this.key, this.id, this.tab = 'expense'});
 
   final _i7.Key? key;
 
@@ -96,16 +81,23 @@ class IncomeExpenseRouteArgs {
   String toString() {
     return 'IncomeExpenseRouteArgs{key: $key, id: $id, tab: $tab}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! IncomeExpenseRouteArgs) return false;
+    return key == other.key && id == other.id && tab == other.tab;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode ^ tab.hashCode;
 }
 
 /// generated route for
 /// [_i3.IncomeScreen]
 class IncomeRoute extends _i6.PageRouteInfo<void> {
   const IncomeRoute({List<_i6.PageRouteInfo>? children})
-      : super(
-          IncomeRoute.name,
-          initialChildren: children,
-        );
+    : super(IncomeRoute.name, initialChildren: children);
 
   static const String name = 'IncomeRoute';
 
@@ -121,10 +113,7 @@ class IncomeRoute extends _i6.PageRouteInfo<void> {
 /// [_i4.MovementListScreen]
 class MovementListRoute extends _i6.PageRouteInfo<void> {
   const MovementListRoute({List<_i6.PageRouteInfo>? children})
-      : super(
-          MovementListRoute.name,
-          initialChildren: children,
-        );
+    : super(MovementListRoute.name, initialChildren: children);
 
   static const String name = 'MovementListRoute';
 
@@ -140,10 +129,7 @@ class MovementListRoute extends _i6.PageRouteInfo<void> {
 /// [_i5.ProfileScreen]
 class ProfileRoute extends _i6.PageRouteInfo<void> {
   const ProfileRoute({List<_i6.PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
+    : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 

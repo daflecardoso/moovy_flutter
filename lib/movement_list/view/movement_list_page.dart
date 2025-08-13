@@ -84,7 +84,7 @@ class MovementListPage extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    context.router.navigateNamed(
+                    context.router.navigatePath(
                       '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}',
                     );
                   },
