@@ -31,7 +31,7 @@ class MovementListPage extends StatelessWidget {
           Container(
             color: Colors.grey.withValues(alpha: 0.1),
             child: ListTile(
-              leading: Text('Day', style: ShadTheme.of(context).textTheme.small),
+              leading: Text('Type', style: ShadTheme.of(context).textTheme.small),
               title: Text('Description', style: ShadTheme.of(context).textTheme.small),
               trailing: Text("Amount", style: ShadTheme.of(context).textTheme.small),
               dense: true,
@@ -45,13 +45,17 @@ class MovementListPage extends StatelessWidget {
               itemBuilder: (_, index) {
                 final movement = movements[index];
                 return ListTile(
-                  leading: Text(
-                    movement.dueDate?.format(DateTimeFormat.dd) ??
-                        movement.incomeDate?.format(DateTimeFormat.dd) ??
+                  dense: true,
+                  visualDensity: VisualDensity.compact,
+                  leading: Icon(LucideIcons.coins),
+                  selected: true,
+                  subtitle: Text(
+                    movement.dueDate?.format(DateTimeFormat.ddMM) ??
+                        movement.incomeDate?.format(DateTimeFormat.ddMM) ??
                         '-',
-                    style: ShadTheme.of(context).textTheme.small,
+                    style: ShadTheme.of(context).textTheme.small.copyWith(fontSize: 10),
                   ),
-                  title: Text(movement.description, style: ShadTheme.of(context).textTheme.small),
+                  title: Text(movement.description, style: ShadTheme.of(context).textTheme.p),
                   trailing: Text(
                     movement.amount.currency(),
                     style: ShadTheme.of(context).textTheme.list.apply(
@@ -69,7 +73,7 @@ class MovementListPage extends StatelessWidget {
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox.shrink();
+                return Divider(height: 1);
               },
             ),
           ),

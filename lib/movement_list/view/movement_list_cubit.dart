@@ -27,7 +27,7 @@ class MovementListCubit extends Cubit<MovementListState> {
 
   void _init() {
     final now = DateTime.now();
-    tabIndex = now.month;
+    tabIndex = now.month - 1;
 
     for (var i = 0; i < 12; i++) {
       months.add(MonthTab(DateTime(now.year, i + 1, 1)));
@@ -38,6 +38,7 @@ class MovementListCubit extends Cubit<MovementListState> {
 
   Future<void> onTabChange(int index) async {
     try {
+      tabIndex = index;
       final month = months[index];
       final db = await _databaseInstance.get();
       final currentMonthYear = month.date.format(DateTimeFormat.yyyyMM);

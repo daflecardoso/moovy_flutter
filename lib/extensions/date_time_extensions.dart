@@ -4,6 +4,7 @@ enum DateTimeFormat {
   yyyyMM('yyyy-MM'),
   MMMMyyyy('MMMM yyyy'),
   dd('dd'),
+  ddMM('dd MMM')
   ;
 
   final String format;
