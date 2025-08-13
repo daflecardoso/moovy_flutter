@@ -50,6 +50,22 @@ class _IncomeScreenState extends State<IncomeScreen> {
                         return null;
                       },
                     ),
+                    ShadInputFormField(
+                      id: 'amount',
+                      initialValue: state.expense?.amount.currency(),
+                      label: const Text('Amount'),
+                      placeholder: const Text('Ex: \$150,00'),
+                      description: const Text('Amount per month'),
+                      keyboardType: TextInputType.number,
+                      leading: Icon(LucideIcons.coins),
+                      inputFormatters: [CurrencyTextInputFormatter.currency()],
+                      validator: (v) {
+                        if (v.isEmpty) {
+                          return 'Please type some value.';
+                        }
+                        return null;
+                      },
+                    ),
                     ShadDatePickerFormField(
                       id: 'incomeDate',
                       initialValue: state.expense?.incomeDate,
@@ -70,22 +86,6 @@ class _IncomeScreenState extends State<IncomeScreen> {
                         if (v == null) return 'Start or range of dates is required.';
                         if (v.start == null) {
                           return 'The start date is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                    ShadInputFormField(
-                      id: 'amount',
-                      initialValue: state.expense?.amount.currency(),
-                      label: const Text('Amount'),
-                      placeholder: const Text('Ex: \$150,00'),
-                      description: const Text('Amount per month'),
-                      keyboardType: TextInputType.number,
-                      leading: Icon(LucideIcons.coins),
-                      inputFormatters: [CurrencyTextInputFormatter.currency()],
-                      validator: (v) {
-                        if (v.isEmpty) {
-                          return 'Please type some value.';
                         }
                         return null;
                       },
