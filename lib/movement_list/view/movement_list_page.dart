@@ -30,12 +30,17 @@ class MovementListPage extends StatelessWidget {
         children: [
           Container(
             color: Colors.grey.withValues(alpha: 0.1),
-            child: ListTile(
-              leading: Text('Type', style: ShadTheme.of(context).textTheme.small),
-              title: Text('Description', style: ShadTheme.of(context).textTheme.small),
-              trailing: Text("Amount", style: ShadTheme.of(context).textTheme.small),
-              dense: true,
-              visualDensity: VisualDensity.compact,
+            child: Padding(
+              padding: EdgeInsets.all(8),
+              child: Row(
+                spacing: 16,
+                children: [
+                  Text('Type', style: ShadTheme.of(context).textTheme.small),
+                  Expanded(child: Text('Description', style: ShadTheme.of(context).textTheme.small)),
+                  Text("Amount", style: ShadTheme.of(context).textTheme.small),
+                  Text("Paid", style: ShadTheme.of(context).textTheme.small),
+                ],
+              ),
             ),
           ),
           Divider(height: 1),
@@ -44,25 +49,38 @@ class MovementListPage extends StatelessWidget {
               itemCount: movements.length,
               itemBuilder: (_, index) {
                 final movement = movements[index];
-                return ListTile(
-                  dense: true,
-                  visualDensity: VisualDensity.compact,
-                  leading: Icon(LucideIcons.coins),
-                  selected: true,
-                  subtitle: Text(
-                    movement.dueDate?.format(DateTimeFormat.ddMM) ??
-                        movement.incomeDate?.format(DateTimeFormat.ddMM) ??
-                        '-',
-                    style: ShadTheme.of(context).textTheme.small.copyWith(fontSize: 10),
-                  ),
-                  title: Text(movement.description, style: ShadTheme.of(context).textTheme.p),
-                  trailing: Text(
-                    movement.amount.currency(),
-                    style: ShadTheme.of(context).textTheme.list.apply(
-                      color: switch (movement.type) {
-                        MovementType.expense => Colors.orange,
-                        MovementType.income => Colors.green,
-                      },
+                return InkWell(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      spacing: 16,
+                      children: [
+                        Icon(LucideIcons.coins),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(movement.description, style: ShadTheme.of(context).textTheme.p),
+                              Text(
+                                movement.dueDate?.format(DateTimeFormat.ddMM) ??
+                                    movement.incomeDate?.format(DateTimeFormat.ddMM) ??
+                                    '-',
+                                style: ShadTheme.of(context).textTheme.small.copyWith(fontSize: 10),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          movement.amount.currency(),
+                          style: ShadTheme.of(context).textTheme.list.apply(
+                            color: switch (movement.type) {
+                              MovementType.expense => Colors.orange,
+                              MovementType.income => Colors.green,
+                            },
+                          ),
+                        ),
+                        Checkbox(value: true, onChanged: (isChecked) {}),
+                      ],
                     ),
                   ),
                   onTap: () {
