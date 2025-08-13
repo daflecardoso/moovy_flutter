@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
+import 'package:moovy/income_expense/pages/amount_input.dart';
+import 'package:moovy/income_expense/pages/description_field.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -36,39 +38,15 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ShadInputFormField(
-                      id: 'description',
-                      initialValue: state.expense?.description,
-                      label: const Text('Income Description'),
-                      placeholder: const Text('Ex: Salary'),
-                      description: const Text('This is your income description.'),
-                      leading: Icon(LucideIcons.text),
-                      validator: (v) {
-                        if (v.isEmpty) {
-                          return 'Description of expense cannot be empty.';
-                        }
-                        return null;
-                      },
+                    DescriptionInput(
+                      initialValue: state.income?.description,
+                      title: 'Income Description',
+                      placeholder: 'Ex: Salary',
                     ),
-                    ShadInputFormField(
-                      id: 'amount',
-                      initialValue: state.expense?.amount.currency(),
-                      label: const Text('Amount'),
-                      placeholder: const Text('Ex: \$150,00'),
-                      description: const Text('Amount per month'),
-                      keyboardType: TextInputType.number,
-                      leading: Icon(LucideIcons.coins),
-                      inputFormatters: [CurrencyTextInputFormatter.currency()],
-                      validator: (v) {
-                        if (v.isEmpty) {
-                          return 'Please type some value.';
-                        }
-                        return null;
-                      },
-                    ),
+                    AmountInput(initialValue: state.income?.amount.currency()),
                     ShadDatePickerFormField(
                       id: 'incomeDate',
-                      initialValue: state.expense?.incomeDate,
+                      initialValue: state.income?.incomeDate,
                       label: const Text('Income date'),
                       width: 450,
                       validator: (v) {
@@ -78,7 +56,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                     ),
                     ShadDateRangePickerFormField(
                       id: 'period',
-                      initialValue: ShadDateTimeRange(start: state.expense?.startDate, end: state.expense?.endDate),
+                      initialValue: ShadDateTimeRange(start: state.income?.startDate, end: state.income?.endDate),
                       label: const Text('Period of income'),
                       width: 450,
                       description: const Text('If has not end date, pick the start date.'),
@@ -116,7 +94,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                           },
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

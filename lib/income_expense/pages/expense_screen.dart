@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
+import 'package:moovy/income_expense/pages/amount_input.dart';
+import 'package:moovy/income_expense/pages/description_field.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -35,36 +37,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ShadInputFormField(
-                      id: 'description',
-                      initialValue: state.expense?.description,
-                      label: const Text('Expense Description'),
-                      placeholder: const Text('Ex: Invoice Credit Card'),
-                      description: const Text('This is your expense description.'),
-                      leading: Icon(LucideIcons.text),
-                      validator: (v) {
-                        if (v.isEmpty) {
-                          return 'Description of expense cannot be empty.';
-                        }
-                        return null;
-                      },
+                    DescriptionInput(
+                        initialValue: state.expense?.description,
+                        title: 'Expense Description',
+                        placeholder: 'Ex: Invoice Credit Card',
                     ),
-                    ShadInputFormField(
-                      id: 'amount',
-                      initialValue: state.expense?.amount.currency(),
-                      label: const Text('Amount'),
-                      placeholder: const Text('Ex: \$150,00'),
-                      description: const Text('Amount per month'),
-                      keyboardType: TextInputType.number,
-                      leading: Icon(LucideIcons.coins),
-                      inputFormatters: [CurrencyTextInputFormatter.currency()],
-                      validator: (v) {
-                        if (v.isEmpty) {
-                          return 'Please type some value.';
-                        }
-                        return null;
-                      },
-                    ),
+                    AmountInput(initialValue: state.expense?.amount.currency()),
                     ShadDatePickerFormField(
                       id: 'dueDate',
                       initialValue: state.expense?.dueDate,
@@ -115,7 +93,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                           },
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
