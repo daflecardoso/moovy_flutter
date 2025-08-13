@@ -114,7 +114,7 @@ class _$MovementDao extends MovementDao {
   _$MovementDao(
     this.database,
     this.changeListener,
-  )   : _queryAdapter = QueryAdapter(database, changeListener),
+  )   : _queryAdapter = QueryAdapter(database),
         _movementInsertionAdapter = InsertionAdapter(
             database,
             'Movement',
@@ -127,8 +127,21 @@ class _$MovementDao extends MovementDao {
                   'startDate': _dateTimeConverter.encode(item.startDate),
                   'endDate': _dateTimeConverter.encode(item.endDate),
                   'type': item.type.index
-                },
-            changeListener);
+                }),
+        _movementUpdateAdapter = UpdateAdapter(
+            database,
+            'Movement',
+            ['id'],
+            (Movement item) => <String, Object?>{
+                  'id': item.id,
+                  'description': item.description,
+                  'amount': item.amount,
+                  'incomeDate': _dateTimeConverter.encode(item.incomeDate),
+                  'dueDate': _dateTimeConverter.encode(item.dueDate),
+                  'startDate': _dateTimeConverter.encode(item.startDate),
+                  'endDate': _dateTimeConverter.encode(item.endDate),
+                  'type': item.type.index
+                });
 
   final sqflite.DatabaseExecutor database;
 
@@ -137,6 +150,8 @@ class _$MovementDao extends MovementDao {
   final QueryAdapter _queryAdapter;
 
   final InsertionAdapter<Movement> _movementInsertionAdapter;
+
+  final UpdateAdapter<Movement> _movementUpdateAdapter;
 
   @override
   Future<List<Movement>> findAll() async {
@@ -153,8 +168,8 @@ class _$MovementDao extends MovementDao {
   }
 
   @override
-  Stream<Movement?> findById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM Movement WHERE id = ?1',
+  Future<Movement?> findById(int id) async {
+    return _queryAdapter.query('SELECT * FROM Movement WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Movement(
             id: row['id'] as int?,
             description: row['description'] as String,
@@ -164,9 +179,7 @@ class _$MovementDao extends MovementDao {
             startDate: _dateTimeConverter.decode(row['startDate'] as int?),
             endDate: _dateTimeConverter.decode(row['endDate'] as int?),
             type: MovementType.values[row['type'] as int]),
-        arguments: [id],
-        queryableName: 'Movement',
-        isView: false);
+        arguments: [id]);
   }
 
   @override
@@ -178,8 +191,19 @@ class _$MovementDao extends MovementDao {
   }
 
   @override
+  Future<void> deleteById(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM Movement WHERE id = ?1', arguments: [id]);
+  }
+
+  @override
   Future<void> insertMovement(Movement movement) async {
     await _movementInsertionAdapter.insert(movement, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateMovement(Movement movement) async {
+    await _movementUpdateAdapter.update(movement, OnConflictStrategy.abort);
   }
 }
 

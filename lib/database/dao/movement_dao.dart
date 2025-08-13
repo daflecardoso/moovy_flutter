@@ -7,7 +7,7 @@ abstract class MovementDao {
   Future<List<Movement>> findAll();
 
   @Query('SELECT * FROM Movement WHERE id = :id')
-  Stream<Movement?> findById(int id);
+  Future<Movement?> findById(int id);
 
   @Query("""
   SELECT *
@@ -20,4 +20,10 @@ abstract class MovementDao {
 
   @insert
   Future<void> insertMovement(Movement movement);
+
+  @update
+  Future<void> updateMovement(Movement movement);
+
+  @Query('DELETE FROM Movement WHERE id = :id')
+  Future<void> deleteById(int id);
 }

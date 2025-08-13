@@ -21,7 +21,7 @@ class _MovementListScreenState extends State<MovementListScreen> with SingleTick
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.initialIndex - 1);
+    _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.tabIndex - 1);
     _tabController.addListener(() {
       if (_tabController.index == _tabController.animation?.value.round()) {
         cubit.onTabChange(_tabController.index);

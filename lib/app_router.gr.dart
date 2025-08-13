@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
 import 'package:moovy/income_expense/income_exepense_screen.dart' as _i2;
 import 'package:moovy/income_expense/pages/expense_screen.dart' as _i1;
 import 'package:moovy/income_expense/pages/income_screen.dart' as _i3;
@@ -36,10 +37,21 @@ class ExpenseRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.IncomeExpenseScreen]
-class IncomeExpenseRoute extends _i6.PageRouteInfo<void> {
-  const IncomeExpenseRoute({List<_i6.PageRouteInfo>? children})
-      : super(
+class IncomeExpenseRoute extends _i6.PageRouteInfo<IncomeExpenseRouteArgs> {
+  IncomeExpenseRoute({
+    _i7.Key? key,
+    int? id,
+    String tab = 'expense',
+    List<_i6.PageRouteInfo>? children,
+  }) : super(
           IncomeExpenseRoute.name,
+          args: IncomeExpenseRouteArgs(
+            key: key,
+            id: id,
+            tab: tab,
+          ),
+          rawPathParams: {'id': id},
+          rawQueryParams: {'tab': tab},
           initialChildren: children,
         );
 
@@ -48,9 +60,42 @@ class IncomeExpenseRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i2.IncomeExpenseScreen();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<IncomeExpenseRouteArgs>(
+          orElse: () => IncomeExpenseRouteArgs(
+                id: pathParams.optInt('id'),
+                tab: queryParams.getString(
+                  'tab',
+                  'expense',
+                ),
+              ));
+      return _i2.IncomeExpenseScreen(
+        key: args.key,
+        id: args.id,
+        tab: args.tab,
+      );
     },
   );
+}
+
+class IncomeExpenseRouteArgs {
+  const IncomeExpenseRouteArgs({
+    this.key,
+    this.id,
+    this.tab = 'expense',
+  });
+
+  final _i7.Key? key;
+
+  final int? id;
+
+  final String tab;
+
+  @override
+  String toString() {
+    return 'IncomeExpenseRouteArgs{key: $key, id: $id, tab: $tab}';
+  }
 }
 
 /// generated route for

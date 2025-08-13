@@ -16,7 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadApp.custom(
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       darkTheme: ShadThemeData(
           brightness: Brightness.dark, colorScheme: const ShadSlateColorScheme.dark()
       ),

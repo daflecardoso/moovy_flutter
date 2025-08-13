@@ -23,16 +23,16 @@ class MovementListCubit extends Cubit<MovementListState> {
   }
 
   List<MonthTab> months = [];
-  int initialIndex = 0;
+  int tabIndex = 0;
 
   void _init() {
     final now = DateTime.now();
-    initialIndex = now.month;
+    tabIndex = now.month;
 
     for (var i = 0; i < 12; i++) {
       months.add(MonthTab(DateTime(now.year, i + 1, 1)));
     }
-    onTabChange(initialIndex);
+    onTabChange(tabIndex);
     emit(MovementListSuccess(months: months, movements: [], totalExpense: 0, totalIncome: 0, total: 0));
   }
 

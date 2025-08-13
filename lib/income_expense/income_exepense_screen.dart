@@ -9,49 +9,33 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
 class IncomeExpenseScreen extends StatelessWidget {
-  const IncomeExpenseScreen({super.key});
+  final int? id;
+  final String tab;
+  const IncomeExpenseScreen({super.key, @PathParam('id') this.id, @QueryParam('tab') this.tab = 'expense'});
 
   @override
   Widget build(BuildContext context) {
+    final tab = IncomeExpenseTabs.values.firstWhere((e) => e.name == this.tab);
+    final cubit = IncomeExpenseCubit(getIt.get(), id, tab);
     return BlocProvider(
-      create: (context) => IncomeExpenseCubit(getIt.get()),
-      child: BlocBuilder<IncomeExpenseCubit, IncomeExpenseState>(
-        builder: (context, state) {
-          switch (state) {
-            case IncomeExpenseInitial():
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text(
-                    'Income Expense',
-                    style: ShadTheme.of(context).textTheme.large,
-                  ),
-                ),
-                body: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: ShadTabs(
-                    value: IncomeExpenseTabs.expense,
-                    tabBarConstraints: const BoxConstraints(maxWidth: 400),
-                    contentConstraints: const BoxConstraints(maxWidth: 400),
-                    onChanged: (value) {
-                      context.read<IncomeExpenseCubit>().setTab(value);
-                    },
-                    tabs: [
-                      ShadTab(
-                        value: IncomeExpenseTabs.expense,
-                        content: ExpenseScreen(),
-                        child: Text('Expense'),
-                      ),
-                      ShadTab(
-                        value: IncomeExpenseTabs.income,
-                        content: IncomeScreen(),
-                        child: Text('Income'),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-          }
-        },
+      create: (context) => cubit,
+      child: Scaffold(
+        appBar: AppBar(title: Text('Income Expense', style: ShadTheme.of(context).textTheme.large)),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: ShadTabs(
+            value: tab,
+            tabBarConstraints: const BoxConstraints(maxWidth: 400),
+            contentConstraints: const BoxConstraints(maxWidth: 400),
+            onChanged: (value) {
+              cubit.setTab(value);
+            },
+            tabs: [
+              ShadTab(value: IncomeExpenseTabs.expense, content: ExpenseScreen(), child: Text('Expense')),
+              ShadTab(value: IncomeExpenseTabs.income, content: IncomeScreen(), child: Text('Income')),
+            ],
+          ),
+        ),
       ),
     );
   }

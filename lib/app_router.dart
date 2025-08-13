@@ -3,8 +3,8 @@ import 'package:moovy/app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-  static const incomeExpense = '/income-expense';
-  static const movements = '/expenses';
+  static const incomeExpense = '/income-expense/:id';
+  static const movements = '/movements';
   static const expense = '/expense';
   static const profile = '/profile';
 

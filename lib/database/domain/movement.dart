@@ -22,20 +22,9 @@ class Movement {
     required this.type,
   });
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'description': description,
-    'amount': amount,
-    'incomeDate': incomeDate?.toString(),
-    'dueDate': dueDate?.toString(),
-    'startDate': startDate?.toString(),
-    'endDate': endDate?.toString(),
-    'type': type
-  };
-
   @override
   String toString() {
-    return jsonEncode(toJson());
+    return description;
   }
 }
 
