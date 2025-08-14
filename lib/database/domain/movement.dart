@@ -1,6 +1,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moovy/database/bool_flex_converter.dart';
+import 'package:moovy/extensions/int_extensions.dart';
 part 'movement.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -31,6 +32,14 @@ class Movement {
   Map<String, dynamic> toJSON() => _$MovementToJson(this);
 
   factory Movement.fromJson(Map<String, dynamic> json) => _$MovementFromJson(json);
+
+  String get uiAmount {
+    final signal = switch (type) {
+      MovementType.expense => "-",
+      MovementType.income => "+"
+    };
+    return "$signal ${amount.currency()}";
+  }
 
   @override
   String toString() {

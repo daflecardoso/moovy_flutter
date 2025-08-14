@@ -2,7 +2,7 @@ import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
-import 'package:moovy/movement_list/view/movement_list_page.dart';
+import 'package:moovy/movement_list/view/page/movement_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -16,18 +16,14 @@ class MovementListScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _MovementListScreenState();
 }
 
-class _MovementListScreenState extends State<MovementListScreen> with SingleTickerProviderStateMixin {
+class _MovementListScreenState extends State<MovementListScreen>
+    with SingleTickerProviderStateMixin<MovementListScreen> {
   late TabController _tabController;
   final MovementListCubit cubit = MovementListCubit(getIt.get());
   @override
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: cubit.months.length, initialIndex: cubit.tabIndex);
-    _tabController.addListener(() {
-      if (_tabController.index == _tabController.animation?.value.round()) {
-        cubit.onTabChange(_tabController.index);
-      }
-    });
   }
 
   @override
@@ -80,16 +76,7 @@ class _MovementListScreenState extends State<MovementListScreen> with SingleTick
                   ),
                   body: TabBarView(
                     controller: _tabController,
-                    children: cubit.months
-                        .map(
-                          (e) => MovementListPage(
-                            movements: state.movements,
-                            totalExpense: state.totalExpense,
-                            totalIncome: state.totalIncome,
-                            total: state.total,
-                          ),
-                        )
-                        .toList(),
+                    children: cubit.months.map((e) => MovementListPage(month: e)).toList(),
                   ),
                 ),
               );

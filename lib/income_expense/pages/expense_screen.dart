@@ -38,7 +38,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ShadBadge(
-                      backgroundColor: Colors.orange,
+                      backgroundColor: Colors.redAccent,
                       child: const Text('Expense'),
                     ),
                     DescriptionInput(

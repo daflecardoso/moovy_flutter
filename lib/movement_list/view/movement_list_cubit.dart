@@ -30,49 +30,6 @@ class MovementListCubit extends Cubit<MovementListState> {
     for (var i = 0; i < 12; i++) {
       months.add(MonthTab(DateTime(now.year, i + 1, 1)));
     }
-    onTabChange(tabIndex);
-    emit(MovementListSuccess(months: months, movements: [], totalExpense: 0, totalIncome: 0, total: 0));
-  }
-
-  Future<void> onTabChange(int index) async {
-    try {
-      tabIndex = index;
-      final month = months[index];
-      final currentMonthYear = month.date.format(DateTimeFormat.yyyyMM);
-      final movements = await movementDao.findByMonthYear(currentMonthYear);
-      final totalExpense = movements
-          .where((e) => e.type == MovementType.expense)
-          .map((e) => e.amount)
-          .toList()
-          .sum;
-      final totalIncome = movements
-          .where((e) => e.type == MovementType.income)
-          .map((e) => e.amount)
-          .toList()
-          .sum;
-      emit(
-        MovementListSuccess(
-          months: months,
-          movements: movements,
-          totalExpense: totalExpense,
-          totalIncome: totalIncome,
-          total: totalIncome - totalExpense,
-        ),
-      );
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
-    }
-  }
-
-  Future<void> togglePaid(Movement movement) async {
-    movement.paid = !movement.paid;
-    await movementDao.updateMovement(movement);
-    final state = this.state;
-    if (state is MovementListSuccess) {
-      final index = state.movements.indexOf(movement);
-      state.movements[index] = movement;
-      emit(state.copyWith(movements: state.movements));
-    }
+    emit(MovementListSuccess(months: months));
   }
 }
