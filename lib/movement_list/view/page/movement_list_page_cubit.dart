@@ -16,16 +16,14 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
     try {
       final currentMonthYear = month.date.format(DateTimeFormat.yyyyMM);
       final movements = await movementDao.findByMonthYear(currentMonthYear);
-      final totalExpense = movements
-          .where((e) => e.type == MovementType.expense)
-          .map((e) => e.amount)
-          .toList()
-          .sum;
-      final totalIncome = movements
-          .where((e) => e.type == MovementType.income)
-          .map((e) => e.amount)
-          .toList()
-          .sum;
+
+      if (movements.isEmpty) {
+        emit(MovementEmpty(title: 'Empty Movements', description: "You don't have any movements for ${month.title}"));
+        return;
+      }
+
+      final totalExpense = movements.where((e) => e.type == MovementType.expense).map((e) => e.amount).toList().sum;
+      final totalIncome = movements.where((e) => e.type == MovementType.income).map((e) => e.amount).toList().sum;
       emit(
         MovementPageSuccess(
           movements: movements,

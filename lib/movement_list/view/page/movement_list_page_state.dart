@@ -14,7 +14,7 @@ final class MovementPageSuccess extends MovementListPageState {
     required this.totalIncome,
     required this.totalExpense,
     required this.total,
-});
+  });
 
   MovementPageSuccess copyWith({List<Movement>? movements}) => MovementPageSuccess(
     movements: movements ?? this.movements,
@@ -22,4 +22,9 @@ final class MovementPageSuccess extends MovementListPageState {
     totalIncome: totalIncome,
     total: total,
   );
+}
+
+final class MovementEmpty extends MovementListPageState {
+  final String title, description;
+  MovementEmpty({required this.title, required this.description});
 }

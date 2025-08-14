@@ -22,6 +22,9 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
   final cubit = MovementListPageCubit(getIt.get());
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
     super.initState();
     cubit.getMovements(widget.month);
@@ -172,12 +175,22 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   ],
                 ),
               );
+            case MovementEmpty():
+              return Padding(
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Spacer(),
+                    Icon(LucideIcons.coins),
+                    Text(state.title, style: ShadTheme.of(context).textTheme.large),
+                    Text(state.description, style: ShadTheme.of(context).textTheme.blockquote),
+                    Spacer(),
+                  ],
+                ),
+              );
           }
         },
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
