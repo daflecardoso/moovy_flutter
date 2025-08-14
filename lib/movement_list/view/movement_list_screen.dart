@@ -50,19 +50,21 @@ class _MovementListScreenState extends State<MovementListScreen> with SingleTick
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text('Movements', style: ShadTheme.of(context).textTheme.large),
-                    leading: IconButton(onPressed: () {
-                      context.read<MainCubit>().toggleTheme();
-                    }, icon: Icon(LucideIcons.moon)),
                     actions: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 16),
-                        child: ShadIconButton(
-                          onPressed: () {
-                            context.router.navigatePath(AppRouter.incomeExpense);
-                          },
-                          icon: const Icon(LucideIcons.plus),
-                        ),
+                      ShadIconButton.outline(
+                        onPressed: () {
+                          context.read<MainCubit>().toggleTheme();
+                        },
+                        icon: Icon(LucideIcons.sun),
                       ),
+                      SizedBox(width: 16),
+                      ShadIconButton.outline(
+                        onPressed: () {
+                          context.router.navigatePath(AppRouter.incomeExpense);
+                        },
+                        icon: const Icon(LucideIcons.plus),
+                      ),
+                      SizedBox(width: 16),
                     ],
                     bottom: TabBar(
                       dividerHeight: 2,

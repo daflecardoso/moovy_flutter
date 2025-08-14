@@ -117,7 +117,7 @@ class MovementListPage extends StatelessWidget {
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return Divider(height: 1);
+                return SizedBox.shrink();
               },
             ),
           ),
