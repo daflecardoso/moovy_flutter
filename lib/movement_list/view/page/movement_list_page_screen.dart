@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/database/domain/movement.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/int_extensions.dart';
+import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -23,11 +27,15 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
 
   @override
   bool get wantKeepAlive => true;
+  late StreamSubscription<dynamic> event;
 
   @override
   void initState() {
     super.initState();
     cubit.getMovements(widget.month);
+    event = eventBus.on<MovementChanged>().listen((event) {
+      cubit.getMovements(widget.month);
+    });
   }
 
   @override
@@ -107,12 +115,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                                       Text(
                                         movement.uiAmount,
                                         style: ShadTheme.of(context).textTheme.list.apply(
-                                          color: movement.paid
-                                              ? Colors.grey
-                                              : switch (movement.type) {
-                                                  MovementType.expense => Colors.redAccent,
-                                                  MovementType.income => Colors.green,
-                                                },
+                                          color: movement.paid ? Colors.grey : movement.type.color,
                                           decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                                         ),
                                       ),

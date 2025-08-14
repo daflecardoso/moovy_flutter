@@ -1,8 +1,11 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/extensions/string_extensions.dart';
+import 'package:moovy/main.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 part 'income_expense_state.dart';
@@ -64,6 +67,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       } else {
         await movementDao.updateMovement(movement);
       }
+      eventBus.fire(MovementChanged(movement));
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
     }

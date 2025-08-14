@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moovy/database/bool_flex_converter.dart';
 import 'package:moovy/extensions/int_extensions.dart';
@@ -49,6 +50,11 @@ class Movement {
 
 enum MovementType {
   expense, income;
+
+  Color get color => switch(this) {
+    MovementType.expense => Colors.redAccent,
+    MovementType.income => Colors.green
+  };
 
   static MovementType fromName(String name) {
     return MovementType.values.firstWhere((e) => e.name == name);
