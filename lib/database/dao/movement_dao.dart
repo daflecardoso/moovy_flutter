@@ -29,7 +29,8 @@ class MovementDao {
     FROM Movement
     WHERE '$dateTime'
     BETWEEN strftime('%Y-%m', start_date)
-    AND COALESCE(strftime('%Y-%m', end_date), '9999-12');
+    AND COALESCE(strftime('%Y-%m', end_date), '9999-12')
+    ORDER BY due_day, income_day
     ''');
     return movements.map((item) => Movement.fromJson(item)).toList();
   }

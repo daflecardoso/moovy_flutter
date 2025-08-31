@@ -9,6 +9,5 @@ final class MovementListSuccess extends MovementListState {
   final List<MonthTab> months;
   MovementListSuccess({
     required this.months,
-
   });
 }
