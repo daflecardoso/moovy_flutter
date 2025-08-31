@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moovy/database/bool_flex_converter.dart';
 import 'package:moovy/extensions/int_extensions.dart';
+
 part 'movement.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -10,8 +11,9 @@ class Movement {
   final int? id;
   final String description;
   final int amount;
-  final DateTime? incomeDate, dueDate, endDate;
+  final int? dueDay, incomeDay;
   final DateTime startDate, createdAt, updatedAt;
+  final DateTime? endDate;
   @BoolFlexConverter()
   bool paid;
   final MovementType type;
@@ -20,8 +22,8 @@ class Movement {
     required this.id,
     required this.description,
     required this.amount,
-    required this.incomeDate,
-    required this.dueDate,
+    required this.dueDay,
+    required this.incomeDay,
     required this.startDate,
     required this.endDate,
     required this.paid,

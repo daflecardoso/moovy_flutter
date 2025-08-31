@@ -1,6 +1,4 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/domain/movement.dart';
@@ -39,23 +37,20 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ShadBadge(
-                      backgroundColor: MovementType.income.color,
-                      child: const Text('Income'),
-                    ),
+                    ShadBadge(backgroundColor: MovementType.income.color, child: const Text('Income')),
                     DescriptionInput(
                       initialValue: state.income?.description,
                       title: 'Income Description',
                       placeholder: 'Ex: Salary',
                     ),
                     AmountInput(initialValue: state.income?.amount.currency()),
-                    ShadDatePickerFormField(
-                      id: 'incomeDate',
-                      initialValue: state.income?.incomeDate,
-                      label: const Text('Income date'),
-                      width: 450,
+                    ShadInputFormField(
+                      id: 'incomeDay',
+                      initialValue: state.income?.incomeDay?.toString(),
+                      label: const Text('Income day'),
+                      placeholder: Text('Ex: 10'),
                       validator: (v) {
-                        if (v == null) return 'Due date is required.';
+                        if (v.isEmpty) return 'Income day is required.';
                         return null;
                       },
                     ),

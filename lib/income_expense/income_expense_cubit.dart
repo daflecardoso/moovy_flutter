@@ -1,4 +1,3 @@
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
@@ -46,15 +45,15 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       String description = data['description'];
       ShadDateTimeRange period = data['period'];
       String amount = data['amount'];
-      DateTime? incomeDate = data['incomeDate'];
-      DateTime? dueDate = data['dueDate'];
+      String? incomeDay = data['incomeDay'];
+      String? dueDay = data['dueDay'];
 
       final movement = Movement(
         id: id,
         description: description,
         amount: amount.digits().toInt(),
-        incomeDate: incomeDate,
-        dueDate: dueDate,
+        incomeDay: incomeDay?.toInt(),
+        dueDay: dueDay?.toInt(),
         startDate: period.start!,
         endDate: period.end,
         type: MovementType.fromName(tab.name),

@@ -15,8 +15,8 @@ enum AppDatabaseTable {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       description TEXT NOT NULL,
       amount INTEGER NOT NULL,
-      income_date DATETIME, 
-      due_date DATETIME, 
+      income_day INTEGER, 
+      due_day INTEGER, 
       start_date DATETIME NOT NULL, 
       end_date DATETIME,
       type TEXT NOT NULL,
@@ -44,7 +44,7 @@ class AppDatabase {
   Future<Database> _openDatabase() async {
     return await openDatabase(
       databaseName,
-      version: 1,
+      version: 2,
       onOpen: (db) async {
         debugPrint('✅ onOpen: ${db.path}');
       },

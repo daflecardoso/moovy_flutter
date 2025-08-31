@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/domain/movement.dart';
@@ -48,13 +47,14 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                         placeholder: 'Ex: Invoice Credit Card',
                     ),
                     AmountInput(initialValue: state.expense?.amount.currency()),
-                    ShadDatePickerFormField(
-                      id: 'dueDate',
-                      initialValue: state.expense?.dueDate,
-                      label: const Text('Due date of expense'),
-                      width: 450,
+                    ShadInputFormField(
+                      id: 'dueDay',
+                      initialValue: state.expense?.dueDay.toString(),
+                      label: const Text('Due day of expense'),
+                      placeholder: Text('Ex: 10'),
+                      keyboardType: TextInputType.number,
                       validator: (v) {
-                        if (v == null) return 'Due date is required.';
+                        if (v.isEmpty) return 'Due day is required.';
                         return null;
                       },
                     ),

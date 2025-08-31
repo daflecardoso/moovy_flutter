@@ -4,14 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
-import 'package:moovy/database/domain/movement.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
-import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_cubit.dart';
+import 'package:moovy/movement_list/view/widget/summary_widget.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class MovementListPage extends StatefulWidget {
@@ -55,6 +54,22 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                 },
                 child: Column(
                   children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: SummaryWidget(title: 'Total Income', value: state.totalIncome.currency()),
+                          ),
+                          Expanded(
+                            child: SummaryWidget(title: 'Total Income', value: state.totalExpense.currency()),
+                          ),
+                          Expanded(
+                            child: SummaryWidget(title: 'Total', value: state.total.currency()),
+                          ),
+                        ],
+                      ),
+                    ),
                     Expanded(
                       child: ListView.separated(
                         itemCount: state.movements.length,
@@ -65,17 +80,14 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                               padding: EdgeInsets.all(8),
                               child: Row(
                                 children: [
-                                  Container(
-                                    width: 40.0,
-                                    height: 40.0,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.withValues(alpha: 0.2),
-                                      shape: BoxShape.circle,
+                                  Text(
+                                    movement.dueDay?.toString() ?? movement.incomeDay?.toString() ?? '-',
+                                    style: ShadTheme.of(context).textTheme.small.copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: movement.paid ? Colors.grey : null,
+                                      decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                                     ),
-                                    child: Icon(switch (movement.type) {
-                                      MovementType.expense => LucideIcons.arrowBigUp,
-                                      MovementType.income => LucideIcons.arrowBigDown,
-                                    }),
                                   ),
                                   Expanded(
                                     child: Padding(
@@ -86,7 +98,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                                           Text(
                                             movement.description,
                                             style: ShadTheme.of(context).textTheme.p.copyWith(
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w400,
                                               color: movement.paid ? Colors.grey : null,
                                               decoration: movement.paid
                                                   ? TextDecoration.lineThrough
@@ -94,16 +106,6 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                            movement.type.name,
-                                            style: ShadTheme.of(context).textTheme.small.copyWith(
-                                              fontSize: 10,
-                                              color: movement.paid ? Colors.grey : null,
-                                              decoration: movement.paid
-                                                  ? TextDecoration.lineThrough
-                                                  : TextDecoration.none,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -119,25 +121,17 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                                           decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                                         ),
                                       ),
-                                      Text(
-                                        movement.dueDate?.format(DateTimeFormat.ddMM) ??
-                                            movement.incomeDate?.format(DateTimeFormat.ddMM) ??
-                                            '-',
-                                        style: ShadTheme.of(context).textTheme.small.copyWith(
-                                          fontSize: 10,
-                                          color: movement.paid ? Colors.grey : null,
-                                          decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
-                                        ),
-                                      ),
                                     ],
                                   ),
-                                  SizedBox(width: 8),
+                                  SizedBox(width: 16),
                                   ShadCheckbox(
+                                    size: 24,
                                     value: movement.paid,
                                     onChanged: (isChecked) {
                                       cubit.togglePaid(movement);
                                     },
                                   ),
+                                  SizedBox(width: 8),
                                 ],
                               ),
                             ),
@@ -149,31 +143,9 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return Divider(height: 1);
+                          return Divider(height: 1, thickness: 0.5,);
                         },
                       ),
-                    ),
-                    Divider(height: 1),
-                    ListTile(
-                      leading: Text('Total Expense', style: ShadTheme.of(context).textTheme.small),
-                      trailing: Text(state.totalExpense.currency(), style: ShadTheme.of(context).textTheme.small),
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Text('Total Income', style: ShadTheme.of(context).textTheme.small),
-                      trailing: Text(state.totalIncome.currency(), style: ShadTheme.of(context).textTheme.small),
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Text('Total', style: ShadTheme.of(context).textTheme.large),
-                      trailing: Text(state.total.currency(), style: ShadTheme.of(context).textTheme.large),
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      onTap: () {},
                     ),
                   ],
                 ),

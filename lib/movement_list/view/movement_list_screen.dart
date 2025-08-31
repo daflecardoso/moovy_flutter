@@ -1,12 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
-import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class MovementListScreen extends StatefulWidget {

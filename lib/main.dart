@@ -1,7 +1,7 @@
 import 'package:event_bus/event_bus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
-import 'package:flutter/material.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
