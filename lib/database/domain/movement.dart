@@ -32,6 +32,34 @@ class Movement {
     required this.updatedAt
   });
 
+  Movement copyWith({
+    int? id,
+    String? description,
+    int? amount,
+    int? dueDay,
+    int? incomeDay,
+    DateTime? startDate,
+    DateTime? endDate,
+    bool? paid,
+    MovementType? type,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return Movement(
+      id: id ?? this.id,
+      description: description ?? this.description,
+      amount: amount ?? this.amount,
+      dueDay: dueDay ?? this.dueDay,
+      incomeDay: incomeDay ?? this.incomeDay,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
+      paid: paid ?? this.paid,
+      type: type ?? this.type,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
   Map<String, dynamic> toJSON() => _$MovementToJson(this);
 
   factory Movement.fromJson(Map<String, dynamic> json) => _$MovementFromJson(json);

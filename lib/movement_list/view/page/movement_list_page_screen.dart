@@ -62,7 +62,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                             child: SummaryWidget(title: 'Total Income', value: state.totalIncome.currency()),
                           ),
                           Expanded(
-                            child: SummaryWidget(title: 'Total Income', value: state.totalExpense.currency()),
+                            child: SummaryWidget(title: 'Total Expense', value: state.totalExpense.currency()),
                           ),
                           Expanded(
                             child: SummaryWidget(title: 'Total', value: state.total.currency()),

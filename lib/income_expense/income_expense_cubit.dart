@@ -48,25 +48,39 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       String? incomeDay = data['incomeDay'];
       String? dueDay = data['dueDay'];
 
-      final movement = Movement(
-        id: id,
-        description: description,
-        amount: amount.digits().toInt(),
-        incomeDay: incomeDay?.toInt(),
-        dueDay: dueDay?.toInt(),
-        startDate: period.start!,
-        endDate: period.end,
-        type: MovementType.fromName(tab.name),
-        paid: false,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      );
-      if (id == null) {
-        await movementDao.insertMovement(movement);
-      } else {
+      if (id case final id?) {
+        final movementDb = await movementDao.findById(id);
+        if (movementDb == null) {
+          throw Exception('Movement not found');
+        }
+        final movement = movementDb.copyWith(
+          amount: amount.digits().toInt(),
+          incomeDay: incomeDay?.toInt(),
+          dueDay: dueDay?.toInt(),
+          startDate: period.start!,
+          endDate: period.end,
+          type: MovementType.fromName(tab.name),
+          updatedAt: DateTime.now(),
+        );
         await movementDao.updateMovement(movement);
+        eventBus.fire(MovementChanged(movement));
+      } else {
+        final movement = Movement(
+          id: id,
+          description: description,
+          amount: amount.digits().toInt(),
+          incomeDay: incomeDay?.toInt(),
+          dueDay: dueDay?.toInt(),
+          startDate: period.start!,
+          endDate: period.end,
+          type: MovementType.fromName(tab.name),
+          paid: false,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
+        await movementDao.insertMovement(movement);
+        eventBus.fire(MovementChanged(movement));
       }
-      eventBus.fire(MovementChanged(movement));
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
     }
