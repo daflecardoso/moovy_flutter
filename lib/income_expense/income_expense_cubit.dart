@@ -54,6 +54,8 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           throw Exception('Movement not found');
         }
         final movement = movementDb.copyWith(
+          id: id,
+          description: description,
           amount: amount.digits().toInt(),
           incomeDay: incomeDay?.toInt(),
           dueDay: dueDay?.toInt(),

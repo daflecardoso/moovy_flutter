@@ -39,8 +39,8 @@ class MovementDao {
     await appDatabase.insert(AppDatabaseTable.movement, movement.toJSON());
   }
 
-  Future<void> updateMovement(Movement movement) async {
-    await appDatabase.update(AppDatabaseTable.movement, movement.toJSON(), where: 'id = ?', whereArgs: [movement.id]);
+  Future<int> updateMovement(Movement movement) async {
+    return await appDatabase.update(AppDatabaseTable.movement, movement.toJSON(), where: 'id = ?', whereArgs: [movement.id]);
   }
 
   Future<void> deleteById(int id) async {

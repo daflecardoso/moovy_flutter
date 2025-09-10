@@ -66,12 +66,8 @@ class _MovementListScreenState extends State<MovementListScreen>
                       controller: _tabController,
                       isScrollable: true,
                       tabAlignment: TabAlignment.start,
-                      indicator: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
                       indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: Theme.of(context).colorScheme.onPrimary,
+                      labelColor: Theme.of(context).colorScheme.onSurfaceVariant,
                       unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
                       dividerColor: Colors.transparent,
                       tabs: cubit.months.map((e) => Tab(text: e.title)).toList(),
