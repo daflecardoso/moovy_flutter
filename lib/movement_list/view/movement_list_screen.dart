@@ -47,13 +47,7 @@ class _MovementListScreenState extends State<MovementListScreen>
                   appBar: AppBar(
                     title: Text('Movements', style: ShadTheme.of(context).textTheme.large),
                     actions: [
-                      ShadIconButton.outline(
-                        onPressed: () {
-                          context.read<MainCubit>().toggleTheme();
-                        },
-                        icon: Icon(LucideIcons.sun),
-                      ),
-                      SizedBox(width: 16),
+
                       ShadIconButton.outline(
                         onPressed: () {
                           context.router.navigatePath(AppRouter.incomeExpense);

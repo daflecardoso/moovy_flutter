@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
-import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/list_int_extension.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';

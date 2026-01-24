@@ -9,7 +9,7 @@ class MonthTab {
   final DateTime date;
   const MonthTab(this.date);
 
-  String get title => date.format(DateTimeFormat.MMMMyyyy);
+  String get title => date.format(DateTimeFormat.mmmmYyyy);
 }
 
 class MovementListCubit extends Cubit<MovementListState> {

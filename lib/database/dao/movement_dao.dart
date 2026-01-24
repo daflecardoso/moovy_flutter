@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:moovy/database/database.dart';
-import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 
 @injectable
 class MovementDao {

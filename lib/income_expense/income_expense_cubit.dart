@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
-import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/extensions/string_extensions.dart';
 import 'package:moovy/main.dart';

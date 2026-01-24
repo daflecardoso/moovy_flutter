@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:moovy/income_expense/pages/amount_input.dart';

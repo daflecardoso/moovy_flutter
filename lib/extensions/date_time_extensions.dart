@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 enum DateTimeFormat {
   yyyyMM('yyyy-MM'),
-  MMMMyyyy('MMMM yyyy'),
+  mmmmYyyy('MMMM yyyy'),
   dd('dd'),
   ddMM('dd MMM')
   ;

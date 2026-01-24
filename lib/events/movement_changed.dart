@@ -1,5 +1,5 @@
 
-import 'package:moovy/database/domain/movement.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 
 class MovementChanged {
   Movement movement;
