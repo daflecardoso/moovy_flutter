@@ -25,6 +25,6 @@ final class MovementPageSuccess extends MovementListPageState {
 }
 
 final class MovementEmpty extends MovementListPageState {
-  final String title, description;
-  MovementEmpty({required this.title, required this.description});
+  final String month;
+  MovementEmpty({required this.month});
 }

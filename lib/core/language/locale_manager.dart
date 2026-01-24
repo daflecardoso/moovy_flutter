@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 import 'package:moovy/core/language/moovy_locale.dart';
 import 'package:moovy/core/shared_preferences/shared_preferences_key.dart';
 import 'package:moovy/core/shared_preferences/shared_preferences_manager.dart';
+import 'package:moovy/l10n/app_localizations.dart';
+import 'package:moovy/l10n/app_localizations_en.dart';
 
 @injectable
 class LocaleManager {
@@ -13,28 +15,29 @@ class LocaleManager {
 
   LocaleManager(this.sharedPreferencesManager);
 
-  final localizationDelegate = [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ];
+  final localizationDelegate = AppLocalizations.localizationsDelegates;
 
-  final _defaultLanguage = MoovyLocale('English', Locale('en', 'US'));
-
-  late final supportedLocales = [
-    _defaultLanguage,
-    MoovyLocale('Portuguese', Locale('pt', 'BR')),
-    MoovyLocale('Spanish', Locale('es', 'ES')),
-    MoovyLocale('Germany', Locale('de', 'DE')),
-  ];
+  late final supportedLocales = AppLocalizations.supportedLocales;
 
   Future<MoovyLocale> current() async {
     final language = await sharedPreferencesManager.get(key: SharedPreferencesKey.language);
     if (language == null) {
-      await save(_defaultLanguage.locale.toString());
+      await save(supportedLocales.first.toString());
       return await current();
     }
-    return supportedLocales.firstWhere((ml) => ml.locale.toString() == language);
+    try {
+      return parse(supportedLocales.firstWhere((l) => l.toString() == language));
+    } catch (e) {
+      return parse(supportedLocales.first);
+    }
+  }
+
+  MoovyLocale parse(Locale locale) {
+    return switch (locale.toString()) {
+      'en' => MoovyLocale('English', locale),
+      'pt' => MoovyLocale('Portuguese', locale),
+      String() => MoovyLocale(locale.languageCode, locale),
+    };
   }
 
   Future<void> save(String language) async {

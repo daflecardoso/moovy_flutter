@@ -18,7 +18,7 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
       final movements = await movementDao.findByMonthYear(currentMonthYear);
 
       if (movements.isEmpty) {
-        emit(MovementEmpty(title: 'Empty Movements', description: "You don't have any movements for ${month.title}"));
+        emit(MovementEmpty(month: month.title));
         return;
       }
 

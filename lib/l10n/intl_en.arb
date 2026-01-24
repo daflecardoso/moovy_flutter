@@ -1,0 +1,8 @@
+{
+  "movements": "Movements",
+  "emptyMovements": "Empty Movements",
+  "youDonTHaveMovements": "You don't have any movements for {month}",
+  "totalIncome": "Total Income",
+  "totalExpense": "Total Expense",
+  "total": "Total"
+}

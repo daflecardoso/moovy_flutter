@@ -7,6 +7,7 @@ import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/extensions/int_extensions.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_cubit.dart';
@@ -40,6 +41,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final appLocalization = AppLocalizations.of(context)!;
     return BlocProvider(
       create: (_) => cubit,
       child: BlocBuilder<MovementListPageCubit, MovementListPageState>(
@@ -59,13 +61,19 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                       child: Row(
                         children: [
                           Expanded(
-                            child: SummaryWidget(title: 'Total Income', value: state.totalIncome.currency()),
+                            child: SummaryWidget(
+                              title: appLocalization.totalIncome,
+                              value: state.totalIncome.currency(),
+                            ),
                           ),
                           Expanded(
-                            child: SummaryWidget(title: 'Total Expense', value: state.totalExpense.currency()),
+                            child: SummaryWidget(
+                              title: appLocalization.totalExpense,
+                              value: state.totalExpense.currency(),
+                            ),
                           ),
                           Expanded(
-                            child: SummaryWidget(title: 'Total', value: state.total.currency()),
+                            child: SummaryWidget(title: appLocalization.total, value: state.total.currency()),
                           ),
                         ],
                       ),
@@ -143,7 +151,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return Divider(height: 1, thickness: 0.5,);
+                          return Divider(height: 1, thickness: 0.5);
                         },
                       ),
                     ),
@@ -157,8 +165,11 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   children: [
                     Spacer(),
                     Icon(LucideIcons.coins),
-                    Text(state.title, style: ShadTheme.of(context).textTheme.large),
-                    Text(state.description, style: ShadTheme.of(context).textTheme.blockquote),
+                    Text(appLocalization.emptyMovements, style: ShadTheme.of(context).textTheme.large),
+                    Text(
+                      appLocalization.youDonTHaveMovements(state.month),
+                      style: ShadTheme.of(context).textTheme.blockquote,
+                    ),
                     Spacer(),
                   ],
                 ),

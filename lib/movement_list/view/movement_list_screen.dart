@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_screen.dart';
@@ -34,6 +35,8 @@ class _MovementListScreenState extends State<MovementListScreen>
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
+
     return BlocProvider(
       create: (_) => cubit,
       child: BlocBuilder<MovementListCubit, MovementListState>(
@@ -45,9 +48,8 @@ class _MovementListScreenState extends State<MovementListScreen>
               return SafeArea(
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text('Movements', style: ShadTheme.of(context).textTheme.large),
+                    title: Text(appLocalizations.movements, style: ShadTheme.of(context).textTheme.large),
                     actions: [
-
                       ShadIconButton.outline(
                         onPressed: () {
                           context.router.navigatePath(AppRouter.incomeExpense);

@@ -23,7 +23,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> setup() async {
     emit(
       SettingsForm(
-        languages: localeManager.supportedLocales,
+        languages: localeManager.supportedLocales.map((l) => localeManager.parse(l)).toList(),
         language: await localeManager.current(),
         themes: themeManager.themes,
         theme: await themeManager.current(),
