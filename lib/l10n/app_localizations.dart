@@ -133,6 +133,222 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Total'**
   String get total;
+
+  /// No description provided for @incomeExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Income Expense'**
+  String get incomeExpense;
+
+  /// No description provided for @expense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get expense;
+
+  /// No description provided for @income.
+  ///
+  /// In en, this message translates to:
+  /// **'Income'**
+  String get income;
+
+  /// No description provided for @expenseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense Description'**
+  String get expenseDescription;
+
+  /// No description provided for @expenseDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: Invoice Credit Card'**
+  String get expenseDescriptionHint;
+
+  /// No description provided for @descriptionCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Description cannot be empty.'**
+  String get descriptionCannotBeEmpty;
+
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @amountHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: \$150.00'**
+  String get amountHint;
+
+  /// No description provided for @amountDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount per month'**
+  String get amountDescription;
+
+  /// No description provided for @amountEmptyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type some value.'**
+  String get amountEmptyValue;
+
+  /// No description provided for @dueDayExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Due day of expense'**
+  String get dueDayExpense;
+
+  /// No description provided for @dueDayIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Due day is required'**
+  String get dueDayIsRequired;
+
+  /// No description provided for @dueDayExpenseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: 10'**
+  String get dueDayExpenseHint;
+
+  /// No description provided for @periodOfExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Period of expense'**
+  String get periodOfExpense;
+
+  /// No description provided for @periodOfExpenseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'If has not end date, pick the start date.'**
+  String get periodOfExpenseDescription;
+
+  /// No description provided for @startDateOrRangeIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Start or range of dates is required.'**
+  String get startDateOrRangeIsRequired;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @incomeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Income Description'**
+  String get incomeDescription;
+
+  /// No description provided for @incomeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: Salary'**
+  String get incomeHint;
+
+  /// No description provided for @incomeDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Income Day'**
+  String get incomeDay;
+
+  /// No description provided for @incomeDayIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Income Day is required'**
+  String get incomeDayIsRequired;
+
+  /// No description provided for @periodOfIncome.
+  ///
+  /// In en, this message translates to:
+  /// **'Period of income'**
+  String get periodOfIncome;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @currency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currency;
+
+  /// No description provided for @selectCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a currency'**
+  String get selectCurrency;
+
+  /// No description provided for @americanDollar.
+  ///
+  /// In en, this message translates to:
+  /// **'American Dollar'**
+  String get americanDollar;
+
+  /// No description provided for @euro.
+  ///
+  /// In en, this message translates to:
+  /// **'Euro'**
+  String get euro;
+
+  /// No description provided for @brazilianReal.
+  ///
+  /// In en, this message translates to:
+  /// **'Brazilian Real'**
+  String get brazilianReal;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @portuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get portuguese;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @system.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
 }
 
 class _AppLocalizationsDelegate

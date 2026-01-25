@@ -24,8 +24,66 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "americanDollar": MessageLookupByLibrary.simpleMessage("American Dollar"),
+    "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+    "amountDescription": MessageLookupByLibrary.simpleMessage(
+      "Amount per month",
+    ),
+    "amountEmptyValue": MessageLookupByLibrary.simpleMessage(
+      "Please type some value.",
+    ),
+    "amountHint": MessageLookupByLibrary.simpleMessage("Ex: \$150.00"),
+    "brazilianReal": MessageLookupByLibrary.simpleMessage("Brazilian Real"),
+    "currency": MessageLookupByLibrary.simpleMessage("Currency"),
+    "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "descriptionCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
+      "Description cannot be empty.",
+    ),
+    "dueDayExpense": MessageLookupByLibrary.simpleMessage("Due day of expense"),
+    "dueDayExpenseHint": MessageLookupByLibrary.simpleMessage("Ex: 10"),
+    "dueDayIsRequired": MessageLookupByLibrary.simpleMessage(
+      "Due day is required",
+    ),
     "emptyMovements": MessageLookupByLibrary.simpleMessage("Empty Movements"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
+    "euro": MessageLookupByLibrary.simpleMessage("Euro"),
+    "expense": MessageLookupByLibrary.simpleMessage("Expense"),
+    "expenseDescription": MessageLookupByLibrary.simpleMessage(
+      "Expense Description",
+    ),
+    "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
+      "Ex: Invoice Credit Card",
+    ),
+    "income": MessageLookupByLibrary.simpleMessage("Income"),
+    "incomeDay": MessageLookupByLibrary.simpleMessage("Income Day"),
+    "incomeDayIsRequired": MessageLookupByLibrary.simpleMessage(
+      "Income Day is required",
+    ),
+    "incomeDescription": MessageLookupByLibrary.simpleMessage(
+      "Income Description",
+    ),
+    "incomeExpense": MessageLookupByLibrary.simpleMessage("Income Expense"),
+    "incomeHint": MessageLookupByLibrary.simpleMessage("Ex: Salary"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "light": MessageLookupByLibrary.simpleMessage("Light"),
     "movements": MessageLookupByLibrary.simpleMessage("Movements"),
+    "periodOfExpense": MessageLookupByLibrary.simpleMessage(
+      "Period of expense",
+    ),
+    "periodOfExpenseDescription": MessageLookupByLibrary.simpleMessage(
+      "If has not end date, pick the start date.",
+    ),
+    "periodOfIncome": MessageLookupByLibrary.simpleMessage("Period of income"),
+    "portuguese": MessageLookupByLibrary.simpleMessage("Portuguese"),
+    "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "selectCurrency": MessageLookupByLibrary.simpleMessage("Select a currency"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
+      "Start or range of dates is required.",
+    ),
+    "system": MessageLookupByLibrary.simpleMessage("System"),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalExpense": MessageLookupByLibrary.simpleMessage("Total Expense"),
     "totalIncome": MessageLookupByLibrary.simpleMessage("Total Income"),

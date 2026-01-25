@@ -7,6 +7,7 @@ import 'package:moovy/main_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 final eventBus = EventBus();
+var globalCurrencyFormat = NumberFormat.currency();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = MainCubit(getIt.get(), getIt.get(), getIt.get())..setup();
+
+    final cubit = MainCubit(getIt.get(), getIt.get(), getIt.get(), getIt.get())..setup();
     return BlocProvider(
       create: (BuildContext context) => cubit,
       child: BlocBuilder<MainCubit, MainState>(

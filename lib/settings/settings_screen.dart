@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:moovy/settings/settings_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -16,14 +17,16 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final formKey = GlobalKey<ShadFormState>();
+
   double maxWidth = 400;
-  final cubit = SettingsCubit(getIt.get(), getIt.get(), getIt.get(), getIt.get())..setup();
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
+    final cubit = SettingsCubit(getIt.get(), getIt.get(), getIt.get(), getIt.get())..setup(appLocalizations);
     final mainCubit = context.read<MainCubit>();
     return Scaffold(
-      appBar: AppBar(title: Text('Settings', style: ShadTheme.of(context).textTheme.large)),
+      appBar: AppBar(title: Text(appLocalizations.settings, style: ShadTheme.of(context).textTheme.large)),
       body: BlocBuilder<SettingsCubit, SettingsState>(
         bloc: cubit,
         builder: (context, state) {
@@ -45,9 +48,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ShadSelectFormField<String>(
                           id: 'currency',
                           initialValue: state.currency.code,
-                          label: Text('Currency'),
+                          label: Text(appLocalizations.currency),
                           minWidth: maxWidth,
-                          placeholder: const Text('Select a currency'),
+                          placeholder: Text(appLocalizations.selectCurrency),
                           options: [...state.currencies.map((e) => ShadOption(value: e.code, child: Text(e.title)))],
                           selectedOptionBuilder: (context, value) =>
                               Text(state.currencies.firstWhere((e) => e.code == value).title),
@@ -55,11 +58,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         ShadSelectFormField<String>(
                           id: 'language',
-                          label: Text('Language'),
+                          label: Text(appLocalizations.language),
                           itemCount: state.languages.length,
                           initialValue: state.language.locale.toString(),
                           minWidth: maxWidth,
-                          placeholder: const Text('Select a language'),
+                          placeholder: Text('Select a language'),
                           optionsBuilder: (context, index) {
                             return ShadOption(
                               value: state.languages[index].locale.toString(),
@@ -73,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ShadSelectFormField<String>(
                           initialValue: state.theme.themeMode.name,
                           id: 'theme',
-                          label: Text('Theme'),
+                          label: Text(appLocalizations.theme),
                           minWidth: maxWidth,
                           placeholder: const Text('Select a theme'),
                           options: [
@@ -88,15 +91,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ShadButton(
-                              child: const Text('Save'),
+                              child: Text(appLocalizations.save),
                               onPressed: () async {
                                 if (formKey.currentState!.saveAndValidate()) {
-                                  debugPrint('validation succeeded with ${formKey.currentState!.value}');
                                   await cubit.save(formKey.currentState!.value);
                                   mainCubit.setup();
                                   _toast();
-                                } else {
-                                  debugPrint('validation failed');
                                 }
                               },
                             ),
@@ -114,13 +114,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   _toast() {
-    ShadToaster.of(context).show(
-      ShadToast(
-
-        title: const Text('Success'),
-        description:
-        const Text('Changes was updated'),
-      ),
-    );
+    ShadToaster.of(
+      context,
+    ).show(ShadToast(title: const Text('Success'), description: const Text('Changes was updated')));
   }
 }

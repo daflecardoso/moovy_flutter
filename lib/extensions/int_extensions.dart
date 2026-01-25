@@ -1,9 +1,7 @@
-import 'dart:ui';
-
-import 'package:intl/intl.dart';
+import 'package:moovy/main.dart';
 
 extension IntExtensions on int {
-  String currency({String? symbol, int? decimalDigits = 2}) {
-    return NumberFormat.currency(symbol: symbol, decimalDigits: decimalDigits).format(this / 100);
+  String currency() {
+    return globalCurrencyFormat.format(this / 100);
   }
 }

@@ -5,6 +5,7 @@ import 'package:moovy/di.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:moovy/income_expense/pages/expense_screen.dart';
 import 'package:moovy/income_expense/pages/income_screen.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -15,12 +16,13 @@ class IncomeExpenseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
     final tab = IncomeExpenseTabs.values.firstWhere((e) => e.name == this.tab);
     final cubit = IncomeExpenseCubit(getIt.get(), id, tab);
     return BlocProvider(
       create: (context) => cubit,
       child: Scaffold(
-        appBar: AppBar(title: Text('Income Expense', style: ShadTheme.of(context).textTheme.large)),
+        appBar: AppBar(title: Text(appLocalizations.incomeExpense, style: ShadTheme.of(context).textTheme.large)),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: ShadTabs(
@@ -34,12 +36,12 @@ class IncomeExpenseScreen extends StatelessWidget {
               ShadTab(
                 value: IncomeExpenseTabs.expense,
                 content: ExpenseScreen(),
-                child: Text('Expense'),
+                child: Text(appLocalizations.expense),
               ),
               ShadTab(
                 value: IncomeExpenseTabs.income,
                 content: IncomeScreen(),
-                child: Text('Income'),
+                child: Text(appLocalizations.income),
               ),
             ],
           ),

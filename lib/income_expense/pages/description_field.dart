@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class DescriptionInput extends StatelessWidget {
@@ -9,6 +10,7 @@ class DescriptionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalization = AppLocalizations.of(context)!;
     return ShadInputFormField(
       id: 'description',
       initialValue: initialValue,
@@ -17,7 +19,7 @@ class DescriptionInput extends StatelessWidget {
       leading: Icon(LucideIcons.text),
       validator: (v) {
         if (v.isEmpty) {
-          return 'Description of cannot be empty.';
+          return appLocalization.descriptionCannotBeEmpty;
         }
         return null;
       },

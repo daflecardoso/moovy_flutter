@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moovy/core/language/moovy_locale.dart';
 import 'package:moovy/core/shared_preferences/shared_preferences_key.dart';
@@ -26,16 +24,17 @@ class LocaleManager {
       return await current();
     }
     try {
-      return parse(supportedLocales.firstWhere((l) => l.toString() == language));
+      return parse(supportedLocales.firstWhere((l) => l.toString() == language), null);
     } catch (e) {
-      return parse(supportedLocales.first);
+      return parse(supportedLocales.first, null);
     }
   }
 
-  MoovyLocale parse(Locale locale) {
+  MoovyLocale parse(Locale locale, AppLocalizations? appLocalizations) {
+    final appL = appLocalizations ?? AppLocalizationsEn();
     return switch (locale.toString()) {
-      'en' => MoovyLocale('English', locale),
-      'pt' => MoovyLocale('Portuguese', locale),
+      'en' => MoovyLocale(appL.english, locale),
+      'pt' => MoovyLocale(appL.portuguese, locale),
       String() => MoovyLocale(locale.languageCode, locale),
     };
   }

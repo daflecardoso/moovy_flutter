@@ -8,6 +8,7 @@ import 'package:moovy/core/shared_preferences/shared_preferences_manager.dart';
 import 'package:moovy/core/theme/theme_manager.dart';
 import 'package:moovy/core/theme/theme_option.dart';
 import 'package:moovy/database/domain/settings/settings_request.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 
 part 'settings_state.dart';
 
@@ -20,14 +21,14 @@ class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit(this.sharedPreferencesManager, this.localeManager, this.themeManager, this.currencyManager)
     : super(SettingsInitial());
 
-  Future<void> setup() async {
+  Future<void> setup(AppLocalizations appLocalizations) async {
     emit(
       SettingsForm(
-        languages: localeManager.supportedLocales.map((l) => localeManager.parse(l)).toList(),
+        languages: localeManager.supportedLocales.map((l) => localeManager.parse(l, appLocalizations)).toList(),
         language: await localeManager.current(),
-        themes: themeManager.themes,
+        themes: themeManager.getThemes(appLocalizations: appLocalizations),
         theme: await themeManager.current(),
-        currencies: currencyManager.currencies,
+        currencies: currencyManager.getCurrencies(appLocalizations),
         currency: await currencyManager.current(),
       ),
     );

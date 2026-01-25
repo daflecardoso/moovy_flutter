@@ -6,6 +6,7 @@ import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:moovy/income_expense/pages/amount_input.dart';
 import 'package:moovy/income_expense/pages/description_field.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -21,6 +22,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
     final cubit = context.read<IncomeExpenseCubit>();
     return BlocBuilder<IncomeExpenseCubit, IncomeExpenseState>(
       builder: (context, state) {
@@ -39,36 +41,33 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                   children: [
                     ShadBadge(
                       backgroundColor: MovementType.expense.color,
-                      child: const Text('Expense'),
+                      child: Text(appLocalizations.expense),
                     ),
                     DescriptionInput(
                         initialValue: state.expense?.description,
-                        title: 'Expense Description',
-                        placeholder: 'Ex: Invoice Credit Card',
+                        title: appLocalizations.expenseDescription,
+                        placeholder: appLocalizations.expenseDescriptionHint,
                     ),
                     AmountInput(initialValue: state.expense?.amount.currency()),
                     ShadInputFormField(
                       id: 'dueDay',
                       initialValue: state.expense?.dueDay.toString(),
-                      label: const Text('Due day of expense'),
-                      placeholder: Text('Ex: 10'),
+                      label: Text(appLocalizations.dueDayExpense),
+                      placeholder: Text(appLocalizations.dueDayExpenseHint),
                       keyboardType: TextInputType.number,
                       validator: (v) {
-                        if (v.isEmpty) return 'Due day is required.';
+                        if (v.isEmpty) return appLocalizations.dueDayIsRequired;
                         return null;
                       },
                     ),
                     ShadDateRangePickerFormField(
                       id: 'period',
                       initialValue: ShadDateTimeRange(start: state.expense?.startDate, end: state.expense?.endDate),
-                      label: const Text('Period of expense'),
+                      label: Text(appLocalizations.periodOfExpense),
                       width: 450,
-                      description: const Text('If has not end date, pick the start date.'),
+                      description: Text(appLocalizations.periodOfExpenseDescription),
                       validator: (v) {
-                        if (v == null) return 'Start or range of dates is required.';
-                        if (v.start == null) {
-                          return 'The start date is required.';
-                        }
+                        if (v == null) return appLocalizations.startDateOrRangeIsRequired;
                         return null;
                       },
                     ),
@@ -78,22 +77,19 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       children: [
                         if (cubit.id != null)
                           ShadButton.outline(
-                            child: const Text('Delete'),
+                            child: Text(appLocalizations.delete),
                             onPressed: () {
                               cubit.delete();
                               context.router.pop();
                             },
                           ),
                         ShadButton(
-                          child: const Text('Save'),
+                          child: Text(appLocalizations.save),
                           onPressed: () async {
                             if (formKey.currentState!.saveAndValidate()) {
-                              debugPrint('validation succeeded with ${formKey.currentState!.value}');
                               final cubit = context.read<IncomeExpenseCubit>();
                               await cubit.createMovement(data: formKey.currentState!.value);
                               this.context.router.pop();
-                            } else {
-                              debugPrint('validation failed');
                             }
                           },
                         ),
