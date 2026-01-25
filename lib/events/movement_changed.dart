@@ -2,6 +2,6 @@
 import 'package:moovy/database/domain/movement/movement.dart';
 
 class MovementChanged {
-  Movement movement;
+  Movement? movement;
   MovementChanged(this.movement);
 }

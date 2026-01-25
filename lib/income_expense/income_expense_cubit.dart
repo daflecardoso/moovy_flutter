@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/events/movement_changed.dart';
+import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/string_extensions.dart';
 import 'package:moovy/income_expense/occurrence.dart';
 import 'package:moovy/main.dart';
@@ -48,9 +49,9 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       String amount = data['amount'];
       String? incomeDay = data['incomeDay'];
       String? dueDay = data['dueDay'];
-      Occurrence occurrence = data['occurrence'];
 
       if (id case final id?) {
+        Occurrence occurrence = data['occurrence'];
         final movementDb = await movementDao.findById(id);
         if (movementDb == null) {
           throw Exception('Movement not found');
@@ -66,16 +67,21 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           type: MovementType.fromName(tab.name),
           updatedAt: DateTime.now(),
         );
-        // switch(occurrence) {
-        //   case Occurrence.it:
-        //     final hasPeriod = movement.startDate != movement.endDate;
-        //     if (hasPeriod) {
-        //
-        //     }
-        //   case Occurrence.all:
-        //     await movementDao.updateMovement(movement);
-        // }
-        await movementDao.updateMovement(movement);
+        switch(occurrence) {
+          case Occurrence.it:
+            try {
+              await movementDao.insertMovement(movement.copyWith(id: null, endDate: movement.startDate));
+
+              final same = movementDb.copyWith(id: id, startDate: movementDb.startDate.addMonths(1));
+              await movementDao.updateMovement(same);
+            } catch(e, s) {
+              print(e);
+              debugPrintStack(stackTrace: s);
+            }
+          case Occurrence.all:
+            await movementDao.updateMovement(movement);
+        }
+
         eventBus.fire(MovementChanged(movement));
       } else {
         final movement = Movement(
@@ -102,6 +108,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
   Future<void> delete() async {
     if (id case final id?) {
       await movementDao.deleteById(id);
+      eventBus.fire(MovementChanged(null));
     }
   }
 }

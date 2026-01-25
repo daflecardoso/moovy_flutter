@@ -46,7 +46,7 @@ class Movement {
     DateTime? updatedAt,
   }) {
     return Movement(
-      id: id ?? this.id,
+      id: id,
       description: description ?? this.description,
       amount: amount ?? this.amount,
       dueDay: dueDay ?? this.dueDay,
@@ -75,6 +75,13 @@ class Movement {
   @override
   String toString() {
     return description;
+  }
+
+  bool isSameMonthYear() {
+    if (endDate case final edt?) {
+      return startDate.month == edt.month && startDate.year == edt.year;
+    }
+    return false;
   }
 }
 

@@ -17,7 +17,6 @@ class IncomeExpenseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(tabDate);
     final appLocalizations = AppLocalizations.of(context)!;
     final tab = IncomeExpenseTabs.values.firstWhere((e) => e.name == this.tab);
     final cubit = IncomeExpenseCubit(getIt.get(), id, tab);

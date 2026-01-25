@@ -20,6 +20,7 @@ class _MovementListScreenState extends State<MovementListScreen>
     with SingleTickerProviderStateMixin<MovementListScreen> {
   late TabController _tabController;
   final MovementListCubit cubit = MovementListCubit(getIt.get());
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +52,7 @@ class _MovementListScreenState extends State<MovementListScreen>
                     actions: [
                       ShadIconButton.outline(
                         onPressed: () {
-                          context.router.navigatePath(AppRouter.incomeExpense);
+                          context.router.navigatePath('${AppRouter.incomeExpense}?tabDate=${cubit.months[_tabController.index].date}');
                         },
                         icon: const Icon(LucideIcons.plus),
                       ),

@@ -33,7 +33,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           case IncomeExpenseInitial():
             return SizedBox.shrink();
           case IncomeExpenseForm():
-            return  ShadForm(
+            return ShadForm(
               key: formKey,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 450),
@@ -76,37 +76,47 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       initialValue: ShadDateTimeRange(start: state.expense?.startDate, end: state.expense?.endDate),
                       label: Text(appLocalizations.periodOfExpense),
                       width: 450,
+                      initialMonth: widget.tabDate,
                       description: Text(appLocalizations.periodOfExpenseDescription),
                       validator: (v) {
                         if (v == null) return appLocalizations.startDateOrRangeIsRequired;
                         return null;
                       },
                     ),
-                    Row(
-                      children: [
-                        ShadRadioGroupFormField<Occurrence>(
-                          id: 'occurrence',
-                          spacing: 16,
-                          label: Text(appLocalizations.occurrences),
-                          items: Occurrence.values.map(
-                                (e) => ShadRadio(
-                              value: e,
-                              label: Text(switch (e) {
-                                Occurrence.it => appLocalizations.updateJustIt,
-                                Occurrence.all => appLocalizations.updateAppOccurrences,
-                              }),
+                    if (state.expense != null)
+                      Row(
+                        children: [
+                          ShadRadioGroupFormField<Occurrence>(
+                            id: 'occurrence',
+                            initialValue: state.expense != null
+                                ? state.expense!.isSameMonthYear()
+                                      ? Occurrence.it
+                                      : null
+                                : null,
+                            spacing: 16,
+                            label: Text(appLocalizations.occurrences),
+                            items: Occurrence.values.map(
+                              (e) => ShadRadio(
+                                value: e,
+                                label: Text(switch (e) {
+                                  Occurrence.it => appLocalizations.updateJustIt,
+                                  Occurrence.all => appLocalizations.updateAppOccurrences,
+                                }),
+                              ),
                             ),
+                            validator: (v) {
+                              if (state.expense == null) {
+                                return null;
+                              }
+                              if (v == null) {
+                                return appLocalizations.youMustPickAnOption;
+                              }
+                              return null;
+                            },
                           ),
-                          validator: (v) {
-                            if (v == null) {
-                              return appLocalizations.youMustPickAnOption;
-                            }
-                            return null;
-                          },
-                        ),
-                        Spacer(),
-                      ],
-                    ),
+                          Spacer(),
+                        ],
+                      ),
                     Row(
                       spacing: 16,
                       mainAxisAlignment: MainAxisAlignment.end,
