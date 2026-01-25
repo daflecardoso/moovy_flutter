@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/income_expense/income_expense_cubit.dart';
+import 'package:moovy/income_expense/occurrence.dart';
 import 'package:moovy/income_expense/pages/amount_input.dart';
 import 'package:moovy/income_expense/pages/description_field.dart';
 import 'package:moovy/l10n/app_localizations.dart';
@@ -69,6 +70,40 @@ class _IncomeScreenState extends State<IncomeScreen> {
                         return null;
                       },
                     ),
+                    if (state.income != null)
+                      Row(
+                        children: [
+                          ShadRadioGroupFormField<Occurrence>(
+                            id: 'occurrence',
+                            initialValue: state.income != null
+                                ? state.income!.isSameMonthYear()
+                                ? Occurrence.it
+                                : null
+                                : null,
+                            spacing: 16,
+                            label: Text(appLocalizations.occurrences),
+                            items: Occurrence.values.map(
+                                  (e) => ShadRadio(
+                                value: e,
+                                label: Text(switch (e) {
+                                  Occurrence.it => appLocalizations.updateJustIt,
+                                  Occurrence.all => appLocalizations.updateAppOccurrences,
+                                }),
+                              ),
+                            ),
+                            validator: (v) {
+                              if (state.income == null) {
+                                return null;
+                              }
+                              if (v == null) {
+                                return appLocalizations.youMustPickAnOption;
+                              }
+                              return null;
+                            },
+                          ),
+                          Spacer(),
+                        ],
+                      ),
                     Row(
                       spacing: 16,
                       mainAxisAlignment: MainAxisAlignment.end,
