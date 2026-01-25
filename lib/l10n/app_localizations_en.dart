@@ -155,4 +155,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get youMustPickAnOption => 'Você precisa escolher uma opção';
+
+  @override
+  String get profile => 'Profile';
 }

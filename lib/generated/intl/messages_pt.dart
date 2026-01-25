@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Período do pagamento",
     ),
     "portuguese": MessageLookupByLibrary.simpleMessage("Português"),
+    "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
     "save": MessageLookupByLibrary.simpleMessage("Salvar"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage(
       "Selecione uma moeda",

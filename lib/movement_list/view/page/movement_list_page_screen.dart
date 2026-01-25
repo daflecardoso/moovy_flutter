@@ -57,24 +57,13 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: SummaryWidget(
-                              title: appLocalization.totalIncome,
-                              value: state.totalIncome.currency(),
-                            ),
-                          ),
-                          Expanded(
-                            child: SummaryWidget(
-                              title: appLocalization.totalExpense,
-                              value: state.totalExpense.currency(),
-                            ),
-                          ),
-                          Expanded(
-                            child: SummaryWidget(title: appLocalization.total, value: state.total.currency()),
-                          ),
+                          SummaryWidget(title: appLocalization.totalIncome, value: state.totalIncome.currency()),
+                          SummaryWidget(title: appLocalization.totalExpense, value: state.totalExpense.currency()),
+                          SummaryWidget(title: appLocalization.total, value: state.total.currency()),
                         ],
                       ),
                     ),

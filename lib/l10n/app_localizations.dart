@@ -385,6 +385,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Você precisa escolher uma opção'**
   String get youMustPickAnOption;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
 }
 
 class _AppLocalizationsDelegate

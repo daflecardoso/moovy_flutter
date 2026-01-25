@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "periodOfIncome": MessageLookupByLibrary.simpleMessage("Period of income"),
     "portuguese": MessageLookupByLibrary.simpleMessage("Portuguese"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("Select a currency"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),

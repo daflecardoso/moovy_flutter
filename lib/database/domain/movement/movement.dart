@@ -89,7 +89,7 @@ enum MovementType {
   expense, income;
 
   Color get color => switch(this) {
-    MovementType.expense => Colors.redAccent,
+    MovementType.expense => Colors.pink,
     MovementType.income => Colors.green
   };
 

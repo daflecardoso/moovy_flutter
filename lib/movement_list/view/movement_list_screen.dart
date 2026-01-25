@@ -50,11 +50,11 @@ class _MovementListScreenState extends State<MovementListScreen>
                   appBar: AppBar(
                     title: Text(appLocalizations.movements, style: ShadTheme.of(context).textTheme.large),
                     actions: [
-                      ShadIconButton.outline(
+                      ShadIconButton.ghost(
                         onPressed: () {
                           context.router.navigatePath('${AppRouter.incomeExpense}?tabDate=${cubit.months[_tabController.index].date}');
                         },
-                        icon: const Icon(LucideIcons.plus),
+                        icon: const Icon(LucideIcons.circlePlus),
                       ),
                       SizedBox(width: 16),
                     ],
