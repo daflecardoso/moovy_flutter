@@ -16,7 +16,7 @@ class DescriptionInput extends StatelessWidget {
       initialValue: initialValue,
       label: Text(title),
       placeholder: Text(placeholder),
-      leading: Icon(LucideIcons.text),
+      leading: Icon(LucideIcons.album),
       validator: (v) {
         if (v.isEmpty) {
           return appLocalization.descriptionCannotBeEmpty;

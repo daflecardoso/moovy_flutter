@@ -21,18 +21,49 @@ import 'package:moovy/settings/settings_screen.dart' as _i7;
 
 /// generated route for
 /// [_i1.ExpenseScreen]
-class ExpenseRoute extends _i8.PageRouteInfo<void> {
-  const ExpenseRoute({List<_i8.PageRouteInfo>? children})
-    : super(ExpenseRoute.name, initialChildren: children);
+class ExpenseRoute extends _i8.PageRouteInfo<ExpenseRouteArgs> {
+  ExpenseRoute({
+    _i9.Key? key,
+    required DateTime tabDate,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+         ExpenseRoute.name,
+         args: ExpenseRouteArgs(key: key, tabDate: tabDate),
+         initialChildren: children,
+       );
 
   static const String name = 'ExpenseRoute';
 
   static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i1.ExpenseScreen();
+      final args = data.argsAs<ExpenseRouteArgs>();
+      return _i1.ExpenseScreen(key: args.key, tabDate: args.tabDate);
     },
   );
+}
+
+class ExpenseRouteArgs {
+  const ExpenseRouteArgs({this.key, required this.tabDate});
+
+  final _i9.Key? key;
+
+  final DateTime tabDate;
+
+  @override
+  String toString() {
+    return 'ExpenseRouteArgs{key: $key, tabDate: $tabDate}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ExpenseRouteArgs) return false;
+    return key == other.key && tabDate == other.tabDate;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ tabDate.hashCode;
 }
 
 /// generated route for
@@ -42,12 +73,18 @@ class IncomeExpenseRoute extends _i8.PageRouteInfo<IncomeExpenseRouteArgs> {
     _i9.Key? key,
     int? id,
     String tab = 'expense',
+    String tabDate = '',
     List<_i8.PageRouteInfo>? children,
   }) : super(
          IncomeExpenseRoute.name,
-         args: IncomeExpenseRouteArgs(key: key, id: id, tab: tab),
+         args: IncomeExpenseRouteArgs(
+           key: key,
+           id: id,
+           tab: tab,
+           tabDate: tabDate,
+         ),
          rawPathParams: {'id': id},
-         rawQueryParams: {'tab': tab},
+         rawQueryParams: {'tab': tab, 'tabDate': tabDate},
          initialChildren: children,
        );
 
@@ -59,19 +96,29 @@ class IncomeExpenseRoute extends _i8.PageRouteInfo<IncomeExpenseRouteArgs> {
       final pathParams = data.inheritedPathParams;
       final queryParams = data.queryParams;
       final args = data.argsAs<IncomeExpenseRouteArgs>(
-        orElse:
-            () => IncomeExpenseRouteArgs(
-              id: pathParams.optInt('id'),
-              tab: queryParams.getString('tab', 'expense'),
-            ),
+        orElse: () => IncomeExpenseRouteArgs(
+          id: pathParams.optInt('id'),
+          tab: queryParams.getString('tab', 'expense'),
+          tabDate: queryParams.getString('tabDate', ''),
+        ),
       );
-      return _i2.IncomeExpenseScreen(key: args.key, id: args.id, tab: args.tab);
+      return _i2.IncomeExpenseScreen(
+        key: args.key,
+        id: args.id,
+        tab: args.tab,
+        tabDate: args.tabDate,
+      );
     },
   );
 }
 
 class IncomeExpenseRouteArgs {
-  const IncomeExpenseRouteArgs({this.key, this.id, this.tab = 'expense'});
+  const IncomeExpenseRouteArgs({
+    this.key,
+    this.id,
+    this.tab = 'expense',
+    this.tabDate = '',
+  });
 
   final _i9.Key? key;
 
@@ -79,20 +126,26 @@ class IncomeExpenseRouteArgs {
 
   final String tab;
 
+  final String tabDate;
+
   @override
   String toString() {
-    return 'IncomeExpenseRouteArgs{key: $key, id: $id, tab: $tab}';
+    return 'IncomeExpenseRouteArgs{key: $key, id: $id, tab: $tab, tabDate: $tabDate}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! IncomeExpenseRouteArgs) return false;
-    return key == other.key && id == other.id && tab == other.tab;
+    return key == other.key &&
+        id == other.id &&
+        tab == other.tab &&
+        tabDate == other.tabDate;
   }
 
   @override
-  int get hashCode => key.hashCode ^ id.hashCode ^ tab.hashCode;
+  int get hashCode =>
+      key.hashCode ^ id.hashCode ^ tab.hashCode ^ tabDate.hashCode;
 }
 
 /// generated route for

@@ -40,5 +40,11 @@
   "theme": "Tema",
   "system": "Sistema",
   "light": "Claro",
-  "dark": "Escuro"
+  "dark": "Escuro",
+  "success": "Sucesso",
+  "changesWasUpdated": "Alterado com sucesso",
+  "occurrences": "Atualizar Ocorrências",
+  "updateJustIt": "Somente essa",
+  "updateAppOccurrences": "Todas as ocorrências",
+  "youMustPickAnOption": "Você precisa escolher uma opção"
 }

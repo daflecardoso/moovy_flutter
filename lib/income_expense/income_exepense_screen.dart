@@ -12,10 +12,12 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 class IncomeExpenseScreen extends StatelessWidget {
   final int? id;
   final String tab;
-  const IncomeExpenseScreen({super.key, @PathParam('id') this.id, @QueryParam('tab') this.tab = 'expense'});
+  final String tabDate;
+  const IncomeExpenseScreen({super.key, @PathParam('id') this.id, @QueryParam('tab') this.tab = 'expense', @QueryParam('tabDate') this.tabDate = ''});
 
   @override
   Widget build(BuildContext context) {
+    print(tabDate);
     final appLocalizations = AppLocalizations.of(context)!;
     final tab = IncomeExpenseTabs.values.firstWhere((e) => e.name == this.tab);
     final cubit = IncomeExpenseCubit(getIt.get(), id, tab);
@@ -23,27 +25,29 @@ class IncomeExpenseScreen extends StatelessWidget {
       create: (context) => cubit,
       child: Scaffold(
         appBar: AppBar(title: Text(appLocalizations.incomeExpense, style: ShadTheme.of(context).textTheme.large)),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ShadTabs(
-            value: tab,
-            tabBarConstraints: const BoxConstraints(maxWidth: 450),
-            contentConstraints: const BoxConstraints(maxWidth: 450),
-            onChanged: (value) {
-              cubit.setTab(value);
-            },
-            tabs: [
-              ShadTab(
-                value: IncomeExpenseTabs.expense,
-                content: ExpenseScreen(),
-                child: Text(appLocalizations.expense),
-              ),
-              ShadTab(
-                value: IncomeExpenseTabs.income,
-                content: IncomeScreen(),
-                child: Text(appLocalizations.income),
-              ),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: ShadTabs(
+              value: tab,
+              tabBarConstraints: const BoxConstraints(maxWidth: 450),
+              contentConstraints: const BoxConstraints(maxWidth: 450),
+              onChanged: (value) {
+                cubit.setTab(value);
+              },
+              tabs: [
+                ShadTab(
+                  value: IncomeExpenseTabs.expense,
+                  content: ExpenseScreen(tabDate: DateTime.parse(tabDate)),
+                  child: Text(appLocalizations.expense),
+                ),
+                ShadTab(
+                  value: IncomeExpenseTabs.income,
+                  content: IncomeScreen(),
+                  child: Text(appLocalizations.income),
+                ),
+              ],
+            ),
           ),
         ),
       ),

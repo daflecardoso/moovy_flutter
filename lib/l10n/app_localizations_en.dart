@@ -137,4 +137,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get changesWasUpdated => 'Successfull updated';
+
+  @override
+  String get occurrences => 'Update Occurrences';
+
+  @override
+  String get updateJustIt => 'Just it';
+
+  @override
+  String get updateAppOccurrences => 'All occurrences';
+
+  @override
+  String get youMustPickAnOption => 'Você precisa escolher uma opção';
 }

@@ -34,6 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "amountHint": MessageLookupByLibrary.simpleMessage("Ex: \$150.00"),
     "brazilianReal": MessageLookupByLibrary.simpleMessage("Brazilian Real"),
+    "changesWasUpdated": MessageLookupByLibrary.simpleMessage(
+      "Successfull updated",
+    ),
     "currency": MessageLookupByLibrary.simpleMessage("Currency"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -68,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
     "movements": MessageLookupByLibrary.simpleMessage("Movements"),
+    "occurrences": MessageLookupByLibrary.simpleMessage("Update Occurrences"),
     "periodOfExpense": MessageLookupByLibrary.simpleMessage(
       "Period of expense",
     ),
@@ -82,11 +86,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Start or range of dates is required.",
     ),
+    "success": MessageLookupByLibrary.simpleMessage("Success"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalExpense": MessageLookupByLibrary.simpleMessage("Total Expense"),
     "totalIncome": MessageLookupByLibrary.simpleMessage("Total Income"),
+    "updateAppOccurrences": MessageLookupByLibrary.simpleMessage(
+      "All occurrences",
+    ),
+    "updateJustIt": MessageLookupByLibrary.simpleMessage("Just it"),
     "youDonTHaveMovements": m0,
+    "youMustPickAnOption": MessageLookupByLibrary.simpleMessage(
+      "Você precisa escolher uma opção",
+    ),
   };
 }

@@ -4,6 +4,7 @@ import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/extensions/string_extensions.dart';
+import 'package:moovy/income_expense/occurrence.dart';
 import 'package:moovy/main.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -47,6 +48,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       String amount = data['amount'];
       String? incomeDay = data['incomeDay'];
       String? dueDay = data['dueDay'];
+      Occurrence occurrence = data['occurrence'];
 
       if (id case final id?) {
         final movementDb = await movementDao.findById(id);
@@ -64,6 +66,15 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           type: MovementType.fromName(tab.name),
           updatedAt: DateTime.now(),
         );
+        // switch(occurrence) {
+        //   case Occurrence.it:
+        //     final hasPeriod = movement.startDate != movement.endDate;
+        //     if (hasPeriod) {
+        //
+        //     }
+        //   case Occurrence.all:
+        //     await movementDao.updateMovement(movement);
+        // }
         await movementDao.updateMovement(movement);
         eventBus.fire(MovementChanged(movement));
       } else {

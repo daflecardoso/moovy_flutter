@@ -13,10 +13,9 @@ Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
   dueDay: (json['due_day'] as num?)?.toInt(),
   incomeDay: (json['income_day'] as num?)?.toInt(),
   startDate: DateTime.parse(json['start_date'] as String),
-  endDate:
-      json['end_date'] == null
-          ? null
-          : DateTime.parse(json['end_date'] as String),
+  endDate: json['end_date'] == null
+      ? null
+      : DateTime.parse(json['end_date'] as String),
   paid: const BoolFlexConverter().fromJson(json['paid']),
   type: $enumDecode(_$MovementTypeEnumMap, json['type']),
   createdAt: DateTime.parse(json['created_at'] as String),

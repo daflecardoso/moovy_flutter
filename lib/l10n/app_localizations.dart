@@ -349,6 +349,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark'**
   String get dark;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @changesWasUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfull updated'**
+  String get changesWasUpdated;
+
+  /// No description provided for @occurrences.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Occurrences'**
+  String get occurrences;
+
+  /// No description provided for @updateJustIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Just it'**
+  String get updateJustIt;
+
+  /// No description provided for @updateAppOccurrences.
+  ///
+  /// In en, this message translates to:
+  /// **'All occurrences'**
+  String get updateAppOccurrences;
+
+  /// No description provided for @youMustPickAnOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Você precisa escolher uma opção'**
+  String get youMustPickAnOption;
 }
 
 class _AppLocalizationsDelegate

@@ -114,8 +114,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   _toast() {
-    ShadToaster.of(
-      context,
-    ).show(ShadToast(title: const Text('Success'), description: const Text('Changes was updated')));
+    ShadToaster.of(context).show(
+      ShadToast(
+        title: Text(AppLocalizations.of(context)!.success),
+        description: Text(AppLocalizations.of(context)!.changesWasUpdated),
+        showCloseIconOnlyWhenHovered: false,
+        alignment: Alignment.topLeft,
+      ),
+    );
   }
 }

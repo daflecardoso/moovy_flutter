@@ -373,6 +373,56 @@ class S {
   String get dark {
     return Intl.message('Dark', name: 'dark', desc: '', args: []);
   }
+
+  /// `Success`
+  String get success {
+    return Intl.message('Success', name: 'success', desc: '', args: []);
+  }
+
+  /// `Successfull updated`
+  String get changesWasUpdated {
+    return Intl.message(
+      'Successfull updated',
+      name: 'changesWasUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Occurrences`
+  String get occurrences {
+    return Intl.message(
+      'Update Occurrences',
+      name: 'occurrences',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Just it`
+  String get updateJustIt {
+    return Intl.message('Just it', name: 'updateJustIt', desc: '', args: []);
+  }
+
+  /// `All occurrences`
+  String get updateAppOccurrences {
+    return Intl.message(
+      'All occurrences',
+      name: 'updateAppOccurrences',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você precisa escolher uma opção`
+  String get youMustPickAnOption {
+    return Intl.message(
+      'Você precisa escolher uma opção',
+      name: 'youMustPickAnOption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

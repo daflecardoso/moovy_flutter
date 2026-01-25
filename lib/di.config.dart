@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -26,18 +26,18 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i565.AppDatabase>(() => _i565.AppDatabase());
     gh.factory<_i666.SharedPreferencesManager>(
       () => _i666.SharedPreferencesManager(),
     );
-    gh.singleton<_i948.CurrencyManager>(
-      () => _i948.CurrencyManager(gh<_i666.SharedPreferencesManager>()),
-    );
+    gh.factory<_i565.AppDatabase>(() => _i565.AppDatabase());
     gh.factory<_i963.LocaleManager>(
       () => _i963.LocaleManager(gh<_i666.SharedPreferencesManager>()),
     );
     gh.factory<_i1044.ThemeManager>(
       () => _i1044.ThemeManager(gh<_i666.SharedPreferencesManager>()),
+    );
+    gh.singleton<_i948.CurrencyManager>(
+      () => _i948.CurrencyManager(gh<_i666.SharedPreferencesManager>()),
     );
     gh.factory<_i779.MovementDao>(
       () => _i779.MovementDao(gh<_i565.AppDatabase>()),

@@ -1,0 +1,6 @@
+
+enum Occurrence {
+  it,
+  all
+  ;
+}

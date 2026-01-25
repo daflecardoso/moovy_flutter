@@ -137,4 +137,22 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get dark => 'Escuro';
+
+  @override
+  String get success => 'Sucesso';
+
+  @override
+  String get changesWasUpdated => 'Alterado com sucesso';
+
+  @override
+  String get occurrences => 'Atualizar Ocorrências';
+
+  @override
+  String get updateJustIt => 'Somente essa';
+
+  @override
+  String get updateAppOccurrences => 'Todas as ocorrências';
+
+  @override
+  String get youMustPickAnOption => 'Você precisa escolher uma opção';
 }

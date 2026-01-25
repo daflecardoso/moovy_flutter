@@ -145,7 +145,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                             ),
                             onTap: () {
                               context.router.navigatePath(
-                                '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}',
+                                '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}&tabDate=${widget.month.date}',
                               );
                             },
                           );
