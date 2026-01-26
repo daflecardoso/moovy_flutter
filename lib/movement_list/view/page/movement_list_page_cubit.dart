@@ -43,7 +43,7 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
     await movementDao.updateMovement(movement);
     final state = this.state;
     if (state is MovementPageSuccess) {
-      final index = state.movements.indexOf(movement);
+      final index = state.movements.indexWhere((e) => e.id == movement.id);
       state.movements[index] = movement;
       emit(state.copyWith(movements: state.movements));
     }

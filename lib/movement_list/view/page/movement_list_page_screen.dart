@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grouped_list/grouped_list.dart';
 import 'package:moovy/app_router.dart';
+import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
-import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
@@ -73,72 +74,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                         itemCount: state.movements.length,
                         itemBuilder: (_, index) {
                           final movement = state.movements[index];
-                          return InkWell(
-                            child: Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    movement.dueDay?.toString() ?? movement.incomeDay?.toString() ?? '-',
-                                    style: ShadTheme.of(context).textTheme.small.copyWith(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: movement.paid ? Colors.grey : null,
-                                      decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 8),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Text(
-                                            movement.description,
-                                            style: ShadTheme.of(context).textTheme.p.copyWith(
-                                              fontWeight: FontWeight.w400,
-                                              color: movement.paid ? Colors.grey : null,
-                                              decoration: movement.paid
-                                                  ? TextDecoration.lineThrough
-                                                  : TextDecoration.none,
-                                            ),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        movement.uiAmount,
-                                        style: ShadTheme.of(context).textTheme.list.apply(
-                                          color: movement.paid ? Colors.grey : movement.type.color,
-                                          decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(width: 16),
-                                  ShadCheckbox(
-                                    size: 24,
-                                    value: movement.paid,
-                                    onChanged: (isChecked) {
-                                      cubit.togglePaid(movement);
-                                    },
-                                  ),
-                                  SizedBox(width: 8),
-                                ],
-                              ),
-                            ),
-                            onTap: () {
-                              context.router.navigatePath(
-                                '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}&tabDate=${widget.month.date}',
-                              );
-                            },
-                          );
+                          return movementRow(movement);
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return Divider(height: 1, thickness: 0.5);
@@ -167,6 +103,83 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           }
         },
       ),
+    );
+  }
+
+  Widget movementRow(Movement movement) {
+    return InkWell(
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+          spacing: 0,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs6igCRR_lVGYs-TBygHCgZI7NbIzfy6r39A&s',
+                width: 40,
+                height: 40,
+              ),
+            ),
+            SizedBox(width: 8),
+            Text(
+              (movement.dueDay ?? movement.incomeDay ?? 0).toString().padLeft(2, '0'),
+              style: ShadTheme.of(context).textTheme.small.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: movement.paid ? Colors.grey : null,
+                decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      movement.description,
+                      style: ShadTheme.of(context).textTheme.p.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: movement.paid ? Colors.grey : null,
+                        decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  movement.uiAmount,
+                  style: ShadTheme.of(context).textTheme.list.apply(
+                    color: movement.paid ? Colors.grey : movement.type.color,
+                    decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(width: 16),
+            ShadCheckbox(
+              size: 24,
+              value: movement.paid,
+              onChanged: (isChecked) {
+                cubit.togglePaid(movement);
+              },
+            ),
+            SizedBox(width: 8),
+          ],
+        ),
+      ),
+      onTap: () {
+        context.router.navigatePath(
+          '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}&tabDate=${widget.month.date}',
+        );
+      },
     );
   }
 }

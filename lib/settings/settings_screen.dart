@@ -36,74 +36,72 @@ class _SettingsScreenState extends State<SettingsScreen> {
             case SettingsForm():
               return ShadForm(
                 key: formKey,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: maxWidth),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      spacing: 16,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ShadSelectFormField<String>(
-                          id: 'currency',
-                          initialValue: state.currency.code,
-                          label: Text(appLocalizations.currency),
-                          minWidth: maxWidth,
-                          placeholder: Text(appLocalizations.selectCurrency),
-                          options: [...state.currencies.map((e) => ShadOption(value: e.code, child: Text(e.title)))],
-                          selectedOptionBuilder: (context, value) =>
-                              Text(state.currencies.firstWhere((e) => e.code == value).title),
-                          onChanged: print,
-                        ),
-                        ShadSelectFormField<String>(
-                          id: 'language',
-                          label: Text(appLocalizations.language),
-                          itemCount: state.languages.length,
-                          initialValue: state.language.locale.toString(),
-                          minWidth: maxWidth,
-                          placeholder: Text('Select a language'),
-                          optionsBuilder: (context, index) {
-                            return ShadOption(
-                              value: state.languages[index].locale.toString(),
-                              child: Text(state.languages[index].title),
-                            );
-                          },
-                          selectedOptionBuilder: (context, value) =>
-                              Text(state.languages.firstWhere((l) => l.locale.toString() == value).title),
-                          onChanged: print,
-                        ),
-                        ShadSelectFormField<String>(
-                          initialValue: state.theme.themeMode.name,
-                          id: 'theme',
-                          label: Text(appLocalizations.theme),
-                          minWidth: maxWidth,
-                          placeholder: const Text('Select a theme'),
-                          options: [
-                            ...state.themes.map((e) => ShadOption(value: e.themeMode.name, child: Text(e.title))),
-                          ],
-                          selectedOptionBuilder: (context, value) =>
-                              Text(state.themes.firstWhere((e) => e.themeMode.name == value).title),
-                          onChanged: print,
-                        ),
-                        Row(
-                          spacing: 16,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            ShadButton(
-                              child: Text(appLocalizations.save),
-                              onPressed: () async {
-                                if (formKey.currentState!.saveAndValidate()) {
-                                  await cubit.save(formKey.currentState!.value);
-                                  mainCubit.setup();
-                                  _toast();
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    spacing: 16,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ShadSelectFormField<String>(
+                        id: 'currency',
+                        initialValue: state.currency.code,
+                        label: Text(appLocalizations.currency),
+                        minWidth: maxWidth,
+                        placeholder: Text(appLocalizations.selectCurrency),
+                        options: [...state.currencies.map((e) => ShadOption(value: e.code, child: Text(e.title)))],
+                        selectedOptionBuilder: (context, value) =>
+                            Text(state.currencies.firstWhere((e) => e.code == value).title),
+                        onChanged: print,
+                      ),
+                      ShadSelectFormField<String>(
+                        id: 'language',
+                        label: Text(appLocalizations.language),
+                        itemCount: state.languages.length,
+                        initialValue: state.language.locale.toString(),
+                        minWidth: maxWidth,
+                        placeholder: Text('Select a language'),
+                        optionsBuilder: (context, index) {
+                          return ShadOption(
+                            value: state.languages[index].locale.toString(),
+                            child: Text(state.languages[index].title),
+                          );
+                        },
+                        selectedOptionBuilder: (context, value) =>
+                            Text(state.languages.firstWhere((l) => l.locale.toString() == value).title),
+                        onChanged: print,
+                      ),
+                      ShadSelectFormField<String>(
+                        initialValue: state.theme.themeMode.name,
+                        id: 'theme',
+                        label: Text(appLocalizations.theme),
+                        minWidth: maxWidth,
+                        placeholder: const Text('Select a theme'),
+                        options: [
+                          ...state.themes.map((e) => ShadOption(value: e.themeMode.name, child: Text(e.title))),
+                        ],
+                        selectedOptionBuilder: (context, value) =>
+                            Text(state.themes.firstWhere((e) => e.themeMode.name == value).title),
+                        onChanged: print,
+                      ),
+                      Row(
+                        spacing: 16,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ShadButton(
+                            child: Text(appLocalizations.save),
+                            onPressed: () async {
+                              if (formKey.currentState!.saveAndValidate()) {
+                                await cubit.save(formKey.currentState!.value);
+                                mainCubit.setup();
+                                _toast();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               );
