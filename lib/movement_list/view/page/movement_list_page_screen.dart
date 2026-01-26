@@ -49,7 +49,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
         builder: (_, state) {
           switch (state) {
             case MovementListPageInitial():
-              return Center(child: CircularProgressIndicator(),);
+              return Center(child: CircularProgressIndicator());
             case MovementPageSuccess():
               return RefreshIndicator(
                 onRefresh: () async {
@@ -116,11 +116,13 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: movement.imageUrl != null ? Image.network(
-                movement.imageUrl!,
-                width: 40,
-                height: 40,
-              ) : SizedBox(width: 40, height: 40,),
+
+              child: movement.imageUrl != null
+                  ? ColorFiltered(
+                      colorFilter: ColorFilter.mode(movement.paid ? Colors.grey : Colors.transparent, BlendMode.color),
+                      child: Image.network(movement.imageUrl!, width: 30, height: 30),
+                    )
+                  : SizedBox(width: 30, height: 30),
             ),
             SizedBox(width: 8),
             Text(
