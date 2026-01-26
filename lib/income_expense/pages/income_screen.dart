@@ -7,6 +7,7 @@ import 'package:moovy/income_expense/income_expense_cubit.dart';
 import 'package:moovy/income_expense/occurrence.dart';
 import 'package:moovy/income_expense/pages/amount_input.dart';
 import 'package:moovy/income_expense/pages/description_field.dart';
+import 'package:moovy/income_expense/pages/image_url_field.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -42,6 +43,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ShadBadge(backgroundColor: MovementType.income.color, child: Text(appLocalizations.income)),
+                    ImageUrlField(
+                      initialValue: state.income?.imageUrl,
+                    ),
                     DescriptionInput(
                       initialValue: state.income?.description,
                       title: appLocalizations.incomeDescription,

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/di.dart';
@@ -50,7 +49,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
         builder: (_, state) {
           switch (state) {
             case MovementListPageInitial():
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator(),);
             case MovementPageSuccess():
               return RefreshIndicator(
                 onRefresh: () async {
@@ -100,6 +99,8 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   ],
                 ),
               );
+            case MovementPageError():
+              return Text(state.error);
           }
         },
       ),
@@ -115,11 +116,11 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs6igCRR_lVGYs-TBygHCgZI7NbIzfy6r39A&s',
+              child: movement.imageUrl != null ? Image.network(
+                movement.imageUrl!,
                 width: 40,
                 height: 40,
-              ),
+              ) : SizedBox(width: 40, height: 40,),
             ),
             SizedBox(width: 8),
             Text(

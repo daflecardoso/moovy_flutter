@@ -47,5 +47,7 @@
   "updateJustIt": "Just it",
   "updateAppOccurrences": "All occurrences",
   "youMustPickAnOption": "Você precisa escolher uma opção",
-  "profile": "Profile"
+  "profile": "Profile",
+  "imageLink": "Image link",
+  "addLinkImage": "Add image a image link"
 }

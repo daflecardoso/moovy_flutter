@@ -16,6 +16,7 @@ class Movement {
   final DateTime? endDate;
   @BoolFlexConverter()
   bool paid;
+  final String? imageUrl;
   final MovementType type;
 
   Movement({
@@ -27,6 +28,7 @@ class Movement {
     required this.startDate,
     required this.endDate,
     required this.paid,
+    required this.imageUrl,
     required this.type,
     required this.createdAt,
     required this.updatedAt
@@ -42,6 +44,7 @@ class Movement {
     DateTime? endDate,
     bool? paid,
     MovementType? type,
+    String? imageUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -55,6 +58,7 @@ class Movement {
       endDate: endDate ?? this.endDate,
       paid: paid ?? this.paid,
       type: type ?? this.type,
+      imageUrl: imageUrl ?? this.imageUrl,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

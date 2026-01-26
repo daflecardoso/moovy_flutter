@@ -428,6 +428,21 @@ class S {
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
+
+  /// `Image link`
+  String get imageLink {
+    return Intl.message('Image link', name: 'imageLink', desc: '', args: []);
+  }
+
+  /// `Add image a image link`
+  String get addLinkImage {
+    return Intl.message(
+      'Add image a image link',
+      name: 'addLinkImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

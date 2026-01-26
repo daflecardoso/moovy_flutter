@@ -391,6 +391,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @imageLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Image link'**
+  String get imageLink;
+
+  /// No description provided for @addLinkImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add image a image link'**
+  String get addLinkImage;
 }
 
 class _AppLocalizationsDelegate

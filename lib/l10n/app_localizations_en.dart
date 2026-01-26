@@ -158,4 +158,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get imageLink => 'Image link';
+
+  @override
+  String get addLinkImage => 'Add image a image link';
 }

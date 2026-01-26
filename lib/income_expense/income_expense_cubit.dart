@@ -49,6 +49,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       String amount = data['amount'];
       String? incomeDay = data['incomeDay'];
       String? dueDay = data['dueDay'];
+      String? imageUrl = data['image_url'];
 
       if (id case final id?) {
         Occurrence occurrence = data['occurrence'];
@@ -65,6 +66,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           startDate: period.start!,
           endDate: period.end,
           type: MovementType.fromName(tab.name),
+          imageUrl: imageUrl,
           updatedAt: DateTime.now(),
         );
         switch(occurrence) {
@@ -102,6 +104,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           endDate: period.end,
           type: MovementType.fromName(tab.name),
           paid: false,
+          imageUrl: imageUrl,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
         );

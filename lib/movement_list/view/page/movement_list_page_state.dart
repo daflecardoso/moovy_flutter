@@ -28,3 +28,9 @@ final class MovementEmpty extends MovementListPageState {
   final String month;
   MovementEmpty({required this.month});
 }
+
+final class MovementPageError extends MovementListPageState {
+  final String error;
+
+  MovementPageError({ required this.error });
+}

@@ -17,6 +17,7 @@ Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
       ? null
       : DateTime.parse(json['end_date'] as String),
   paid: const BoolFlexConverter().fromJson(json['paid']),
+  imageUrl: json['image_url'] as String?,
   type: $enumDecode(_$MovementTypeEnumMap, json['type']),
   createdAt: DateTime.parse(json['created_at'] as String),
   updatedAt: DateTime.parse(json['updated_at'] as String),
@@ -33,6 +34,7 @@ Map<String, dynamic> _$MovementToJson(Movement instance) => <String, dynamic>{
   'updated_at': instance.updatedAt.toIso8601String(),
   'end_date': instance.endDate?.toIso8601String(),
   'paid': const BoolFlexConverter().toJson(instance.paid),
+  'image_url': instance.imageUrl,
   'type': _$MovementTypeEnumMap[instance.type]!,
 };
 

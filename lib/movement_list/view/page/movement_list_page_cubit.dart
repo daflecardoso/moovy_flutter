@@ -35,6 +35,7 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrintStack(stackTrace: s);
+      emit(MovementPageError(error: e.toString()));
     }
   }
 

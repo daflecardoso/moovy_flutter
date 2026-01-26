@@ -24,6 +24,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addLinkImage": MessageLookupByLibrary.simpleMessage(
+      "Adicione um link de image",
+    ),
     "americanDollar": MessageLookupByLibrary.simpleMessage("Dólar Americano"),
     "amount": MessageLookupByLibrary.simpleMessage("Valor"),
     "amountDescription": MessageLookupByLibrary.simpleMessage("Valor por mês"),
@@ -56,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
       "Ex: Fatura do cartão de crédito",
     ),
+    "imageLink": MessageLookupByLibrary.simpleMessage("Imagem"),
     "income": MessageLookupByLibrary.simpleMessage("Entrada"),
     "incomeDay": MessageLookupByLibrary.simpleMessage("Dia do pagamento"),
     "incomeDayIsRequired": MessageLookupByLibrary.simpleMessage(

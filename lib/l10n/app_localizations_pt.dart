@@ -158,4 +158,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get profile => 'Perfil';
+
+  @override
+  String get imageLink => 'Imagem';
+
+  @override
+  String get addLinkImage => 'Adicione um link de image';
 }
