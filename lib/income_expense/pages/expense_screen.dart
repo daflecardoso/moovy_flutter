@@ -135,7 +135,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                             debugPrint(formKey.currentState!.value.toString());
                             if (formKey.currentState!.saveAndValidate()) {
                               final cubit = context.read<IncomeExpenseCubit>();
-                              await cubit.createMovement(data: formKey.currentState!.value);
+                              await cubit.createMovement(data: formKey.currentState!.value, monthTab: widget.tabDate);
                               this.context.router.pop();
                             }
                           },

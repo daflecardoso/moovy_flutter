@@ -13,7 +13,12 @@ class IncomeExpenseScreen extends StatelessWidget {
   final int? id;
   final String tab;
   final String tabDate;
-  const IncomeExpenseScreen({super.key, @PathParam('id') this.id, @QueryParam('tab') this.tab = 'expense', @QueryParam('tabDate') this.tabDate = ''});
+  const IncomeExpenseScreen({
+    super.key,
+    @PathParam('id') this.id,
+    @QueryParam('tab') this.tab = 'expense',
+    @QueryParam('tabDate') this.tabDate = '',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class IncomeExpenseScreen extends StatelessWidget {
                 ),
                 ShadTab(
                   value: IncomeExpenseTabs.income,
-                  content: IncomeScreen(),
+                  content: IncomeScreen(tabDate: DateTime.parse(tabDate)),
                   child: Text(appLocalizations.income),
                 ),
               ],

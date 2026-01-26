@@ -150,18 +150,49 @@ class IncomeExpenseRouteArgs {
 
 /// generated route for
 /// [_i3.IncomeScreen]
-class IncomeRoute extends _i8.PageRouteInfo<void> {
-  const IncomeRoute({List<_i8.PageRouteInfo>? children})
-    : super(IncomeRoute.name, initialChildren: children);
+class IncomeRoute extends _i8.PageRouteInfo<IncomeRouteArgs> {
+  IncomeRoute({
+    _i9.Key? key,
+    required DateTime tabDate,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+         IncomeRoute.name,
+         args: IncomeRouteArgs(key: key, tabDate: tabDate),
+         initialChildren: children,
+       );
 
   static const String name = 'IncomeRoute';
 
   static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i3.IncomeScreen();
+      final args = data.argsAs<IncomeRouteArgs>();
+      return _i3.IncomeScreen(key: args.key, tabDate: args.tabDate);
     },
   );
+}
+
+class IncomeRouteArgs {
+  const IncomeRouteArgs({this.key, required this.tabDate});
+
+  final _i9.Key? key;
+
+  final DateTime tabDate;
+
+  @override
+  String toString() {
+    return 'IncomeRouteArgs{key: $key, tabDate: $tabDate}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! IncomeRouteArgs) return false;
+    return key == other.key && tabDate == other.tabDate;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ tabDate.hashCode;
 }
 
 /// generated route for

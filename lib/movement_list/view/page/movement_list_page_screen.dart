@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
+import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';

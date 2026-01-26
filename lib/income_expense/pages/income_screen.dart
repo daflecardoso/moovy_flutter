@@ -12,7 +12,8 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
 class IncomeScreen extends StatefulWidget {
-  const IncomeScreen({super.key});
+  final DateTime tabDate;
+  const IncomeScreen({super.key, required this.tabDate});
 
   @override
   State<IncomeScreen> createState() => _IncomeScreenState();
@@ -121,7 +122,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                           onPressed: () async {
                             if (formKey.currentState!.saveAndValidate()) {
                               final cubit = context.read<IncomeExpenseCubit>();
-                              await cubit.createMovement(data: formKey.currentState!.value);
+                              await cubit.createMovement(data: formKey.currentState!.value, monthTab: widget.tabDate);
                               this.context.router.pop();
                             }
                           },

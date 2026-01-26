@@ -42,7 +42,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
     }
   }
 
-  Future<void> createMovement({required Map<Object, dynamic> data}) async {
+  Future<void> createMovement({required Map<Object, dynamic> data, required DateTime monthTab}) async {
     try {
       String description = data['description'];
       ShadDateTimeRange period = data['period'];
@@ -70,12 +70,20 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
         switch(occurrence) {
           case Occurrence.it:
             try {
-              await movementDao.insertMovement(movement.copyWith(id: null, endDate: movement.startDate));
+              //equal DB previous months
+              final previousMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(-1);
+              final newMovement = movementDb.copyWith(id: null, endDate: previousMonth);
+              await movementDao.insertMovement(newMovement);
 
-              final same = movementDb.copyWith(id: id, startDate: movementDb.startDate.addMonths(1));
-              await movementDao.updateMovement(same);
+              final thisMonth = monthTab.copyWith(day: movement.startDate.day);
+              final toUpdateMovement = movement.copyWith(id: id, startDate: thisMonth, endDate: thisMonth);
+              await movementDao.updateMovement(toUpdateMovement);
+
+              //equal DB to next months
+              final nextMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(1);
+              final recurrence = movementDb.copyWith(id: null, startDate: nextMonth);
+              await movementDao.insertMovement(recurrence);
             } catch(e, s) {
-              print(e);
               debugPrintStack(stackTrace: s);
             }
           case Occurrence.all:
