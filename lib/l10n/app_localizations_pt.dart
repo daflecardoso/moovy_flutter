@@ -164,4 +164,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get addLinkImage => 'Adicione um link de image';
+
+  @override
+  String get appleSignIn => 'Entrar com Apple';
+
+  @override
+  String get googleSignIn => 'Entrar com Google';
+
+  @override
+  String get signOut => 'Sair';
 }

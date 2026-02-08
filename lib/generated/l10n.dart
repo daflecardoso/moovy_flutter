@@ -443,6 +443,31 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign in with Apple`
+  String get appleSignIn {
+    return Intl.message(
+      'Sign in with Apple',
+      name: 'appleSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in with Google`
+  String get googleSignIn {
+    return Intl.message(
+      'Sign in with Google',
+      name: 'googleSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Out`
+  String get signOut {
+    return Intl.message('Sign Out', name: 'signOut', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

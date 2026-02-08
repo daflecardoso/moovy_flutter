@@ -1,10 +1,10 @@
 name: moovy
-description: "A new Flutter project."
+description: "Financial plan app."
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.10.1
 dependencies:
   flutter_localizations:
     sdk: flutter
@@ -23,6 +23,9 @@ dependencies:
   json_annotation: ^4.9.0
   event_bus: ^2.0.1
   shared_preferences: ^2.5.4
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  cloud_firestore: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -31,8 +34,12 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   auto_route_generator:
   build_runner: ^2.4.1
+  flutter_gen_runner:
   injectable_generator:
   json_serializable: ^6.9.5
+
+flutter_gen:
+  output: lib/gen/
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -54,5 +61,7 @@ flutter_launcher_icons:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/icon/
 flutter_intl:
   enabled: true

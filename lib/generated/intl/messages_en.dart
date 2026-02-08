@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please type some value.",
     ),
     "amountHint": MessageLookupByLibrary.simpleMessage("Ex: \$150.00"),
+    "appleSignIn": MessageLookupByLibrary.simpleMessage("Sign in with Apple"),
     "brazilianReal": MessageLookupByLibrary.simpleMessage("Brazilian Real"),
     "changesWasUpdated": MessageLookupByLibrary.simpleMessage(
       "Successfull updated",
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
       "Ex: Invoice Credit Card",
     ),
+    "googleSignIn": MessageLookupByLibrary.simpleMessage("Sign in with Google"),
     "imageLink": MessageLookupByLibrary.simpleMessage("Image link"),
     "income": MessageLookupByLibrary.simpleMessage("Income"),
     "incomeDay": MessageLookupByLibrary.simpleMessage("Income Day"),
@@ -88,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("Select a currency"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "signOut": MessageLookupByLibrary.simpleMessage("Sign Out"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Start or range of dates is required.",
     ),

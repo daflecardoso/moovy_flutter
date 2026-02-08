@@ -164,4 +164,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addLinkImage => 'Add image a image link';
+
+  @override
+  String get appleSignIn => 'Sign in with Apple';
+
+  @override
+  String get googleSignIn => 'Sign in with Google';
+
+  @override
+  String get signOut => 'Sign Out';
 }

@@ -18,6 +18,7 @@ import 'core/shared_preferences/shared_preferences_manager.dart' as _i666;
 import 'core/theme/theme_manager.dart' as _i1044;
 import 'database/dao/movement_dao.dart' as _i779;
 import 'database/database.dart' as _i565;
+import 'repository/movement_repository.dart' as _i416;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -41,6 +42,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i779.MovementDao>(
       () => _i779.MovementDao(gh<_i565.AppDatabase>()),
+    );
+    gh.factory<_i416.MovementRepository>(
+      () => _i416.MovementRepository(gh<_i779.MovementDao>()),
     );
     return this;
   }

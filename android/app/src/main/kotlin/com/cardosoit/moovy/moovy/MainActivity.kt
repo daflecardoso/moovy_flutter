@@ -1,4 +1,4 @@
-package com.cardosoit.moovy.moovy
+package com.cardosoit.moovy
 
 import io.flutter.embedding.android.FlutterActivity
 

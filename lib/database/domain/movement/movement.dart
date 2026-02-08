@@ -9,6 +9,7 @@ part 'movement.g.dart';
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Movement {
   final int? id;
+  final String? firestoreId;
   final String description;
   final int amount;
   final int? dueDay, incomeDay;
@@ -21,6 +22,7 @@ class Movement {
 
   Movement({
     required this.id,
+    required this.firestoreId,
     required this.description,
     required this.amount,
     required this.dueDay,
@@ -36,6 +38,7 @@ class Movement {
 
   Movement copyWith({
     int? id,
+    String? firestoreId,
     String? description,
     int? amount,
     int? dueDay,
@@ -50,6 +53,7 @@ class Movement {
   }) {
     return Movement(
       id: id,
+      firestoreId: firestoreId ?? this.firestoreId,
       description: description ?? this.description,
       amount: amount ?? this.amount,
       dueDay: dueDay ?? this.dueDay,

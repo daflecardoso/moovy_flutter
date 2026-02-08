@@ -403,6 +403,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add image a image link'**
   String get addLinkImage;
+
+  /// No description provided for @appleSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Apple'**
+  String get appleSignIn;
+
+  /// No description provided for @googleSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get googleSignIn;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOut;
 }
 
 class _AppLocalizationsDelegate

@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Por favor digite algum valor",
     ),
     "amountHint": MessageLookupByLibrary.simpleMessage("Ex: R\$150.00"),
+    "appleSignIn": MessageLookupByLibrary.simpleMessage("Entrar com Apple"),
     "brazilianReal": MessageLookupByLibrary.simpleMessage("Real"),
     "changesWasUpdated": MessageLookupByLibrary.simpleMessage(
       "Alterado com sucesso",
@@ -59,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
       "Ex: Fatura do cartão de crédito",
     ),
+    "googleSignIn": MessageLookupByLibrary.simpleMessage("Entrar com Google"),
     "imageLink": MessageLookupByLibrary.simpleMessage("Imagem"),
     "income": MessageLookupByLibrary.simpleMessage("Entrada"),
     "incomeDay": MessageLookupByLibrary.simpleMessage("Dia do pagamento"),
@@ -94,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Selecione uma moeda",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
+    "signOut": MessageLookupByLibrary.simpleMessage("Sair"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Data inicio ou período é obrigatório",
     ),

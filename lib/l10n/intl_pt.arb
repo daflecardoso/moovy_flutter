@@ -49,5 +49,8 @@
   "youMustPickAnOption": "Você precisa escolher uma opção",
   "profile": "Perfil",
   "imageLink": "Imagem",
-  "addLinkImage": "Adicione um link de image"
+  "addLinkImage": "Adicione um link de image",
+  "appleSignIn": "Entrar com Apple",
+  "googleSignIn": "Entrar com Google",
+  "signOut": "Sair"
 }

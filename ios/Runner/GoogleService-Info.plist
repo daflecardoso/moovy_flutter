@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>793982976631-vc0n713l8ap2pdq9qeqv8qa99l0tcvrv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.793982976631-vc0n713l8ap2pdq9qeqv8qa99l0tcvrv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCxgW6strhM_totBHwX8tZJyu0yFs4ukWg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>793982976631</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cardosoit.moovy</string>
+	<key>PROJECT_ID</key>
+	<string>moovy-c44fa</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moovy-c44fa.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:793982976631:ios:8a8d965c4659015c3d7c72</string>
+</dict>
+</plist>

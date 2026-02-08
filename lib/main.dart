@@ -1,16 +1,21 @@
 import 'package:event_bus/event_bus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/firebase_options.dart';
 import 'package:moovy/main_cubit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 final eventBus = EventBus();
 var globalCurrencyFormat = NumberFormat.currency();
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final app = await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseAuth.instanceFor(app: app);
   configureDependencies();
   runApp(App());
 }
@@ -22,7 +27,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final cubit = MainCubit(getIt.get(), getIt.get(), getIt.get(), getIt.get())..setup();
     return BlocProvider(
       create: (BuildContext context) => cubit,

@@ -8,6 +8,7 @@ part of 'movement.dart';
 
 Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
   id: (json['id'] as num?)?.toInt(),
+  firestoreId: json['firestore_id'] as String?,
   description: json['description'] as String,
   amount: (json['amount'] as num).toInt(),
   dueDay: (json['due_day'] as num?)?.toInt(),
@@ -25,6 +26,7 @@ Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
 
 Map<String, dynamic> _$MovementToJson(Movement instance) => <String, dynamic>{
   'id': instance.id,
+  'firestore_id': instance.firestoreId,
   'description': instance.description,
   'amount': instance.amount,
   'due_day': instance.dueDay,
