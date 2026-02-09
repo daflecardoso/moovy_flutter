@@ -8,13 +8,15 @@ part 'movement.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Movement {
-  final int? id;
+  final String? id;
   final String? firestoreId;
   final String description;
   final int amount;
   final int? dueDay, incomeDay;
   final DateTime startDate, createdAt, updatedAt;
   final DateTime? endDate;
+  final int startYm;
+  final int? endYm;
   @BoolFlexConverter()
   bool paid;
   final String? imageUrl;
@@ -29,6 +31,8 @@ class Movement {
     required this.incomeDay,
     required this.startDate,
     required this.endDate,
+    required this.startYm,
+    required this.endYm,
     required this.paid,
     required this.imageUrl,
     required this.type,
@@ -37,7 +41,7 @@ class Movement {
   });
 
   Movement copyWith({
-    int? id,
+    String? id,
     String? firestoreId,
     String? description,
     int? amount,
@@ -45,6 +49,8 @@ class Movement {
     int? incomeDay,
     DateTime? startDate,
     DateTime? endDate,
+    int? startYm,
+    int? endYm,
     bool? paid,
     MovementType? type,
     String? imageUrl,
@@ -60,6 +66,8 @@ class Movement {
       incomeDay: incomeDay ?? this.incomeDay,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
+      startYm: startYm ?? this.startYm,
+      endYm: endYm ?? this.endYm,
       paid: paid ?? this.paid,
       type: type ?? this.type,
       imageUrl: imageUrl ?? this.imageUrl,

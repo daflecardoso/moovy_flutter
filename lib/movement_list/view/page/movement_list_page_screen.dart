@@ -116,8 +116,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-
-              child: movement.imageUrl != null
+              child: movement.imageUrl != null && movement.imageUrl!.isNotEmpty
                   ? ColorFiltered(
                       colorFilter: ColorFilter.mode(movement.paid ? Colors.grey : Colors.transparent, BlendMode.color),
                       child: Image.network(movement.imageUrl!, width: 30, height: 30),
@@ -180,7 +179,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
       ),
       onTap: () {
         context.router.navigatePath(
-          '${AppRouter.incomeExpense.replaceAll(':id', movement.id.toString())}?tab=${movement.type.name}&tabDate=${widget.month.date}',
+          '${AppRouter.incomeExpense}?id=${movement.id.toString()}&tab=${movement.type.name}&tabDate=${widget.month.date}',
         );
       },
     );

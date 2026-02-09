@@ -126,7 +126,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                           onPressed: () async {
                             if (formKey.currentState!.saveAndValidate()) {
                               final cubit = context.read<IncomeExpenseCubit>();
-                              await cubit.createMovement(data: formKey.currentState!.value, monthTab: widget.tabDate);
+                              await cubit.save(data: formKey.currentState!.value, monthTab: widget.tabDate);
                               this.context.router.pop();
                             }
                           },

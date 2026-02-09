@@ -7,7 +7,7 @@ part of 'movement.dart';
 // **************************************************************************
 
 Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
-  id: (json['id'] as num?)?.toInt(),
+  id: json['id'] as String?,
   firestoreId: json['firestore_id'] as String?,
   description: json['description'] as String,
   amount: (json['amount'] as num).toInt(),
@@ -17,6 +17,8 @@ Movement _$MovementFromJson(Map<String, dynamic> json) => Movement(
   endDate: json['end_date'] == null
       ? null
       : DateTime.parse(json['end_date'] as String),
+  startYm: (json['start_ym'] as num).toInt(),
+  endYm: (json['end_ym'] as num?)?.toInt(),
   paid: const BoolFlexConverter().fromJson(json['paid']),
   imageUrl: json['image_url'] as String?,
   type: $enumDecode(_$MovementTypeEnumMap, json['type']),
@@ -35,6 +37,8 @@ Map<String, dynamic> _$MovementToJson(Movement instance) => <String, dynamic>{
   'created_at': instance.createdAt.toIso8601String(),
   'updated_at': instance.updatedAt.toIso8601String(),
   'end_date': instance.endDate?.toIso8601String(),
+  'start_ym': instance.startYm,
+  'end_ym': instance.endYm,
   'paid': const BoolFlexConverter().toJson(instance.paid),
   'image_url': instance.imageUrl,
   'type': _$MovementTypeEnumMap[instance.type]!,

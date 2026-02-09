@@ -13,9 +13,9 @@ class MovementDao {
     return movements.map((item) => Movement.fromJson(item)).toList();
   }
 
-  Future<Movement?> findById(int id) async {
+  Future<Movement?> findById(String id) async {
     final sqlite = await appDatabase.sqlite;
-    final movements = await sqlite.rawQuery('SELECT * FROM Movement WHERE id = $id');
+    final movements = await sqlite.rawQuery('SELECT * FROM Movement WHERE id = ?', [id]);
     if (movements.firstOrNull case final movement?) {
       return Movement.fromJson(movement);
     }
@@ -43,7 +43,7 @@ class MovementDao {
     return await appDatabase.update(AppDatabaseTable.movement, movement.toJSON(), where: 'id = ?', whereArgs: [movement.id]);
   }
 
-  Future<void> deleteById(int id) async {
+  Future<void> deleteById(String id) async {
     await appDatabase.delete(AppDatabaseTable.movement, where: 'id = ?', whereArgs: [id]);
   }
 }

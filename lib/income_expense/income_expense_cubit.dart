@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
@@ -15,7 +17,7 @@ enum IncomeExpenseTabs { expense, income }
 
 class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
   final MovementRepository movementRepository;
-  final int? id;
+  final String? id;
   IncomeExpenseTabs tab;
   IncomeExpenseCubit(this.movementRepository, this.id, this.tab) : super(IncomeExpenseInitial()) {
     getById();
@@ -42,14 +44,14 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
     }
   }
 
-  Future<void> createMovement({required Map<Object, dynamic> data, required DateTime monthTab}) async {
+  Future<void> save({required Map<Object, dynamic> data, required DateTime monthTab}) async {
     try {
       String description = data['description'];
       ShadDateTimeRange period = data['period'];
       String amount = data['amount'];
       String? incomeDay = data['incomeDay'];
       String? dueDay = data['dueDay'];
-      String? imageUrl = data['image_url'];
+      String imageUrl = data['image_url'] ?? '';
 
       if (id case final id?) {
         Occurrence occurrence = data['occurrence'];
@@ -65,16 +67,18 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           dueDay: dueDay?.toInt(),
           startDate: period.start!,
           endDate: period.end,
+          startYm: period.start!.yearMonth(),
+          endYm: period.end?.yearMonth() ?? 999912,
           type: MovementType.fromName(tab.name),
-          imageUrl: imageUrl,
+          imageUrl: imageUrl.isEmpty ? null : imageUrl,
           updatedAt: DateTime.now(),
         );
-        switch(occurrence) {
+        switch (occurrence) {
           case Occurrence.it:
             try {
               //equal DB previous months
               final previousMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(-1);
-              final newMovement = movementDb.copyWith(id: null, endDate: previousMonth);
+              final newMovement = movementDb.copyWith(id: _uuid(), endDate: previousMonth);
               await movementRepository.insertMovement(newMovement);
 
               final thisMonth = monthTab.copyWith(day: movement.startDate.day);
@@ -83,9 +87,9 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
 
               //equal DB to next months
               final nextMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(1);
-              final recurrence = movementDb.copyWith(id: null, startDate: nextMonth);
+              final recurrence = movementDb.copyWith(id: _uuid(), startDate: nextMonth);
               await movementRepository.insertMovement(recurrence);
-            } catch(e, s) {
+            } catch (e, s) {
               debugPrintStack(stackTrace: s);
             }
           case Occurrence.all:
@@ -94,8 +98,9 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
 
         eventBus.fire(MovementChanged(movement));
       } else {
+
         final movement = Movement(
-          id: id,
+          id: _uuid(),
           firestoreId: null,
           description: description,
           amount: amount.digits().toInt(),
@@ -103,9 +108,11 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           dueDay: dueDay?.toInt(),
           startDate: period.start!,
           endDate: period.end,
+          startYm: period.start!.yearMonth(),
+          endYm: period.end?.yearMonth() ?? 999912,
           type: MovementType.fromName(tab.name),
           paid: false,
-          imageUrl: imageUrl,
+          imageUrl: imageUrl.isEmpty ? null : imageUrl,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
         );
@@ -113,6 +120,7 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
         eventBus.fire(MovementChanged(movement));
       }
     } catch (e, s) {
+      debugPrint(e.toString());
       debugPrintStack(stackTrace: s);
     }
   }
@@ -122,5 +130,12 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       await movementRepository.deleteById(id);
       eventBus.fire(MovementChanged(null));
     }
+  }
+
+  String _uuid() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final random = Random();
+    final randomText = List.generate(5, (_) => chars[random.nextInt(chars.length)]).join();
+    return DateTime.now().format(DateTimeFormat.yyyymmddHHmmss) + randomText;
   }
 }

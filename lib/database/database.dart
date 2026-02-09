@@ -12,7 +12,7 @@ enum AppDatabaseTable {
     AppDatabaseTable.movement =>
       '''
     CREATE TABLE IF NOT EXISTS $tableName (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id TEXT NOT NULL,
       firestore_id TEXT,
       description TEXT NOT NULL,
       amount INTEGER NOT NULL,
@@ -20,6 +20,8 @@ enum AppDatabaseTable {
       due_day INTEGER, 
       start_date DATETIME NOT NULL, 
       end_date DATETIME,
+      start_ym INTEGER NOT NULL,
+      end_ym INTEGER,
       type TEXT NOT NULL,
       paid BOOLEAN,
       image_url TEXT,
@@ -46,7 +48,7 @@ class AppDatabase {
   Future<Database> _openDatabase() async {
     return await openDatabase(
       databaseName,
-      version: 6,
+      version: 1,
       onOpen: (db) async {
         debugPrint('✅ onOpen: ${db.path}');
       },

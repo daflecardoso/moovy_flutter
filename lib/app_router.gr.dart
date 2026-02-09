@@ -71,7 +71,7 @@ class ExpenseRouteArgs {
 class IncomeExpenseRoute extends _i8.PageRouteInfo<IncomeExpenseRouteArgs> {
   IncomeExpenseRoute({
     _i9.Key? key,
-    int? id,
+    String? id,
     String tab = 'expense',
     String tabDate = '',
     List<_i8.PageRouteInfo>? children,
@@ -83,8 +83,7 @@ class IncomeExpenseRoute extends _i8.PageRouteInfo<IncomeExpenseRouteArgs> {
            tab: tab,
            tabDate: tabDate,
          ),
-         rawPathParams: {'id': id},
-         rawQueryParams: {'tab': tab, 'tabDate': tabDate},
+         rawQueryParams: {'id': id, 'tab': tab, 'tabDate': tabDate},
          initialChildren: children,
        );
 
@@ -93,11 +92,10 @@ class IncomeExpenseRoute extends _i8.PageRouteInfo<IncomeExpenseRouteArgs> {
   static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      final pathParams = data.inheritedPathParams;
       final queryParams = data.queryParams;
       final args = data.argsAs<IncomeExpenseRouteArgs>(
         orElse: () => IncomeExpenseRouteArgs(
-          id: pathParams.optInt('id'),
+          id: queryParams.optString('id'),
           tab: queryParams.getString('tab', 'expense'),
           tabDate: queryParams.getString('tabDate', ''),
         ),
@@ -122,7 +120,7 @@ class IncomeExpenseRouteArgs {
 
   final _i9.Key? key;
 
-  final int? id;
+  final String? id;
 
   final String tab;
 

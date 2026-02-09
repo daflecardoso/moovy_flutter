@@ -10,18 +10,19 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
 class IncomeExpenseScreen extends StatelessWidget {
-  final int? id;
+  final String? id;
   final String tab;
   final String tabDate;
   const IncomeExpenseScreen({
     super.key,
-    @PathParam('id') this.id,
+    @QueryParam('id') this.id,
     @QueryParam('tab') this.tab = 'expense',
     @QueryParam('tabDate') this.tabDate = '',
   });
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('id: $id');
     final appLocalizations = AppLocalizations.of(context)!;
     final tab = IncomeExpenseTabs.values.firstWhere((e) => e.name == this.tab);
     final cubit = IncomeExpenseCubit(getIt.get(), id, tab);
