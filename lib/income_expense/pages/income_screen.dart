@@ -80,11 +80,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                         children: [
                           ShadRadioGroupFormField<Occurrence>(
                             id: 'occurrence',
-                            initialValue: state.income != null
-                                ? state.income!.isSameMonthYear()
-                                ? Occurrence.it
-                                : null
-                                : null,
+                            initialValue: state.income?.getOccurrence(),
                             spacing: 16,
                             label: Text(appLocalizations.occurrences),
                             items: Occurrence.values.map(

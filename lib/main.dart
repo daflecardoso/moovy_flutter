@@ -41,6 +41,7 @@ class App extends StatelessWidget {
                 darkTheme: ShadThemeData(brightness: Brightness.dark, colorScheme: const ShadSlateColorScheme.dark()),
                 appBuilder: (context) {
                   return MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
                     routerConfig: _appRouter.config(),
                     theme: Theme.of(context),
                     supportedLocales: state.supportedLocales,
@@ -48,6 +49,7 @@ class App extends StatelessWidget {
                     builder: (context, child) {
                       return MaterialApp(
                         theme: Theme.of(context),
+                        debugShowCheckedModeBanner: false,
                         home: ShadAppBuilder(child: Material(child: child)),
                         locale: state.locale,
                         supportedLocales: state.supportedLocales,

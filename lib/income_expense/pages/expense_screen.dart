@@ -90,11 +90,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                         children: [
                           ShadRadioGroupFormField<Occurrence>(
                             id: 'occurrence',
-                            initialValue: state.expense != null
-                                ? state.expense!.isSameMonthYear()
-                                      ? Occurrence.it
-                                      : null
-                                : null,
+                            initialValue: state.expense?.getOccurrence(),
                             spacing: 16,
                             label: Text(appLocalizations.occurrences),
                             items: Occurrence.values.map(

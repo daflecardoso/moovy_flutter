@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moovy/database/bool_flex_converter.dart';
 import 'package:moovy/extensions/int_extensions.dart';
+import 'package:moovy/income_expense/occurrence.dart';
 
 part 'movement.g.dart';
 
@@ -98,6 +99,10 @@ class Movement {
       return startDate.month == edt.month && startDate.year == edt.year;
     }
     return false;
+  }
+
+  Occurrence getOccurrence() {
+    return isSameMonthYear() ? .it : .all;
   }
 }
 
