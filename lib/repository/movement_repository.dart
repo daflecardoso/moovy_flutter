@@ -38,9 +38,11 @@ final class MovementRepository {
 
       final list = merged.map((doc) => Movement.fromJson(doc.data())).toList();
       list.sort((m1, m2) {
-        final res1 = m1.getDay().compareTo(m2.getDay());
+        final res1 = m1.type.index.compareTo(m2.type.index);
         if (res1 != 0) return res1;
-        return m1.type.index.compareTo(m2.type.index);
+        return m1.getDay().compareTo(m2.getDay());
+
+
       });
       return list;
     }
