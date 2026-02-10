@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         bloc: cubit..start(),
         builder: (BuildContext context, ProfileState state) {
           return switch (state) {
-            ProfileInitial() => const Center(child: Text('soon...')),
+            ProfileInitial() => const Center(child: Text('')),
             MustSignIn() => Padding(
               padding: EdgeInsetsGeometry.all(16),
               child: Column(
@@ -56,7 +56,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 spacing: 16,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(state.name ?? '-'),
+                  Row(
+                    children: [
+                      Expanded(child: Text(state.name ?? '-')),
+                      switch (state.provider) {
+                        null => SizedBox.shrink(),
+                        SignInProvider.google => Assets.icon.google.image(width: 16),
+                        SignInProvider.apple => Icon(Icons.apple),
+                      },
+                    ],
+                  ),
                   ShadButton(
                     leading: Icon(Icons.exit_to_app),
                     child: Text(appLocalizations.signOut),

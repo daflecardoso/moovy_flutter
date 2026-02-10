@@ -13,7 +13,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     if (user == null) {
       emit(MustSignIn());
     } else {
-      emit(ProfileUser(name: user.email));
+      final providerId = user.providerData.firstOrNull?.providerId;
+      emit(ProfileUser(name: user.email, provider: SignInProvider.fromId(providerId)));
     }
   }
 
@@ -27,7 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       // ..addScope('email')
       // ..addScope('name'),
     });
-    emit(ProfileUser(name: credentials.user?.email));
+    emit(ProfileUser(name: credentials.user?.email, provider: provider));
   }
 
   void signOut() async {
