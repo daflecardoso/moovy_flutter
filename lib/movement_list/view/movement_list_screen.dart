@@ -54,9 +54,8 @@ class _MovementListScreenState extends State<MovementListScreen>
                         onPressed: () {
                           context.router.navigatePath('${AppRouter.incomeExpense}?tabDate=${cubit.months[_tabController.index].date}');
                         },
-                        icon: const Icon(LucideIcons.circlePlus),
+                        icon: const Icon(LucideIcons.plus),
                       ),
-                      SizedBox(width: 16),
                     ],
                     bottom: TabBar(
                       controller: _tabController,
