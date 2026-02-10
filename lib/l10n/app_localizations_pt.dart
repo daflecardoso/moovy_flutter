@@ -173,4 +173,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get signOut => 'Sair';
+
+  @override
+  String get refresh => 'Atualizar';
+
+  @override
+  String get somethingWrong => 'Algo deu errado';
+
+  @override
+  String get tryAgain => 'Tentar novamente';
 }

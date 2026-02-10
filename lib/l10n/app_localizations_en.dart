@@ -173,4 +173,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signOut => 'Sign Out';
+
+  @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get somethingWrong => 'Something Wrong';
+
+  @override
+  String get tryAgain => 'Try Again';
 }

@@ -421,6 +421,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Out'**
   String get signOut;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @somethingWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something Wrong'**
+  String get somethingWrong;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
 }
 
 class _AppLocalizationsDelegate

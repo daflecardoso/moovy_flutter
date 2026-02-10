@@ -468,6 +468,26 @@ class S {
   String get signOut {
     return Intl.message('Sign Out', name: 'signOut', desc: '', args: []);
   }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `Something Wrong`
+  String get somethingWrong {
+    return Intl.message(
+      'Something Wrong',
+      name: 'somethingWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -52,5 +52,8 @@
   "addLinkImage": "Adicione um link de image",
   "appleSignIn": "Entrar com Apple",
   "googleSignIn": "Entrar com Google",
-  "signOut": "Sair"
+  "signOut": "Sair",
+  "refresh": "Atualizar",
+  "somethingWrong": "Algo deu errado",
+  "tryAgain": "Tentar novamente"
 }

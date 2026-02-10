@@ -91,12 +91,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "portuguese": MessageLookupByLibrary.simpleMessage("Português"),
     "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
+    "refresh": MessageLookupByLibrary.simpleMessage("Atualizar"),
     "save": MessageLookupByLibrary.simpleMessage("Salvar"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage(
       "Selecione uma moeda",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sair"),
+    "somethingWrong": MessageLookupByLibrary.simpleMessage("Algo deu errado"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Data inicio ou período é obrigatório",
     ),
@@ -106,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalExpense": MessageLookupByLibrary.simpleMessage("Total Saída"),
     "totalIncome": MessageLookupByLibrary.simpleMessage("Total Entradas"),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("Tentar novamente"),
     "updateAppOccurrences": MessageLookupByLibrary.simpleMessage(
       "Todas as ocorrências",
     ),

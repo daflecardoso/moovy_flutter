@@ -52,5 +52,8 @@
   "addLinkImage": "Add image a image link",
   "appleSignIn": "Sign in with Apple",
   "googleSignIn": "Sign in with Google",
-  "signOut": "Sign Out"
+  "signOut": "Sign Out",
+  "refresh": "Refresh",
+  "somethingWrong": "Something Wrong",
+  "tryAgain": "Try Again"
 }

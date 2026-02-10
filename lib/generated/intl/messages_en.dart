@@ -87,10 +87,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "periodOfIncome": MessageLookupByLibrary.simpleMessage("Period of income"),
     "portuguese": MessageLookupByLibrary.simpleMessage("Portuguese"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("Select a currency"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sign Out"),
+    "somethingWrong": MessageLookupByLibrary.simpleMessage("Something Wrong"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Start or range of dates is required.",
     ),
@@ -100,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalExpense": MessageLookupByLibrary.simpleMessage("Total Expense"),
     "totalIncome": MessageLookupByLibrary.simpleMessage("Total Income"),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "updateAppOccurrences": MessageLookupByLibrary.simpleMessage(
       "All occurrences",
     ),

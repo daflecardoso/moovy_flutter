@@ -4,6 +4,51 @@
     "project_id": "moovy-c44fa",
     "storage_bucket": "moovy-c44fa.firebasestorage.app"
   },
-  "client": [],
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793982976631:android:4acfdcecab8496b53d7c72",
+        "android_client_info": {
+          "package_name": "com.cardosoit.moovy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793982976631-0cej59aplfdi25232dfagm535ip0mj3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cardosoit.moovy",
+            "certificate_hash": "eec94384a67f465c9a729083ff74efdfcda8481d"
+          }
+        },
+        {
+          "client_id": "793982976631-a4kcsjutnft2vdumb1fafgt3uu23tp1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn_7xbjz2Vg1kuWDae0345IwgDCK6L1SQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793982976631-a4kcsjutnft2vdumb1fafgt3uu23tp1a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "793982976631-vc0n713l8ap2pdq9qeqv8qa99l0tcvrv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cardosoit.moovy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "configuration_version": "1"
 }

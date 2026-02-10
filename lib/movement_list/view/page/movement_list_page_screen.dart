@@ -87,6 +87,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
               return Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
                 child: Column(
+                  spacing: 4,
                   children: [
                     Spacer(),
                     Icon(LucideIcons.coins),
@@ -95,12 +96,39 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                       appLocalization.youDonTHaveMovements(state.month),
                       style: ShadTheme.of(context).textTheme.blockquote,
                     ),
+                    ShadButton.outline(
+                      child: Text(appLocalization.refresh),
+                      onPressed: () {
+                        cubit.getMovements(widget.month);
+                      },
+                    ),
                     Spacer(),
                   ],
                 ),
               );
             case MovementPageError():
-              return Text(state.error);
+              return Padding(
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                child: Column(
+                  spacing: 4,
+                  children: [
+                    Spacer(),
+                    Icon(LucideIcons.batteryWarning),
+                    Text(appLocalization.somethingWrong, style: ShadTheme.of(context).textTheme.large),
+                    Text(
+                      state.error,
+                      style: ShadTheme.of(context).textTheme.blockquote,
+                    ),
+                    ShadButton.outline(
+                      child: Text(appLocalization.tryAgain),
+                      onPressed: () {
+                        cubit.getMovements(widget.month);
+                      },
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              );
           }
         },
       ),
