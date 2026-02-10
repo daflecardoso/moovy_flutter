@@ -7,6 +7,7 @@ import 'package:moovy/app_router.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
+import 'package:moovy/events/sign_in_sign_out.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
@@ -35,6 +36,9 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
     super.initState();
     cubit.getMovements(widget.month);
     event = eventBus.on<MovementChanged>().listen((event) {
+      cubit.getMovements(widget.month);
+    });
+    eventBus.on<SignInSignOut>().listen((event) {
       cubit.getMovements(widget.month);
     });
   }
