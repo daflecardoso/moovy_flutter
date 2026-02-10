@@ -62,17 +62,6 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       placeholder: appLocalizations.expenseDescriptionHint,
                     ),
                     AmountInput(initialValue: state.expense?.amount.currency()),
-                    ShadInputFormField(
-                      id: 'dueDay',
-                      initialValue: state.expense?.dueDay.toString(),
-                      label: Text(appLocalizations.dueDayExpense),
-                      placeholder: Text(appLocalizations.dueDayExpenseHint),
-                      keyboardType: TextInputType.number,
-                      validator: (v) {
-                        if (v.isEmpty) return appLocalizations.dueDayIsRequired;
-                        return null;
-                      },
-                    ),
                     ShadDateRangePickerFormField(
                       id: 'period',
                       initialValue: ShadDateTimeRange(start: state.expense?.startDate, end: state.expense?.endDate),

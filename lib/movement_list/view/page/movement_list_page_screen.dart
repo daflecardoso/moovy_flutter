@@ -147,11 +147,11 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           spacing: 0,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(8),
               child: movement.imageUrl != null && movement.imageUrl!.isNotEmpty
                   ? ColorFiltered(
                       colorFilter: ColorFilter.mode(movement.paid ? Colors.grey : Colors.transparent, BlendMode.color),
-                      child: Image.network(movement.imageUrl!, width: 30, height: 30),
+                      child: Image.network(movement.imageUrl!, width: 32, height: 32),
                     )
                   : SizedBox(width: 30, height: 30),
             ),

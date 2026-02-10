@@ -104,10 +104,19 @@ class Movement {
   Occurrence getOccurrence() {
     return isSameMonthYear() ? .it : .all;
   }
+
+  int getDay() {
+    switch (type) {
+      case MovementType.income:
+        return incomeDay!;
+      case MovementType.expense:
+       return dueDay!;
+    }
+  }
 }
 
 enum MovementType {
-  expense, income;
+  income, expense;
 
   Color get color => switch(this) {
     MovementType.expense => Colors.pink,

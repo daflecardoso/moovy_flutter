@@ -46,11 +46,13 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
 
   Future<void> save({required Map<Object, dynamic> data, required DateTime monthTab}) async {
     try {
-      String description = data['description'];
+      final type = MovementType.fromName(tab.name);
       ShadDateTimeRange period = data['period'];
+      final dayOfDate = period.start?.day;
+      String description = data['description'];
       String amount = data['amount'];
-      String? incomeDay = data['incomeDay'];
-      String? dueDay = data['dueDay'];
+      int? incomeDay = type == .income ? dayOfDate : null;
+      int? dueDay = type == .expense ? dayOfDate : null;
       String imageUrl = data['image_url'] ?? '';
 
       if (id case final id?) {
@@ -63,13 +65,13 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           id: id,
           description: description,
           amount: amount.digits().toInt(),
-          incomeDay: incomeDay?.toInt(),
-          dueDay: dueDay?.toInt(),
+          incomeDay: incomeDay,
+          dueDay: dueDay,
           startDate: period.start!,
           endDate: period.end,
           startYm: period.start!.yearMonth(),
           endYm: period.end?.yearMonth() ?? 999912,
-          type: MovementType.fromName(tab.name),
+          type: type,
           imageUrl: imageUrl.isEmpty ? null : imageUrl,
           updatedAt: DateTime.now(),
         );
@@ -104,8 +106,8 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
           firestoreId: null,
           description: description,
           amount: amount.digits().toInt(),
-          incomeDay: incomeDay?.toInt(),
-          dueDay: dueDay?.toInt(),
+          incomeDay: incomeDay,
+          dueDay: dueDay,
           startDate: period.start!,
           endDate: period.end,
           startYm: period.start!.yearMonth(),

@@ -36,7 +36,13 @@ final class MovementRepository {
 
       final merged = snapEnd.docs.where((d) => startMap.containsKey(d.id)).toList();
 
-      return merged.map((doc) => Movement.fromJson(doc.data())).toList();
+      final list = merged.map((doc) => Movement.fromJson(doc.data())).toList();
+      list.sort((m1, m2) {
+        final res1 = m1.getDay().compareTo(m2.getDay());
+        if (res1 != 0) return res1;
+        return m1.type.index.compareTo(m2.type.index);
+      });
+      return list;
     }
 
     return movementDao.findByMonthYear(dateTime);
@@ -58,6 +64,15 @@ final class MovementRepository {
           if (data != null) {
             return Movement.fromJson(data);
           }
+        } else {
+          final snapshot = await FirebaseFirestore.instance
+              .collection(_usersTable)
+              .doc(user.uid)
+              .collection(_movementsTable)
+              .where('id', isEqualTo: id)
+              .get();
+          final data = snapshot.docs.first.data();
+          return Movement.fromJson(data);
         }
       }
       return movementDao.findById(id);

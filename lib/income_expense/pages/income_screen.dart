@@ -52,16 +52,6 @@ class _IncomeScreenState extends State<IncomeScreen> {
                       placeholder: appLocalizations.incomeHint,
                     ),
                     AmountInput(initialValue: state.income?.amount.currency()),
-                    ShadInputFormField(
-                      id: 'incomeDay',
-                      initialValue: state.income?.incomeDay?.toString(),
-                      label: Text(appLocalizations.incomeDay),
-                      placeholder: Text(appLocalizations.dueDayExpenseHint),
-                      validator: (v) {
-                        if (v.isEmpty) return appLocalizations.incomeDayIsRequired;
-                        return null;
-                      },
-                    ),
                     ShadDateRangePickerFormField(
                       id: 'period',
                       initialValue: ShadDateTimeRange(start: state.income?.startDate, end: state.income?.endDate),
