@@ -97,7 +97,7 @@ final class MovementRepository {
           .doc(movement.firestoreId)
           .update(movement.toJSON());
     }
-    return movementDao.updateMovement(movement);
+    return await movementDao.updateMovement(movement);
   }
 
   Future<void> deleteById(String id) async {
