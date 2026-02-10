@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/events/sign_in_sign_out.dart';
 import 'package:moovy/main.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 part 'profile_state.dart';
 
@@ -15,8 +16,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     if (user == null) {
       emit(MustSignIn());
     } else {
-      final providerId = user.providerData.firstOrNull?.providerId;
-      emit(ProfileUser(name: user.email, provider: SignInProvider.fromId(providerId)));
+      _emitUser(user);
     }
   }
 
@@ -27,11 +27,22 @@ class ProfileCubit extends Cubit<ProfileState> {
           ..addScope('email')
           ..addScope('name'),
       SignInProvider.google => GoogleAuthProvider(),
-      // ..addScope('email')
-      // ..addScope('name'),
     });
-    emit(ProfileUser(name: credentials.user?.email, provider: provider));
+    await _emitUser(credentials.user);
     eventBus.fire(SignInSignOut());
+  }
+
+  Future<void> _emitUser(User? user) async {
+    final providerId = user?.providerData.firstOrNull?.providerId;
+    final provider = SignInProvider.fromId(providerId);
+    emit(ProfileUser(name: user?.email, appVersion: await _appVersion(), provider: provider));
+  }
+
+  Future<String> _appVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    String buildNumber = packageInfo.buildNumber;
+    return 'v $version ($buildNumber)';
   }
 
   void signOut() async {

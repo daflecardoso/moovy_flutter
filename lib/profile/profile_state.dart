@@ -8,10 +8,10 @@ final class ProfileInitial extends ProfileState {}
 final class MustSignIn extends ProfileState {}
 
 final class ProfileUser extends ProfileState {
-  final String? name;
+  final String? name, appVersion;
   final SignInProvider? provider;
 
-  ProfileUser({ required this.name, required this.provider });
+  ProfileUser({ required this.name, required this.appVersion, required this.provider });
 }
 
 enum SignInProvider {

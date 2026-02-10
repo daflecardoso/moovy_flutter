@@ -73,6 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       cubit.signOut();
                     },
                   ),
+                  Text(state.appVersion ?? '')
                 ],
               ),
             ),
