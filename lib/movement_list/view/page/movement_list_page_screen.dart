@@ -8,6 +8,7 @@ import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/events/sign_in_sign_out.dart';
+import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
@@ -119,10 +120,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                     Spacer(),
                     Icon(LucideIcons.batteryWarning),
                     Text(appLocalization.somethingWrong, style: ShadTheme.of(context).textTheme.large),
-                    Text(
-                      state.error,
-                      style: ShadTheme.of(context).textTheme.blockquote,
-                    ),
+                    Text(state.error, style: ShadTheme.of(context).textTheme.blockquote),
                     ShadButton.outline(
                       child: Text(appLocalization.tryAgain),
                       onPressed: () {
@@ -156,25 +154,35 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   : SizedBox(width: 30, height: 30),
             ),
             SizedBox(width: 8),
-            Text(
-              (movement.dueDay ?? movement.incomeDay ?? 0).toString().padLeft(2, '0'),
-              style: ShadTheme.of(context).textTheme.small.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: movement.paid ? Colors.grey : null,
-                decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
-              ),
-            ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    movement.isSameMonthYear()
+                        ? Text(
+                            movement.startDate.format(DateTimeFormat.dd),
+                            style: ShadTheme.of(context).textTheme.small.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: movement.paid ? Colors.grey : null,
+                              decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                            ),
+                          )
+                        : Text(
+                            movement.startDate.format(DateTimeFormat.ddMM),
+                            style: ShadTheme.of(context).textTheme.small.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                              color: movement.paid ? Colors.grey : null,
+                              decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
+                            ),
+                          ),
                     Text(
                       movement.description,
                       style: ShadTheme.of(context).textTheme.p.copyWith(
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                         color: movement.paid ? Colors.grey : null,
                         decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                       ),

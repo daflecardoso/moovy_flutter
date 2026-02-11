@@ -78,18 +78,36 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
         switch (occurrence) {
           case Occurrence.it:
             try {
-              //equal DB previous months
-              final previousMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(-1);
-              final newMovement = movementDb.copyWith(id: _uuid(), endDate: previousMonth);
-              await movementRepository.insertMovement(newMovement);
+              if (movement.startDate.month != DateTime.now().month) {
+                //equal DB previous months
+                final previousMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(-1);
+                final newMovement = movementDb.copyWith(
+                    id: _uuid(),
+                    endDate: previousMonth,
+                    endYm: previousMonth.yearMonth()
+                );
+                await movementRepository.insertMovement(newMovement);
+              } else {
+                debugPrint('começa esse mes, então não será criado registro anterior');
+              }
 
               final thisMonth = monthTab.copyWith(day: movement.startDate.day);
-              final toUpdateMovement = movement.copyWith(id: id, startDate: thisMonth, endDate: thisMonth);
+              final toUpdateMovement = movement.copyWith(
+                  id: id,
+                  startDate: thisMonth,
+                  endDate: thisMonth,
+                  startYm: thisMonth.yearMonth(),
+                  endYm: thisMonth.yearMonth()
+              );
               await movementRepository.updateMovement(toUpdateMovement);
 
               //equal DB to next months
               final nextMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(1);
-              final recurrence = movementDb.copyWith(id: _uuid(), startDate: nextMonth);
+              final recurrence = movementDb.copyWith(
+                  id: _uuid(),
+                  startDate: nextMonth,
+                  startYm: nextMonth.yearMonth()
+              );
               await movementRepository.insertMovement(recurrence);
             } catch (e, s) {
               debugPrintStack(stackTrace: s);

@@ -5,7 +5,8 @@ enum DateTimeFormat {
   yyyyMM('yyyy-MM'),
   mmmmYyyy('MMMM yyyy'),
   dd('dd'),
-  ddMM('dd MMM'),
+  ddMMM('dd MMM'),
+  ddMM('dd/MM'),
   yyyymmddHHmmss('yyyymmddHHmmss')
   ;
 
