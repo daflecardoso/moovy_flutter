@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
@@ -67,9 +68,21 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SummaryWidget(title: appLocalization.totalIncome, value: state.totalIncome.currency()),
-                          SummaryWidget(title: appLocalization.totalExpense, value: state.totalExpense.currency()),
-                          SummaryWidget(title: appLocalization.total, value: state.total.currency()),
+                          SummaryWidget(
+                            title: appLocalization.totalIncome,
+                            value: state.totalIncome.currency(),
+                            textColor: MovementType.income.color,
+                          ),
+                          SummaryWidget(
+                            title: appLocalization.totalExpense,
+                            value: state.totalExpense.currency(),
+                            textColor: MovementType.expense.color,
+                          ),
+                          SummaryWidget(
+                            title: appLocalization.total,
+                            value: state.total.currency(),
+                            textColor: state.totalColor,
+                          ),
                         ],
                       ),
                     ),
@@ -81,7 +94,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                           return movementRow(movement);
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return Divider(height: 1, thickness: 0.5);
+                          return Divider(height: 0, thickness: 0.5);
                         },
                       ),
                     ),
@@ -140,16 +153,22 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
   Widget movementRow(Movement movement) {
     return InkWell(
       child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         child: Row(
           spacing: 0,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: movement.imageUrl != null && movement.imageUrl!.isNotEmpty
-                  ? ColorFiltered(
-                      colorFilter: ColorFilter.mode(movement.paid ? Colors.grey : Colors.transparent, BlendMode.color),
-                      child: Image.network(movement.imageUrl!, width: 32, height: 32),
+                  ? Opacity(
+                      opacity: movement.paid ? 0.3 : 1,
+                      child: ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          movement.paid ? Colors.grey : Colors.transparent,
+                          BlendMode.color,
+                        ),
+                        child: Image.network(movement.imageUrl!, width: 32, height: 32),
+                      ),
                     )
                   : SizedBox(width: 30, height: 30),
             ),
@@ -162,16 +181,16 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   children: [
                     movement.isSameMonthYear()
                         ? Text(
-                            movement.startDate.format(DateTimeFormat.dd),
+                            movement.startDate.format(DateTimeFormat.ddMM),
                             style: ShadTheme.of(context).textTheme.small.copyWith(
-                              fontSize: 12,
+                              fontSize: 10,
                               fontWeight: FontWeight.w500,
                               color: movement.paid ? Colors.grey : null,
                               decoration: movement.paid ? TextDecoration.lineThrough : TextDecoration.none,
                             ),
                           )
                         : Text(
-                            movement.startDate.format(DateTimeFormat.ddMM),
+                            "${movement.startDate.format(DateTimeFormat.ddMM)} - ∞",
                             style: ShadTheme.of(context).textTheme.small.copyWith(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -210,6 +229,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
               size: 24,
               value: movement.paid,
               onChanged: (isChecked) {
+                HapticFeedback.heavyImpact();
                 cubit.togglePaid(movement);
               },
             ),

@@ -25,12 +25,14 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
 
       final totalExpense = movements.where((e) => e.type == MovementType.expense).map((e) => e.amount).toList().sum;
       final totalIncome = movements.where((e) => e.type == MovementType.income).map((e) => e.amount).toList().sum;
+      final total = totalIncome - totalExpense;
       emit(
         MovementPageSuccess(
           movements: movements,
           totalExpense: totalExpense,
           totalIncome: totalIncome,
-          total: totalIncome - totalExpense,
+          total: total,
+          totalColor: total.isNegative ? MovementType.expense.color : MovementType.income.color,
         ),
       );
     } catch (e, s) {

@@ -8,12 +8,14 @@ final class MovementListPageInitial extends MovementListPageState {}
 final class MovementPageSuccess extends MovementListPageState {
   final List<Movement> movements;
   final int totalExpense, totalIncome, total;
+  final Color totalColor;
 
   MovementPageSuccess({
     required this.movements,
     required this.totalIncome,
     required this.totalExpense,
     required this.total,
+    required this.totalColor
   });
 
   MovementPageSuccess copyWith({List<Movement>? movements}) => MovementPageSuccess(
@@ -21,6 +23,7 @@ final class MovementPageSuccess extends MovementListPageState {
     totalExpense: totalExpense,
     totalIncome: totalIncome,
     total: total,
+    totalColor: totalColor,
   );
 }
 
