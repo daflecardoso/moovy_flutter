@@ -5,8 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_da.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
 import 'app_localizations_pt.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -94,8 +100,14 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('da'),
+    Locale('de'),
     Locale('en'),
+    Locale('es'),
+    Locale('ja'),
+    Locale('ko'),
     Locale('pt'),
+    Locale('zh'),
   ];
 
   /// No description provided for @movements.
@@ -308,6 +320,30 @@ abstract class AppLocalizations {
   /// **'Brazilian Real'**
   String get brazilianReal;
 
+  /// No description provided for @danishKrone.
+  ///
+  /// In en, this message translates to:
+  /// **'Danish Krone'**
+  String get danishKrone;
+
+  /// No description provided for @chineseYuan.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Yuan'**
+  String get chineseYuan;
+
+  /// No description provided for @japaneseYen.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese Yen'**
+  String get japaneseYen;
+
+  /// No description provided for @koreanWon.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean Won'**
+  String get koreanWon;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
@@ -325,6 +361,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @spanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get spanish;
+
+  /// No description provided for @danish.
+  ///
+  /// In en, this message translates to:
+  /// **'Danish'**
+  String get danish;
+
+  /// No description provided for @german.
+  ///
+  /// In en, this message translates to:
+  /// **'German'**
+  String get german;
+
+  /// No description provided for @chinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get chinese;
+
+  /// No description provided for @japanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get japanese;
+
+  /// No description provided for @korean.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get korean;
 
   /// No description provided for @theme.
   ///
@@ -451,8 +523,16 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'da',
+    'de',
+    'en',
+    'es',
+    'ja',
+    'ko',
+    'pt',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -461,10 +541,22 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'da':
+      return AppLocalizationsDa();
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
     case 'pt':
       return AppLocalizationsPt();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

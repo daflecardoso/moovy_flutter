@@ -30,6 +30,10 @@ class CurrencyManager {
       CurrencyOption('usd', appL.americanDollar, '\$'),
       CurrencyOption('eur', appL.euro, '€'),
       CurrencyOption('brl', appL.brazilianReal, 'R\$'),
+      CurrencyOption('dkk', appL.danishKrone, 'kr'),
+      CurrencyOption('cny', appL.chineseYuan, '¥'),
+      CurrencyOption('jpy', appL.japaneseYen, '¥'),
+      CurrencyOption('krw', appL.koreanWon, '₩'),
     ];
   }
 }

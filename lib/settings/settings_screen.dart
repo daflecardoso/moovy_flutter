@@ -19,6 +19,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final formKey = GlobalKey<ShadFormState>();
 
   double maxWidth = 400;
+  var _currencySearch = '';
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             case SettingsInitial():
               return SizedBox.shrink();
             case SettingsForm():
+              final filteredCurrencies = state.currencies
+                  .where((e) =>
+                      e.title.toLowerCase().contains(_currencySearch.toLowerCase()) ||
+                      e.symbol.toLowerCase().contains(_currencySearch.toLowerCase()) ||
+                      e.code.toLowerCase().contains(_currencySearch.toLowerCase()))
+                  .toList();
+
               return ShadForm(
                 key: formKey,
                 child: Padding(
@@ -44,15 +52,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ShadSelectFormField<String>(
+                      ShadSelectFormField<String>.withSearch(
                         id: 'currency',
                         initialValue: state.currency.code,
                         label: Text(appLocalizations.currency),
                         minWidth: maxWidth,
                         placeholder: Text(appLocalizations.selectCurrency),
-                        options: [...state.currencies.map((e) => ShadOption(value: e.code, child: Text(e.title)))],
-                        selectedOptionBuilder: (context, value) =>
-                            Text(state.currencies.firstWhere((e) => e.code == value).title),
+                        searchPlaceholder: Text(appLocalizations.selectCurrency),
+                        onSearchChanged: (v) => setState(() => _currencySearch = v),
+                        options: [
+                          if (filteredCurrencies.isEmpty)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 24),
+                              child: Center(child: Text(appLocalizations.emptyMovements)),
+                            ),
+                          ...state.currencies.map((e) => Offstage(
+                                offstage: !filteredCurrencies.any((c) => c.code == e.code),
+                                child: ShadOption(
+                                  value: e.code,
+                                  child: Row(
+                                    spacing: 8,
+                                    children: [
+                                      SizedBox(
+                                        width: 32,
+                                        child: Text(e.symbol, style: TextStyle(fontWeight: FontWeight.w600)),
+                                      ),
+                                      Text(e.title),
+                                    ],
+                                  ),
+                                ),
+                              )),
+                        ],
+                        selectedOptionBuilder: (context, value) {
+                          final c = state.currencies.firstWhere((e) => e.code == value);
+                          return Text('${c.symbol}  ${c.title}');
+                        },
                         onChanged: print,
                       ),
                       ShadSelectFormField<String>(

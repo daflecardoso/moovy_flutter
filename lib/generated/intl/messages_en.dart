@@ -41,7 +41,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "changesWasUpdated": MessageLookupByLibrary.simpleMessage(
       "Successfull updated",
     ),
+    "chinese": MessageLookupByLibrary.simpleMessage("Chinese"),
+    "chineseYuan": MessageLookupByLibrary.simpleMessage("Chinese Yuan"),
     "currency": MessageLookupByLibrary.simpleMessage("Currency"),
+    "danish": MessageLookupByLibrary.simpleMessage("Danish"),
+    "danishKrone": MessageLookupByLibrary.simpleMessage("Danish Krone"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "descriptionCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
       "Ex: Invoice Credit Card",
     ),
+    "german": MessageLookupByLibrary.simpleMessage("German"),
     "googleSignIn": MessageLookupByLibrary.simpleMessage("Sign in with Google"),
     "imageLink": MessageLookupByLibrary.simpleMessage("Image link"),
     "income": MessageLookupByLibrary.simpleMessage("Income"),
@@ -74,6 +79,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "incomeExpense": MessageLookupByLibrary.simpleMessage("Income Expense"),
     "incomeHint": MessageLookupByLibrary.simpleMessage("Ex: Salary"),
+    "japanese": MessageLookupByLibrary.simpleMessage("Japanese"),
+    "japaneseYen": MessageLookupByLibrary.simpleMessage("Japanese Yen"),
+    "korean": MessageLookupByLibrary.simpleMessage("Korean"),
+    "koreanWon": MessageLookupByLibrary.simpleMessage("Korean Won"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
     "movements": MessageLookupByLibrary.simpleMessage("Movements"),
@@ -93,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sign Out"),
     "somethingWrong": MessageLookupByLibrary.simpleMessage("Something Wrong"),
+    "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "Start or range of dates is required.",
     ),

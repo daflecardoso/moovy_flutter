@@ -35,6 +35,12 @@ class LocaleManager {
     return switch (locale.toString()) {
       'en' => MoovyLocale(appL.english, locale),
       'pt' => MoovyLocale(appL.portuguese, locale),
+      'es' => MoovyLocale(appL.spanish, locale),
+      'da' => MoovyLocale(appL.danish, locale),
+      'de' => MoovyLocale(appL.german, locale),
+      'zh' => MoovyLocale(appL.chinese, locale),
+      'ja' => MoovyLocale(appL.japanese, locale),
+      'ko' => MoovyLocale(appL.korean, locale),
       String() => MoovyLocale(locale.languageCode, locale),
     };
   }

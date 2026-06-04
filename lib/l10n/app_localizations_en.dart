@@ -118,6 +118,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get brazilianReal => 'Brazilian Real';
 
   @override
+  String get danishKrone => 'Danish Krone';
+
+  @override
+  String get chineseYuan => 'Chinese Yuan';
+
+  @override
+  String get japaneseYen => 'Japanese Yen';
+
+  @override
+  String get koreanWon => 'Korean Won';
+
+  @override
   String get language => 'Language';
 
   @override
@@ -125,6 +137,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get spanish => 'Spanish';
+
+  @override
+  String get danish => 'Danish';
+
+  @override
+  String get german => 'German';
+
+  @override
+  String get chinese => 'Chinese';
+
+  @override
+  String get japanese => 'Japanese';
+
+  @override
+  String get korean => 'Korean';
 
   @override
   String get theme => 'Theme';
