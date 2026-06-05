@@ -1,0 +1,5 @@
+• 6 novos idiomas: Espanhol, Dinamarquês, Alemão, Chinês, Japonês, Coreano
+• 4 novas moedas: Coroa Dinamarquesa (DKK), Yuan Chinês (CNY), Iene Japonês (JPY), Won Coreano (KRW)
+• Seletor de moeda com busca — encontre sua moeda mais rápido
+• Símbolo da moeda exibido ao lado do nome para facilitar a identificação
+• Correções de bugs e melhorias de desempenho

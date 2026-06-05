@@ -1,0 +1,5 @@
+• 6 new languages: Spanish, Danish, German, Chinese, Japanese, Korean
+• 4 new currencies: Danish Krone (DKK), Chinese Yuan (CNY), Japanese Yen (JPY), Korean Won (KRW)
+• Currency selector now has search — find your currency faster
+• Currency symbol displayed alongside the name for easier identification
+• Bug fixes and performance improvements

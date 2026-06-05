@@ -1,0 +1,65 @@
+default_platform(:ios)
+
+WORKSPACE = "ios/Runner.xcworkspace"
+SCHEME    = "Runner"
+
+platform :ios do
+  private_lane :api_key do
+    app_store_connect_api_key(
+      key_id:       ENV["API_KEY_ID"],
+      issuer_id:    ENV["API_KEY_ISSUER_ID"],
+      key_filepath: File.expand_path("../fastlane/AuthKey_Y6R928987W.p8", __dir__),
+    )
+  end
+
+  # ── Screenshots ────────────────────────────────────────────────────────────
+  desc "Gera screenshots em todos os idiomas e dispositivos configurados no Snapfile"
+  lane :screenshots do
+    capture_ios_screenshots(
+      workspace: WORKSPACE,
+      scheme: SCHEME,
+      derived_data_path: "build/DerivedData",
+      output_directory: "fastlane/screenshots",
+      clear_previous_screenshots: true,
+      override_status_bar: true,
+      localize_simulator: true
+    )
+  end
+
+  # ── Metadata ───────────────────────────────────────────────────────────────
+  desc "Envia apenas os textos da loja (sem screenshots, sem binário)"
+  lane :upload_metadata do
+    deliver(
+      api_key:             api_key,
+      skip_screenshots:    true,
+      skip_binary_upload:  true,
+      force:               true,
+      run_precheck_before_submit: false
+    )
+  end
+
+  # ── Screenshots → App Store Connect ────────────────────────────────────────
+  desc "Envia screenshots já gerados para o App Store Connect"
+  lane :upload_screenshots do
+    deliver(
+      api_key:               api_key,
+      skip_metadata:         true,
+      skip_binary_upload:    true,
+      overwrite_screenshots: true,
+      force:                 true
+    )
+  end
+
+  # ── Tudo de uma vez ────────────────────────────────────────────────────────
+  desc "Gera screenshots e sobe metadata + screenshots para o App Store Connect"
+  lane :release_metadata do
+    screenshots
+    deliver(
+      api_key:               api_key,
+      skip_binary_upload:    true,
+      overwrite_screenshots: true,
+      force:                 true,
+      run_precheck_before_submit: false
+    )
+  end
+end

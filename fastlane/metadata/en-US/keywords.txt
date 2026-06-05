@@ -1,0 +1,1 @@
+finance,budget,expenses,income,money,tracker,personal finance,spending,savings

@@ -1,0 +1,13 @@
+app_identifier("com.cardosoit.moovy")
+username("daflesantos@gmail.com")
+
+platform("ios")
+metadata_path("./fastlane/metadata")
+screenshots_path("./fastlane/screenshots")
+
+# Envia automaticamente para revisão após upload? false = só sobe os dados
+submit_for_review(false)
+automatic_release(false)
+
+# Não pede confirmação interativa
+force(true)

@@ -1,0 +1,31 @@
+# Dispositivos — cobrindo os tamanhos exigidos pela App Store
+devices([
+  "iPhone 17 Pro Max",        # 6.9" — obrigatório
+  "iPhone 17e"                # menor — cobre telas menores
+])
+
+# Idiomas suportados pelo app
+languages([
+  "en-US",
+  "pt-BR",
+  "de-DE",
+  "es-ES",
+  "da",
+  "ja",
+  "ko",
+  "zh-Hans"
+])
+
+scheme("Runner")
+workspace("ios/Runner.xcworkspace")
+
+# Target de UI Tests (adicionado manualmente no Xcode — veja README)
+test_target_name("RunnerUITests")
+
+output_directory("fastlane/screenshots")
+clear_previous_screenshots(true)
+override_status_bar(true)
+localize_simulator(true)
+
+# SnapshotHelper.swift deve estar no target RunnerUITests
+# Execute `fastlane snapshot init` para gerar o arquivo e adicione ao target no Xcode

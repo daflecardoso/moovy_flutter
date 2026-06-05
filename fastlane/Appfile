@@ -1,0 +1,5 @@
+app_identifier("com.cardosoit.moovy")
+apple_id("daflesantos@gmail.com")
+
+# itc_team_id("") # App Store Connect Team ID — preencha se tiver múltiplos times
+# team_id("")     # Developer Portal Team ID — preencha se tiver múltiplos times

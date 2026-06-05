@@ -38,6 +38,7 @@ dev_dependencies:
   flutter_gen_runner:
   injectable_generator:
   json_serializable: ^6.9.5
+  app_deploy_screenshots: ^1.0.1
 
 flutter_gen:
   output: lib/gen/
@@ -60,6 +61,8 @@ flutter_launcher_icons:
     generate: false
     image_path: "macos/image.png"
 flutter:
+  config:
+    enable-swift-package-manager: false
   uses-material-design: true
   generate: true
   assets:

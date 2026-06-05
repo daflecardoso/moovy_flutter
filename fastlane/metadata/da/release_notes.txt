@@ -1,0 +1,5 @@
+• 6 nye sprog: Spansk, Dansk, Tysk, Kinesisk, Japansk, Koreansk
+• 4 nye valutaer: Dansk Krone (DKK), Kinesisk Yuan (CNY), Japansk Yen (JPY), Koreansk Won (KRW)
+• Valutavælger med søgning — find din valuta hurtigere
+• Valutasymbol vises ved siden af navnet
+• Fejlrettelser og ydeevneforbedringer
