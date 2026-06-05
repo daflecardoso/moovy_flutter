@@ -65,5 +65,8 @@
   "signOut": "Log ud",
   "refresh": "Opdater",
   "somethingWrong": "Noget gik galt",
-  "tryAgain": "Prøv igen"
+  "tryAgain": "Prøv igen",
+  "screenshotMovementsTitle": "Følg med i\nhver øre hver dag",
+  "screenshotExpenseTitle": "Tilføj udgifter\npå sekunder",
+  "screenshotProfileTitle": "Fuld kontrol\nover dit budget"
 }

@@ -76,6 +76,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("个人资料"),
     "refresh": MessageLookupByLibrary.simpleMessage("刷新"),
     "save": MessageLookupByLibrary.simpleMessage("保存"),
+    "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
+      "几秒内添加\n支出记录",
+    ),
+    "screenshotMovementsTitle": MessageLookupByLibrary.simpleMessage(
+      "追踪每日\n每一分钱",
+    ),
+    "screenshotProfileTitle": MessageLookupByLibrary.simpleMessage(
+      "全面掌控\n您的预算",
+    ),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("选择货币"),
     "settings": MessageLookupByLibrary.simpleMessage("设置"),
     "signOut": MessageLookupByLibrary.simpleMessage("退出登录"),

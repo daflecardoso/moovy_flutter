@@ -65,5 +65,8 @@
   "signOut": "サインアウト",
   "refresh": "更新",
   "somethingWrong": "問題が発生しました",
-  "tryAgain": "再試行"
+  "tryAgain": "再試行",
+  "screenshotMovementsTitle": "毎日の\nお金を追跡",
+  "screenshotExpenseTitle": "数秒で\n支出を記録",
+  "screenshotProfileTitle": "予算を\n完全管理"
 }

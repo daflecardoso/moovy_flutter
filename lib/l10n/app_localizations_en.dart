@@ -212,4 +212,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tryAgain => 'Try Again';
+
+  @override
+  String get screenshotMovementsTitle => 'Track every\npenny, every day';
+
+  @override
+  String get screenshotExpenseTitle => 'Add expenses\nin seconds';
+
+  @override
+  String get screenshotProfileTitle => 'Full control\nof your budget';
 }

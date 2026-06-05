@@ -82,6 +82,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("프로필"),
     "refresh": MessageLookupByLibrary.simpleMessage("새로고침"),
     "save": MessageLookupByLibrary.simpleMessage("저장"),
+    "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
+      "몇 초 만에\n지출을 추가하세요",
+    ),
+    "screenshotMovementsTitle": MessageLookupByLibrary.simpleMessage(
+      "매일 매 순간\n지출을 추적하세요",
+    ),
+    "screenshotProfileTitle": MessageLookupByLibrary.simpleMessage(
+      "예산을\n완벽하게 관리하세요",
+    ),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("통화 선택"),
     "settings": MessageLookupByLibrary.simpleMessage("설정"),
     "signOut": MessageLookupByLibrary.simpleMessage("로그아웃"),

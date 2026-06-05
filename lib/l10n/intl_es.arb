@@ -65,5 +65,8 @@
   "signOut": "Cerrar sesión",
   "refresh": "Actualizar",
   "somethingWrong": "Algo salió mal",
-  "tryAgain": "Intentar de nuevo"
+  "tryAgain": "Intentar de nuevo",
+  "screenshotMovementsTitle": "Controla cada\ncéntimo del día",
+  "screenshotExpenseTitle": "Añade gastos\nen segundos",
+  "screenshotProfileTitle": "Control total\nde tu presupuesto"
 }

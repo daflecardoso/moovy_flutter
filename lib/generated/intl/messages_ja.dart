@@ -80,6 +80,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("プロフィール"),
     "refresh": MessageLookupByLibrary.simpleMessage("更新"),
     "save": MessageLookupByLibrary.simpleMessage("保存"),
+    "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
+      "数秒で\n支出を記録",
+    ),
+    "screenshotMovementsTitle": MessageLookupByLibrary.simpleMessage(
+      "毎日の\nお金を追跡",
+    ),
+    "screenshotProfileTitle": MessageLookupByLibrary.simpleMessage("予算を\n完全管理"),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("通貨を選択"),
     "settings": MessageLookupByLibrary.simpleMessage("設定"),
     "signOut": MessageLookupByLibrary.simpleMessage("サインアウト"),

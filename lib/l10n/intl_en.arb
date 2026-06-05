@@ -65,5 +65,8 @@
   "signOut": "Sign Out",
   "refresh": "Refresh",
   "somethingWrong": "Something Wrong",
-  "tryAgain": "Try Again"
+  "tryAgain": "Try Again",
+  "screenshotMovementsTitle": "Track every\npenny, every day",
+  "screenshotExpenseTitle": "Add expenses\nin seconds",
+  "screenshotProfileTitle": "Full control\nof your budget"
 }

@@ -39,6 +39,7 @@ dev_dependencies:
   injectable_generator:
   json_serializable: ^6.9.5
   app_deploy_screenshots: ^1.0.1
+  device_frame: ^1.4.0
 
 flutter_gen:
   output: lib/gen/

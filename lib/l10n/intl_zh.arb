@@ -65,5 +65,8 @@
   "signOut": "退出登录",
   "refresh": "刷新",
   "somethingWrong": "出了点问题",
-  "tryAgain": "重试"
+  "tryAgain": "重试",
+  "screenshotMovementsTitle": "追踪每日\n每一分钱",
+  "screenshotExpenseTitle": "几秒内添加\n支出记录",
+  "screenshotProfileTitle": "全面掌控\n您的预算"
 }

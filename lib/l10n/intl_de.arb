@@ -65,5 +65,8 @@
   "signOut": "Abmelden",
   "refresh": "Aktualisieren",
   "somethingWrong": "Etwas ist schiefgelaufen",
-  "tryAgain": "Erneut versuchen"
+  "tryAgain": "Erneut versuchen",
+  "screenshotMovementsTitle": "Jeden Cent\nim Blick behalten",
+  "screenshotExpenseTitle": "Ausgaben in\nSekunden erfassen",
+  "screenshotProfileTitle": "Volle Kontrolle\nüber dein Budget"
 }

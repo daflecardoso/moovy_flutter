@@ -210,4 +210,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tryAgain => '再試行';
+
+  @override
+  String get screenshotMovementsTitle => '毎日の\nお金を追跡';
+
+  @override
+  String get screenshotExpenseTitle => '数秒で\n支出を記録';
+
+  @override
+  String get screenshotProfileTitle => '予算を\n完全管理';
 }

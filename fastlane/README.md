@@ -29,7 +29,15 @@ Gera screenshots em todos os idiomas e dispositivos configurados no Snapfile
 [bundle exec] fastlane ios flutter_screenshots
 ```
 
-Gera screenshots via Flutter widget tests e salva em fastlane/screenshots/
+Gera todos os screenshots via Flutter widget tests
+
+### ios flutter_mockup_screenshots
+
+```sh
+[bundle exec] fastlane ios flutter_mockup_screenshots
+```
+
+Gera apenas os screenshots com mockup (bg + título + frame)
 
 ### ios upload_metadata
 
@@ -45,7 +53,15 @@ Envia apenas os textos da loja (sem screenshots, sem binário)
 [bundle exec] fastlane ios upload_screenshots
 ```
 
-Envia screenshots já gerados para o App Store Connect
+Envia screenshots plain (sem frame) para o App Store Connect
+
+### ios take_screenshot_upload
+
+```sh
+[bundle exec] fastlane ios take_screenshot_upload
+```
+
+Gera screenshots com mockup e sobe para o App Store Connect
 
 ### ios release_metadata
 

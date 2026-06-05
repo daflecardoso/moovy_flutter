@@ -65,5 +65,8 @@
   "signOut": "Sair",
   "refresh": "Atualizar",
   "somethingWrong": "Algo deu errado",
-  "tryAgain": "Tentar novamente"
+  "tryAgain": "Tentar novamente",
+  "screenshotMovementsTitle": "Controle cada\ncentavo do dia",
+  "screenshotExpenseTitle": "Adicione despesas\nem segundos",
+  "screenshotProfileTitle": "Controle total\ndas suas finanças"
 }

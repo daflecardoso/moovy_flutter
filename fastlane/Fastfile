@@ -26,10 +26,16 @@ platform :ios do
     )
   end
 
-  # ── Screenshots (Flutter widget tests) ────────────────────────────────────
-  desc "Gera screenshots via Flutter widget tests e salva em fastlane/screenshots/"
+  # ── Screenshots (Flutter widget tests — plain + mockup) ───────────────────
+  desc "Gera todos os screenshots via Flutter widget tests"
   lane :flutter_screenshots do
-    sh("cd .. && flutter test test/screenshots_test.dart --update-goldens 2>&1")
+    sh("cd .. && flutter test test/screenshots_test.dart 2>&1")
+  end
+
+  # ── Screenshots mockup only ────────────────────────────────────────────────
+  desc "Gera apenas os screenshots com mockup (bg + título + frame)"
+  lane :flutter_mockup_screenshots do
+    sh("cd .. && flutter test test/screenshots_test.dart --name mockup 2>&1")
   end
 
   # ── Metadata ───────────────────────────────────────────────────────────────
@@ -44,11 +50,27 @@ platform :ios do
     )
   end
 
-  # ── Screenshots → App Store Connect ────────────────────────────────────────
-  desc "Envia screenshots já gerados para o App Store Connect"
+  # ── Screenshots plain → App Store Connect ─────────────────────────────────
+  desc "Envia screenshots plain (sem frame) para o App Store Connect"
   lane :upload_screenshots do
     deliver(
       api_key:               api_key,
+      screenshots_path:      "fastlane/screenshots/plain",
+      skip_metadata:         true,
+      skip_binary_upload:    true,
+      overwrite_screenshots: true,
+      force:                 true,
+      run_precheck_before_submit: false
+    )
+  end
+
+  # ── Gera mockup + sobe para App Store Connect ──────────────────────────────
+  desc "Gera screenshots com mockup e sobe para o App Store Connect"
+  lane :take_screenshot_upload do
+    flutter_mockup_screenshots
+    deliver(
+      api_key:               api_key,
+      screenshots_path:      "fastlane/screenshots/mockup",
       skip_metadata:         true,
       skip_binary_upload:    true,
       overwrite_screenshots: true,
@@ -63,6 +85,7 @@ platform :ios do
     flutter_screenshots
     deliver(
       api_key:               api_key,
+      screenshots_path:      "fastlane/screenshots/plain",
       skip_binary_upload:    true,
       overwrite_screenshots: true,
       force:                 true,

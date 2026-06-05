@@ -104,6 +104,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Actualizar"),
     "save": MessageLookupByLibrary.simpleMessage("Guardar"),
+    "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
+      "Añade gastos\nen segundos",
+    ),
+    "screenshotMovementsTitle": MessageLookupByLibrary.simpleMessage(
+      "Controla cada\ncéntimo del día",
+    ),
+    "screenshotProfileTitle": MessageLookupByLibrary.simpleMessage(
+      "Control total\nde tu presupuesto",
+    ),
     "selectCurrency": MessageLookupByLibrary.simpleMessage(
       "Selecciona una moneda",
     ),

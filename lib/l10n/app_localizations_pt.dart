@@ -212,4 +212,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tryAgain => 'Tentar novamente';
+
+  @override
+  String get screenshotMovementsTitle => 'Controle cada\ncentavo do dia';
+
+  @override
+  String get screenshotExpenseTitle => 'Adicione despesas\nem segundos';
+
+  @override
+  String get screenshotProfileTitle => 'Controle total\ndas suas finanças';
 }

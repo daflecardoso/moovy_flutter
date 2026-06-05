@@ -100,6 +100,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Opdater"),
     "save": MessageLookupByLibrary.simpleMessage("Gem"),
+    "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
+      "Tilføj udgifter\npå sekunder",
+    ),
+    "screenshotMovementsTitle": MessageLookupByLibrary.simpleMessage(
+      "Følg med i\nhver øre hver dag",
+    ),
+    "screenshotProfileTitle": MessageLookupByLibrary.simpleMessage(
+      "Fuld kontrol\nover dit budget",
+    ),
     "selectCurrency": MessageLookupByLibrary.simpleMessage("Vælg en valuta"),
     "settings": MessageLookupByLibrary.simpleMessage("Indstillinger"),
     "signOut": MessageLookupByLibrary.simpleMessage("Log ud"),

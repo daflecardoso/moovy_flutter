@@ -213,4 +213,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tryAgain => 'Erneut versuchen';
+
+  @override
+  String get screenshotMovementsTitle => 'Jeden Cent\nim Blick behalten';
+
+  @override
+  String get screenshotExpenseTitle => 'Ausgaben in\nSekunden erfassen';
+
+  @override
+  String get screenshotProfileTitle => 'Volle Kontrolle\nüber dein Budget';
 }

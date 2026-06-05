@@ -210,4 +210,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tryAgain => '重试';
+
+  @override
+  String get screenshotMovementsTitle => '追踪每日\n每一分钱';
+
+  @override
+  String get screenshotExpenseTitle => '几秒内添加\n支出记录';
+
+  @override
+  String get screenshotProfileTitle => '全面掌控\n您的预算';
 }

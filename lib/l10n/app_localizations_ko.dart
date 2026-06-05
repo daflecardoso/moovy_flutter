@@ -210,4 +210,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tryAgain => '다시 시도';
+
+  @override
+  String get screenshotMovementsTitle => '매일 매 순간\n지출을 추적하세요';
+
+  @override
+  String get screenshotExpenseTitle => '몇 초 만에\n지출을 추가하세요';
+
+  @override
+  String get screenshotProfileTitle => '예산을\n완벽하게 관리하세요';
 }

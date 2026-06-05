@@ -212,4 +212,13 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get tryAgain => 'Prøv igen';
+
+  @override
+  String get screenshotMovementsTitle => 'Følg med i\nhver øre hver dag';
+
+  @override
+  String get screenshotExpenseTitle => 'Tilføj udgifter\npå sekunder';
+
+  @override
+  String get screenshotProfileTitle => 'Fuld kontrol\nover dit budget';
 }

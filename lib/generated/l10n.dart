@@ -553,6 +553,36 @@ class S {
   String get tryAgain {
     return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
   }
+
+  /// `Track every\npenny, every day`
+  String get screenshotMovementsTitle {
+    return Intl.message(
+      'Track every\npenny, every day',
+      name: 'screenshotMovementsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add expenses\nin seconds`
+  String get screenshotExpenseTitle {
+    return Intl.message(
+      'Add expenses\nin seconds',
+      name: 'screenshotExpenseTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full control\nof your budget`
+  String get screenshotProfileTitle {
+    return Intl.message(
+      'Full control\nof your budget',
+      name: 'screenshotProfileTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

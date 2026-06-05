@@ -511,6 +511,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try Again'**
   String get tryAgain;
+
+  /// No description provided for @screenshotMovementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track every\npenny, every day'**
+  String get screenshotMovementsTitle;
+
+  /// No description provided for @screenshotExpenseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expenses\nin seconds'**
+  String get screenshotExpenseTitle;
+
+  /// No description provided for @screenshotProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Full control\nof your budget'**
+  String get screenshotProfileTitle;
 }
 
 class _AppLocalizationsDelegate
