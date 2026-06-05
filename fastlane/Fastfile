@@ -12,7 +12,7 @@ platform :ios do
     )
   end
 
-  # ── Screenshots ────────────────────────────────────────────────────────────
+  # ── Screenshots (Xcode UI tests via Snapfile) ──────────────────────────────
   desc "Gera screenshots em todos os idiomas e dispositivos configurados no Snapfile"
   lane :screenshots do
     capture_ios_screenshots(
@@ -24,6 +24,12 @@ platform :ios do
       override_status_bar: true,
       localize_simulator: true
     )
+  end
+
+  # ── Screenshots (Flutter widget tests) ────────────────────────────────────
+  desc "Gera screenshots via Flutter widget tests e salva em fastlane/screenshots/"
+  lane :flutter_screenshots do
+    sh("cd .. && flutter test test/screenshots_test.dart --update-goldens 2>&1")
   end
 
   # ── Metadata ───────────────────────────────────────────────────────────────
@@ -46,14 +52,15 @@ platform :ios do
       skip_metadata:         true,
       skip_binary_upload:    true,
       overwrite_screenshots: true,
-      force:                 true
+      force:                 true,
+      run_precheck_before_submit: false
     )
   end
 
   # ── Tudo de uma vez ────────────────────────────────────────────────────────
-  desc "Gera screenshots e sobe metadata + screenshots para o App Store Connect"
+  desc "Gera screenshots via Flutter tests e sobe metadata + screenshots para o App Store Connect"
   lane :release_metadata do
-    screenshots
+    flutter_screenshots
     deliver(
       api_key:               api_key,
       skip_binary_upload:    true,

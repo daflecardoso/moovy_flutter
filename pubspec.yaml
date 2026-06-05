@@ -67,5 +67,16 @@ flutter:
   generate: true
   assets:
     - assets/icon/
+    - assets/fonts/
+  fonts:
+    - family: NotoSansJP
+      fonts:
+        - asset: assets/fonts/NotoSansJP-Regular.ttf
+    - family: NotoSansKR
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Regular.ttf
+    - family: NotoSansSC
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.ttf
 flutter_intl:
   enabled: true

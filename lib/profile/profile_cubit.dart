@@ -11,12 +11,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
 
   void start() {
-    final user = FirebaseAuth.instance.currentUser;
+    try {
+      final user = FirebaseAuth.instance.currentUser;
 
-    if (user == null) {
+      if (user == null) {
+        emit(MustSignIn());
+      } else {
+        _emitUser(user);
+      }
+    } catch(e) {
       emit(MustSignIn());
-    } else {
-      _emitUser(user);
     }
   }
 

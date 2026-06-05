@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Gera screenshots em todos os idiomas e dispositivos configurados no Snapfile
 
+### ios flutter_screenshots
+
+```sh
+[bundle exec] fastlane ios flutter_screenshots
+```
+
+Gera screenshots via Flutter widget tests e salva em fastlane/screenshots/
+
 ### ios upload_metadata
 
 ```sh
@@ -45,7 +53,7 @@ Envia screenshots já gerados para o App Store Connect
 [bundle exec] fastlane ios release_metadata
 ```
 
-Gera screenshots e sobe metadata + screenshots para o App Store Connect
+Gera screenshots via Flutter tests e sobe metadata + screenshots para o App Store Connect
 
 ----
 

@@ -7,7 +7,7 @@ import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/string_extensions.dart';
 
 @Injectable()
-final class MovementRepository {
+class MovementRepository {
   MovementDao movementDao;
   MovementRepository(this.movementDao);
 
