@@ -152,6 +152,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
   }
 
   Widget movementRow(MovementUi movement) {
+    final appLocalization = AppLocalizations.of(context)!;
     return InkWell(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -175,7 +176,8 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                           ),
                         )
                       : SizedBox(width: 30, height: 30),
-                MovementImageAsset(image: final asset) => asset?.image(width: 30, height: 30) ?? SizedBox(width: 30, height: 30),
+                MovementImageAsset(image: final asset) =>
+                  asset?.image(width: 30, height: 30) ?? SizedBox(width: 30, height: 30),
               },
             ),
             SizedBox(width: 8),
@@ -187,7 +189,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                   children: [
                     movement.isSameMonthYear()
                         ? Text(
-                            movement.startDate.format(DateTimeFormat.ddMM),
+                            "${appLocalization.thisMonth} ${movement.startDate.format(DateTimeFormat.ddMM)}",
                             style: ShadTheme.of(context).textTheme.small.copyWith(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -196,7 +198,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                             ),
                           )
                         : Text(
-                            "${movement.startDate.format(DateTimeFormat.ddMM)} - ∞",
+                            "${appLocalization.future} ${movement.startDate.format(DateTimeFormat.ddMM)}",
                             style: ShadTheme.of(context).textTheme.small.copyWith(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,

@@ -212,6 +212,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tryAgain => '重试';
 
   @override
+  String get thisMonth => '本月';
+
+  @override
+  String get future => '未来';
+
+  @override
+  String get rent => '租金';
+
+  @override
+  String get salary => '工资';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => '网络';
+
+  @override
+  String get supermarket => '超市';
+
+  @override
+  String get gym => '健身房';
+
+  @override
   String get screenshotMovementsTitle => '追踪每日\n每一分钱';
 
   @override

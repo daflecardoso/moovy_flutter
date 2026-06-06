@@ -214,6 +214,33 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tryAgain => 'Tentar novamente';
 
   @override
+  String get thisMonth => 'Este mês';
+
+  @override
+  String get future => 'Futuro';
+
+  @override
+  String get rent => 'Aluguel';
+
+  @override
+  String get salary => 'Salário';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => 'Internet';
+
+  @override
+  String get supermarket => 'Supermercado';
+
+  @override
+  String get gym => 'Academia';
+
+  @override
   String get screenshotMovementsTitle => 'Controle cada\ncentavo do dia';
 
   @override

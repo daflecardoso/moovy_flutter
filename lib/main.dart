@@ -7,6 +7,7 @@ import 'package:moovy/app_router.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/firebase_options.dart';
 import 'package:moovy/main_cubit.dart';
+import 'package:moovy/navigation_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 final eventBus = EventBus();
@@ -48,6 +49,7 @@ class App extends StatelessWidget {
                     localizationsDelegates: state.localizationDelegate,
                     builder: (context, child) {
                       return MaterialApp(
+                        navigatorKey: NavigationService.navigatorKey,
                         theme: Theme.of(context),
                         debugShowCheckedModeBanner: false,
                         home: ShadAppBuilder(child: Material(child: child)),

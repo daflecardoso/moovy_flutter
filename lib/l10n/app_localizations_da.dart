@@ -214,6 +214,33 @@ class AppLocalizationsDa extends AppLocalizations {
   String get tryAgain => 'Prøv igen';
 
   @override
+  String get thisMonth => 'Denne måned';
+
+  @override
+  String get future => 'Fremtid';
+
+  @override
+  String get rent => 'Husleje';
+
+  @override
+  String get salary => 'Løn';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => 'Internet';
+
+  @override
+  String get supermarket => 'Supermarked';
+
+  @override
+  String get gym => 'Fitnesscenter';
+
+  @override
   String get screenshotMovementsTitle => 'Følg med i\nhver øre hver dag';
 
   @override

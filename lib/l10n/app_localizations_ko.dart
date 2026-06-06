@@ -212,6 +212,33 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tryAgain => '다시 시도';
 
   @override
+  String get thisMonth => '이번 달';
+
+  @override
+  String get future => '미래';
+
+  @override
+  String get rent => '임대료';
+
+  @override
+  String get salary => '급여';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => '인터넷';
+
+  @override
+  String get supermarket => '슈퍼마켓';
+
+  @override
+  String get gym => '헬스장';
+
+  @override
   String get screenshotMovementsTitle => '매일 매 순간\n지출을 추적하세요';
 
   @override

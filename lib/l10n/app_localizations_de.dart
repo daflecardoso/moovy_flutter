@@ -215,6 +215,33 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tryAgain => 'Erneut versuchen';
 
   @override
+  String get thisMonth => 'Diesen Monat';
+
+  @override
+  String get future => 'Zukunft';
+
+  @override
+  String get rent => 'Miete';
+
+  @override
+  String get salary => 'Gehalt';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => 'Internet';
+
+  @override
+  String get supermarket => 'Supermarkt';
+
+  @override
+  String get gym => 'Fitnessstudio';
+
+  @override
   String get screenshotMovementsTitle => 'Jeden Cent\nim Blick behalten';
 
   @override

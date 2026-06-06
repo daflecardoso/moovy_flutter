@@ -212,6 +212,33 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tryAgain => '再試行';
 
   @override
+  String get thisMonth => '今月';
+
+  @override
+  String get future => '将来';
+
+  @override
+  String get rent => '家賃';
+
+  @override
+  String get salary => '給与';
+
+  @override
+  String get netflix => 'Netflix';
+
+  @override
+  String get spotify => 'Spotify';
+
+  @override
+  String get internet => 'インターネット';
+
+  @override
+  String get supermarket => 'スーパーマーケット';
+
+  @override
+  String get gym => 'ジム';
+
+  @override
   String get screenshotMovementsTitle => '毎日の\nお金を追跡';
 
   @override

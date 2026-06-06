@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
+import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/movement_list/view/movement_ui.dart';
+import 'package:moovy/navigation_service.dart';
 import 'package:moovy/repository/movement_repository.dart';
 
 import '../gen/assets.gen.dart';
@@ -46,14 +49,15 @@ class FakeMovementRepository implements MovementRepository {
       );
     }
 
+    final appLocalization = AppLocalizations.of(NavigationService.navigatorKey.currentContext!)!;
     return [
-      m(Assets.icon.house, 'Aluguel', 180000, MovementType.expense, dueDay: 5),
-      m(Assets.icon.salary, 'Salário', 600000, MovementType.income, incomeDay: 5),
-      m(Assets.icon.netflix, 'Netflix', 4990, MovementType.expense, dueDay: 15),
-      m(Assets.icon.spotfy, 'Spotify', 2190, MovementType.expense, dueDay: 1),
-      m(Assets.icon.internet, 'Internet', 9990, MovementType.expense, dueDay: 10),
-      m(Assets.icon.supermarket, 'Supermercado', 35000, MovementType.expense, dueDay: 15),
-      m(Assets.icon.gym, 'Academia', 8990, MovementType.expense, dueDay: 1),
+      m(Assets.icon.house, appLocalization.rent, 180000, MovementType.expense, dueDay: 5),
+      m(Assets.icon.salary, appLocalization.salary, 600000, MovementType.income, incomeDay: 5),
+      m(Assets.icon.netflix, appLocalization.netflix, 4990, MovementType.expense, dueDay: 15),
+      m(Assets.icon.spotfy, appLocalization.spotify, 2190, MovementType.expense, dueDay: 1),
+      m(Assets.icon.internet, appLocalization.internet, 9990, MovementType.expense, dueDay: 10),
+      m(Assets.icon.supermarket, appLocalization.supermarket, 35000, MovementType.expense, dueDay: 15),
+      m(Assets.icon.gym, appLocalization.gym, 8990, MovementType.expense, dueDay: 1),
     ];
   }
 
@@ -68,8 +72,6 @@ class FakeMovementRepository implements MovementRepository {
     // TODO: implement updateMovement
     throw UnimplementedError();
   }
-
-
 
   @override
   MovementUi map(Movement movement) {

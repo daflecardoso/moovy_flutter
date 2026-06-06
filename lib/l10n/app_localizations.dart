@@ -512,6 +512,60 @@ abstract class AppLocalizations {
   /// **'Try Again'**
   String get tryAgain;
 
+  /// No description provided for @thisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get thisMonth;
+
+  /// No description provided for @future.
+  ///
+  /// In en, this message translates to:
+  /// **'Future'**
+  String get future;
+
+  /// No description provided for @rent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get rent;
+
+  /// No description provided for @salary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get salary;
+
+  /// No description provided for @netflix.
+  ///
+  /// In en, this message translates to:
+  /// **'Netflix'**
+  String get netflix;
+
+  /// No description provided for @spotify.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify'**
+  String get spotify;
+
+  /// No description provided for @internet.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet'**
+  String get internet;
+
+  /// No description provided for @supermarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermarket'**
+  String get supermarket;
+
+  /// No description provided for @gym.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym'**
+  String get gym;
+
   /// No description provided for @screenshotMovementsTitle.
   ///
   /// In en, this message translates to:

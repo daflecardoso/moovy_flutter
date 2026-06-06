@@ -66,10 +66,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "expenseDescriptionHint": MessageLookupByLibrary.simpleMessage(
       "Ej: Factura de tarjeta de crédito",
     ),
+    "future": MessageLookupByLibrary.simpleMessage("Futuro"),
     "german": MessageLookupByLibrary.simpleMessage("Alemán"),
     "googleSignIn": MessageLookupByLibrary.simpleMessage(
       "Iniciar sesión con Google",
     ),
+    "gym": MessageLookupByLibrary.simpleMessage("Gimnasio"),
     "imageLink": MessageLookupByLibrary.simpleMessage("Enlace de imagen"),
     "income": MessageLookupByLibrary.simpleMessage("Ingreso"),
     "incomeDay": MessageLookupByLibrary.simpleMessage("Día de ingreso"),
@@ -81,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "incomeExpense": MessageLookupByLibrary.simpleMessage("Ingresos y Gastos"),
     "incomeHint": MessageLookupByLibrary.simpleMessage("Ej: Salario"),
+    "internet": MessageLookupByLibrary.simpleMessage("Internet"),
     "japanese": MessageLookupByLibrary.simpleMessage("Japonés"),
     "japaneseYen": MessageLookupByLibrary.simpleMessage("Yen Japonés"),
     "korean": MessageLookupByLibrary.simpleMessage("Coreano"),
@@ -88,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "language": MessageLookupByLibrary.simpleMessage("Idioma"),
     "light": MessageLookupByLibrary.simpleMessage("Claro"),
     "movements": MessageLookupByLibrary.simpleMessage("Movimientos"),
+    "netflix": MessageLookupByLibrary.simpleMessage("Netflix"),
     "occurrences": MessageLookupByLibrary.simpleMessage(
       "Actualizar Ocurrencias",
     ),
@@ -103,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "portuguese": MessageLookupByLibrary.simpleMessage("Portugués"),
     "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Actualizar"),
+    "rent": MessageLookupByLibrary.simpleMessage("Alquiler"),
+    "salary": MessageLookupByLibrary.simpleMessage("Salario"),
     "save": MessageLookupByLibrary.simpleMessage("Guardar"),
     "screenshotExpenseTitle": MessageLookupByLibrary.simpleMessage(
       "Añade gastos\nen segundos",
@@ -120,12 +126,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "signOut": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
     "somethingWrong": MessageLookupByLibrary.simpleMessage("Algo salió mal"),
     "spanish": MessageLookupByLibrary.simpleMessage("Español"),
+    "spotify": MessageLookupByLibrary.simpleMessage("Spotify"),
     "startDateOrRangeIsRequired": MessageLookupByLibrary.simpleMessage(
       "La fecha de inicio o el período es obligatorio.",
     ),
     "success": MessageLookupByLibrary.simpleMessage("Éxito"),
+    "supermarket": MessageLookupByLibrary.simpleMessage("Supermercado"),
     "system": MessageLookupByLibrary.simpleMessage("Sistema"),
     "theme": MessageLookupByLibrary.simpleMessage("Tema"),
+    "thisMonth": MessageLookupByLibrary.simpleMessage("Este mes"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalExpense": MessageLookupByLibrary.simpleMessage("Total Gastos"),
     "totalIncome": MessageLookupByLibrary.simpleMessage("Total Ingresos"),

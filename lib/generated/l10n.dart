@@ -554,6 +554,51 @@ class S {
     return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
   }
 
+  /// `This month`
+  String get thisMonth {
+    return Intl.message('This month', name: 'thisMonth', desc: '', args: []);
+  }
+
+  /// `Future`
+  String get future {
+    return Intl.message('Future', name: 'future', desc: '', args: []);
+  }
+
+  /// `Rent`
+  String get rent {
+    return Intl.message('Rent', name: 'rent', desc: '', args: []);
+  }
+
+  /// `Salary`
+  String get salary {
+    return Intl.message('Salary', name: 'salary', desc: '', args: []);
+  }
+
+  /// `Netflix`
+  String get netflix {
+    return Intl.message('Netflix', name: 'netflix', desc: '', args: []);
+  }
+
+  /// `Spotify`
+  String get spotify {
+    return Intl.message('Spotify', name: 'spotify', desc: '', args: []);
+  }
+
+  /// `Internet`
+  String get internet {
+    return Intl.message('Internet', name: 'internet', desc: '', args: []);
+  }
+
+  /// `Supermarket`
+  String get supermarket {
+    return Intl.message('Supermarket', name: 'supermarket', desc: '', args: []);
+  }
+
+  /// `Gym`
+  String get gym {
+    return Intl.message('Gym', name: 'gym', desc: '', args: []);
+  }
+
   /// `Track every\npenny, every day`
   String get screenshotMovementsTitle {
     return Intl.message(
