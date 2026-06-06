@@ -173,7 +173,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: switch (movement.image) {
-                null => SizedBox(width: 30, height: 30),
+                null => SizedBox(width: 40, height: 40),
                 MovementImageUrl(imageUrl: final imageUrl) =>
                   imageUrl != null && imageUrl.isNotEmpty
                       ? Opacity(
@@ -183,12 +183,12 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                               movement.paid ? Colors.grey : Colors.transparent,
                               BlendMode.color,
                             ),
-                            child: Image.network(imageUrl, width: 32, height: 32),
+                            child: Image.network(imageUrl, width: 40, height: 40),
                           ),
                         )
-                      : SizedBox(width: 30, height: 30),
+                      : SizedBox(width: 40, height: 40),
                 MovementImageAsset(image: final asset) =>
-                  asset?.image(width: 30, height: 30) ?? SizedBox(width: 30, height: 30),
+                  asset?.image(width: 40, height: 40) ?? SizedBox(width: 40, height: 40),
               },
             ),
             SizedBox(width: 8),
