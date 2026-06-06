@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final app = await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAuth.instanceFor(app: app);
-  configureDependencies(fake: false);
+  configureDependencies(fake: true);
   runApp(App());
 }
 

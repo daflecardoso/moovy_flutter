@@ -44,7 +44,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   children: [
                     ShadBadge(backgroundColor: MovementType.income.color, child: Text(appLocalizations.income)),
                     ImageUrlField(
-                      initialValue: state.income?.imageUrl,
+                      initialValue: state.income?.image?.urlOrNull(),
                     ),
                     DescriptionInput(
                       initialValue: state.income?.description,

@@ -1,7 +1,10 @@
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
+import 'package:moovy/movement_list/view/movement_ui.dart';
 import 'package:moovy/repository/movement_repository.dart';
+
+import '../gen/assets.gen.dart';
 
 class FakeMovementRepository implements MovementRepository {
   @override
@@ -20,80 +23,37 @@ class FakeMovementRepository implements MovementRepository {
   }
 
   @override
-  Future<List<Movement>> findByMonthYear(String dateTime) async {
-    final _now = DateTime.now();
+  Future<List<MovementUi>> findByMonthYear(String dateTime) async {
+    final now = DateTime.now();
 
-    Movement _m(String? imageUrl, String desc, int amount, MovementType type, {int? dueDay, int? incomeDay}) {
-      return Movement(
+    MovementUi m(AssetGenImage? image, String desc, int amount, MovementType type, {int? dueDay, int? incomeDay}) {
+      return MovementUi(
         id: desc,
         firestoreId: null,
         description: desc,
         amount: amount,
         dueDay: dueDay,
         incomeDay: incomeDay,
-        startDate: DateTime(_now.year, _now.month, 1),
+        startDate: DateTime(now.year, now.month, 1),
         endDate: null,
-        startYm: _now.yearMonth(),
+        startYm: now.yearMonth(),
         endYm: null,
         paid: false,
-        imageUrl: null,
+        image: MovementImageAsset(image),
         type: type,
-        createdAt: _now,
-        updatedAt: _now,
+        createdAt: now,
+        updatedAt: now,
       );
     }
 
-    return <Movement>[
-      _m(
-        'https://img.magnific.com/vetores-gratis/bela-casa_24877-50819.jpg',
-        'Aluguel',
-        180000,
-        MovementType.expense,
-        dueDay: 5,
-      ),
-      _m(
-        'https://fisenge.org.br/wp-content/uploads/2021/01/maos_dinheiro-1024x1024.jpg',
-        'Salário',
-        600000,
-        MovementType.income,
-        incomeDay: 5,
-      ),
-      _m(
-        'https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png',
-        'Netflix',
-        4990,
-        MovementType.expense,
-        dueDay: 15,
-      ),
-      _m('https://m.media-amazon.com/images/I/31B2Nyzd8XL.png', 'Spotify', 2190, MovementType.expense, dueDay: 1),
-      _m(
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2959EOX3dVuJFmVCMWh71jy7XY1v4KQFlqQ&s',
-        'Freelance',
-        150000,
-        MovementType.income,
-        incomeDay: 20,
-      ),
-      _m(
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6A6Wu7MCCEpYLascNBj5PbQuxlWLXHhDUfQ&s',
-        'Internet',
-        9990,
-        MovementType.expense,
-        dueDay: 10,
-      ),
-      _m(
-        'https://media.istockphoto.com/id/2223757149/pt/vetorial/grocery-store-supermarket-people-choosing-goods-on-the-shelves-of-the-store-vector.jpg?s=612x612&w=0&k=20&c=ts0BvsL7zZfAJudGlaB1tISfBsMAxQMuUwgdfJeVvmA=',
-        'Supermercado',
-        35000,
-        MovementType.expense,
-        dueDay: 15,
-      ),
-      _m(
-        'https://acadbrasil.com.br/wp-content/uploads/2022/04/3-dicas-para-aproveitar-melhor-o-espaco-da-academia-1024x681.jpg',
-        'Academia',
-        8990,
-        MovementType.expense,
-        dueDay: 1,
-      ),
+    return [
+      m(Assets.icon.house, 'Aluguel', 180000, MovementType.expense, dueDay: 5),
+      m(Assets.icon.salary, 'Salário', 600000, MovementType.income, incomeDay: 5),
+      m(Assets.icon.netflix, 'Netflix', 4990, MovementType.expense, dueDay: 15),
+      m(Assets.icon.spotfy, 'Spotify', 2190, MovementType.expense, dueDay: 1),
+      m(Assets.icon.internet, 'Internet', 9990, MovementType.expense, dueDay: 10),
+      m(Assets.icon.supermarket, 'Supermercado', 35000, MovementType.expense, dueDay: 15),
+      m(Assets.icon.gym, 'Academia', 8990, MovementType.expense, dueDay: 1),
     ];
   }
 
@@ -104,8 +64,21 @@ class FakeMovementRepository implements MovementRepository {
   }
 
   @override
-  Future<int> updateMovement(Movement movement) {
+  Future<int> updateMovement(MovementUi movement) {
     // TODO: implement updateMovement
+    throw UnimplementedError();
+  }
+
+
+
+  @override
+  MovementUi map(Movement movement) {
+    // TODO: implement map
+    throw UnimplementedError();
+  }
+
+  Future<int> updateMovementUi(MovementUi mui) {
+    // TODO: implement updateMovementUi
     throw UnimplementedError();
   }
 }

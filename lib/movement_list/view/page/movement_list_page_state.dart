@@ -6,7 +6,7 @@ sealed class MovementListPageState {}
 final class MovementListPageInitial extends MovementListPageState {}
 
 final class MovementPageSuccess extends MovementListPageState {
-  final List<Movement> movements;
+  final List<MovementUi> movements;
   final int totalExpense, totalIncome, total;
   final Color totalColor;
 
@@ -18,7 +18,7 @@ final class MovementPageSuccess extends MovementListPageState {
     required this.totalColor
   });
 
-  MovementPageSuccess copyWith({List<Movement>? movements}) => MovementPageSuccess(
+  MovementPageSuccess copyWith({List<MovementUi>? movements}) => MovementPageSuccess(
     movements: movements ?? this.movements,
     totalExpense: totalExpense,
     totalIncome: totalIncome,

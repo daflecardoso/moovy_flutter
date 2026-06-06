@@ -6,6 +6,7 @@ import 'package:moovy/core/language/locale_manager.dart';
 import 'package:moovy/core/shared_preferences/shared_preferences_manager.dart';
 import 'package:moovy/core/theme/theme_manager.dart';
 import 'package:moovy/main.dart';
+
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {

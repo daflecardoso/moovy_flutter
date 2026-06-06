@@ -1,5 +1,6 @@
 
 import 'package:json_annotation/json_annotation.dart';
+
 part 'settings_request.g.dart';
 
 @JsonSerializable(createToJson: false)

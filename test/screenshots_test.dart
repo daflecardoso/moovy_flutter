@@ -11,7 +11,6 @@ import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_screen.dart';
 import 'package:moovy/profile/profile_screen.dart';
-import 'package:moovy/settings/settings_screen.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'mockup.dart';

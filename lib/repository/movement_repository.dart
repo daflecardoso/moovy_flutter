@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/string_extensions.dart';
+import 'package:moovy/movement_list/view/movement_ui.dart';
 
 @Injectable()
 class MovementRepository {
@@ -14,7 +15,7 @@ class MovementRepository {
   final _usersTable = 'users';
   final _movementsTable = 'movements';
 
-  Future<List<Movement>> findByMonthYear(String dateTime) async {
+  Future<List<MovementUi>> findByMonthYear(String dateTime) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final qStart = FirebaseFirestore.instance
@@ -41,13 +42,32 @@ class MovementRepository {
         final res1 = m1.type.index.compareTo(m2.type.index);
         if (res1 != 0) return res1;
         return m1.getDay().compareTo(m2.getDay());
-
-
       });
-      return list;
+      return list.map((movement) => map(movement)).toList();
     }
 
-    return movementDao.findByMonthYear(dateTime);
+    final list = await movementDao.findByMonthYear(dateTime);
+    return list.map((movement) => map(movement)).toList();
+  }
+
+  MovementUi map(Movement movement) {
+    return MovementUi(
+      id: movement.id,
+      firestoreId: movement.firestoreId,
+      description: movement.description,
+      amount: movement.amount,
+      dueDay: movement.dueDay,
+      incomeDay: movement.incomeDay,
+      startDate: movement.startDate,
+      endDate: movement.endDate,
+      startYm: movement.startYm,
+      endYm: movement.endYm,
+      paid: movement.paid,
+      image: MovementImageUrl(movement.imageUrl),
+      type: movement.type,
+      createdAt: movement.createdAt,
+      updatedAt: movement.updatedAt,
+    );
   }
 
   Future<Movement?> findById(String id) async {
@@ -104,7 +124,8 @@ class MovementRepository {
     return movementDao.insertMovement(movement);
   }
 
-  Future<int> updateMovement(Movement movement) async {
+  Future<int> updateMovement(MovementUi mui) async {
+    final movement = mui.toMovement();
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await FirebaseFirestore.instance

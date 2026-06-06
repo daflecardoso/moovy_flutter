@@ -45,6 +45,6 @@ Map<String, dynamic> _$MovementToJson(Movement instance) => <String, dynamic>{
 };
 
 const _$MovementTypeEnumMap = {
-  MovementType.expense: 'expense',
   MovementType.income: 'income',
+  MovementType.expense: 'expense',
 };

@@ -14,6 +14,7 @@ import 'package:moovy/extensions/int_extensions.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
+import 'package:moovy/movement_list/view/movement_ui.dart';
 import 'package:moovy/movement_list/view/page/movement_list_page_cubit.dart';
 import 'package:moovy/movement_list/view/widget/summary_widget.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -150,7 +151,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
     );
   }
 
-  Widget movementRow(Movement movement) {
+  Widget movementRow(MovementUi movement) {
     return InkWell(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -159,18 +160,23 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: movement.imageUrl != null && movement.imageUrl!.isNotEmpty
-                  ? Opacity(
-                      opacity: movement.paid ? 0.3 : 1,
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          movement.paid ? Colors.grey : Colors.transparent,
-                          BlendMode.color,
-                        ),
-                        child: Image.network(movement.imageUrl!, width: 32, height: 32),
-                      ),
-                    )
-                  : SizedBox(width: 30, height: 30),
+              child: switch (movement.image) {
+                null => SizedBox(width: 30, height: 30),
+                MovementImageUrl(imageUrl: final imageUrl) =>
+                  imageUrl != null && imageUrl.isNotEmpty
+                      ? Opacity(
+                          opacity: movement.paid ? 0.3 : 1,
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              movement.paid ? Colors.grey : Colors.transparent,
+                              BlendMode.color,
+                            ),
+                            child: Image.network(imageUrl, width: 32, height: 32),
+                          ),
+                        )
+                      : SizedBox(width: 30, height: 30),
+                MovementImageAsset(image: final asset) => asset?.image(width: 30, height: 30) ?? SizedBox(width: 30, height: 30),
+              },
             ),
             SizedBox(width: 8),
             Expanded(

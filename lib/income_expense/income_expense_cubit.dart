@@ -8,6 +8,7 @@ import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/string_extensions.dart';
 import 'package:moovy/income_expense/occurrence.dart';
 import 'package:moovy/main.dart';
+import 'package:moovy/movement_list/view/movement_ui.dart';
 import 'package:moovy/repository/movement_repository.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -32,7 +33,8 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
       try {
         final movement = await movementRepository.findById(id);
         if (movement != null) {
-          emit(IncomeExpenseForm(movement, movement));
+          final movementUi = movementRepository.map(movement);
+          emit(IncomeExpenseForm(movementUi, movementUi));
         } else {
           emit(IncomeExpenseForm(null, null));
         }
@@ -99,7 +101,8 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
                   startYm: thisMonth.yearMonth(),
                   endYm: thisMonth.yearMonth()
               );
-              await movementRepository.updateMovement(toUpdateMovement);
+              final toUpdateUi = movementRepository.map(toUpdateMovement);
+              await movementRepository.updateMovement(toUpdateUi);
 
               //equal DB to next months
               final nextMonth = monthTab.copyWith(day: movement.startDate.day).addMonths(1);
@@ -113,7 +116,8 @@ class IncomeExpenseCubit extends Cubit<IncomeExpenseState> {
               debugPrintStack(stackTrace: s);
             }
           case Occurrence.all:
-            await movementRepository.updateMovement(movement);
+            final movementUI = movementRepository.map(movement);
+            await movementRepository.updateMovement(movementUI);
         }
 
         eventBus.fire(MovementChanged(movement));

@@ -55,7 +55,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                         ShadBadge(backgroundColor: MovementType.expense.color, child: Text(appLocalizations.expense)),
                       ],
                     ),
-                    ImageUrlField(initialValue: state.expense?.imageUrl),
+                    ImageUrlField(initialValue: state.expense?.image?.urlOrNull()),
                     DescriptionInput(
                       initialValue: state.expense?.description,
                       title: appLocalizations.expenseDescription,

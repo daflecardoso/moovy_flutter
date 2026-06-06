@@ -4,6 +4,7 @@ import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';
 import 'package:moovy/extensions/list_int_extension.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
+import 'package:moovy/movement_list/view/movement_ui.dart';
 import 'package:moovy/repository/movement_repository.dart';
 
 part 'movement_list_page_state.dart';
@@ -42,7 +43,7 @@ class MovementListPageCubit extends Cubit<MovementListPageState> {
     }
   }
 
-  Future<void> togglePaid(Movement movement) async {
+  Future<void> togglePaid(MovementUi movement) async {
     movement.paid = !movement.paid;
     await movementRepository.updateMovement(movement);
     final state = this.state;

@@ -8,6 +8,6 @@ final class IncomeExpenseInitial extends IncomeExpenseState {
 }
 
 final class IncomeExpenseForm extends IncomeExpenseState {
-  final Movement? expense, income;
+  final MovementUi? expense, income;
   IncomeExpenseForm(this.expense, this.income);
 }

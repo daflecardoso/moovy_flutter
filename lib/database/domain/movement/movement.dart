@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moovy/database/bool_flex_converter.dart';
-import 'package:moovy/extensions/int_extensions.dart';
-import 'package:moovy/income_expense/occurrence.dart';
 
 part 'movement.g.dart';
 
@@ -81,29 +79,11 @@ class Movement {
 
   factory Movement.fromJson(Map<String, dynamic> json) => _$MovementFromJson(json);
 
-  String get uiAmount {
-    final signal = switch (type) {
-      MovementType.expense => "-",
-      MovementType.income => "+"
-    };
-    return "$signal ${amount.currency()}";
-  }
-
   @override
   String toString() {
     return description;
   }
 
-  bool isSameMonthYear() {
-    if (endDate case final edt?) {
-      return startDate.month == edt.month && startDate.year == edt.year;
-    }
-    return false;
-  }
-
-  Occurrence getOccurrence() {
-    return isSameMonthYear() ? .it : .all;
-  }
 
   int getDay() {
     switch (type) {
