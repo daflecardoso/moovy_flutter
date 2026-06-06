@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
+import 'package:moovy/design_system/moovy_glass.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/l10n/app_localizations.dart';
 import 'package:moovy/movement_list/view/movement_list_cubit.dart';
@@ -49,12 +50,17 @@ class _MovementListScreenState extends State<MovementListScreen>
                   appBar: AppBar(
                     title: Text(appLocalizations.movements, style: ShadTheme.of(context).textTheme.large),
                     actions: [
-                      ShadIconButton.ghost(
-                        onPressed: () {
-                          context.router.navigatePath('${AppRouter.incomeExpense}?tabDate=${cubit.months[_tabController.index].date}');
-                        },
-                        icon: const Icon(LucideIcons.plus),
+                      MoovyGlass(
+                        child: ShadIconButton.outline(
+                          onPressed: () {
+                            context.router.navigatePath(
+                              '${AppRouter.incomeExpense}?tabDate=${cubit.months[_tabController.index].date}',
+                            );
+                          },
+                          icon: const Icon(LucideIcons.plus),
+                        ),
                       ),
+                      SizedBox(width: 8),
                     ],
                     bottom: TabBar(
                       controller: _tabController,
