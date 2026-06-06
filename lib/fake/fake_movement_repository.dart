@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:moovy/database/dao/movement_dao.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
 import 'package:moovy/extensions/date_time_extensions.dart';

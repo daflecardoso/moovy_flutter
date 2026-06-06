@@ -1,7 +1,9 @@
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moovy/design_system/moovy_gradient.dart';
 import 'package:moovy/l10n/app_localizations.dart';
+import 'package:moovy/navigation_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 String? cjkFontFamily(String lang) => switch (lang) {
@@ -43,14 +45,14 @@ class Mockup extends StatelessWidget {
     const bgGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [Color(0xFF020817), Color(0xFF1e293b)],
+      colors: [Colors.black, Color(0xFF38B975)],
     );
 
     // Title: foreground (#f8fafc) → mutedForeground (#94a3b8) — shadcn dark palette
     const titleGradient = LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [Color(0xFFF8FAFC), Color(0xFF94A3B8)],
+      colors: [Colors.white, Color(0xFF38B975)],
     );
 
     final cjkFamily = cjkFontFamily(locale.languageCode);
@@ -91,11 +93,20 @@ class Mockup extends StatelessWidget {
             ),
             darkTheme: ShadThemeData(
               brightness: Brightness.dark,
-              colorScheme: const ShadSlateColorScheme.dark(),
+              colorScheme: const ShadSlateColorScheme.dark(
+                background: Colors.transparent,
+                accent: Colors.black
+              ),
               textTheme: textTheme,
             ),
             debugShowCheckedModeBanner: false,
-            home: screen,
+            navigatorKey: NavigationService.navigatorKey,
+            home: Stack(
+              children: [
+                MoovyGradient(),
+                screen
+              ],
+            ),
           );
 
           return Container(

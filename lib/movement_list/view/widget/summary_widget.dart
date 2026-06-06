@@ -10,11 +10,11 @@ class SummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Padding(padding: EdgeInsetsGeometry.all(8), child: Column(
       children: [
         Text(title, style: ShadTheme.of(context).textTheme.muted),
         Text(value, style: ShadTheme.of(context).textTheme.small.apply(color: textColor)),
       ],
-    );
+    ));
   }
 }

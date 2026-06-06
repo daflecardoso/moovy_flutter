@@ -36,7 +36,6 @@ class _MovementListScreenState extends State<MovementListScreen>
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
-
     return BlocProvider(
       create: (_) => cubit,
       child: BlocBuilder<MovementListCubit, MovementListState>(

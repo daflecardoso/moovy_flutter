@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
+import 'package:moovy/design_system/moovy_gradient.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/firebase_options.dart';
 import 'package:moovy/main_cubit.dart';
@@ -17,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final app = await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAuth.instanceFor(app: app);
-  configureDependencies(fake: true);
+  configureDependencies(fake: false);
   runApp(App());
 }
 
@@ -39,7 +40,13 @@ class App extends StatelessWidget {
             case MainLoaded():
               return ShadApp.custom(
                 themeMode: state.themeMode,
-                darkTheme: ShadThemeData(brightness: Brightness.dark, colorScheme: const ShadSlateColorScheme.dark()),
+                darkTheme: ShadThemeData(
+                    brightness: Brightness.dark,
+                    colorScheme: const ShadSlateColorScheme.dark(
+                      background: Colors.transparent,
+                      accent: Colors.black
+                    )
+                ),
                 appBuilder: (context) {
                   return MaterialApp.router(
                     debugShowCheckedModeBanner: false,
@@ -48,14 +55,19 @@ class App extends StatelessWidget {
                     supportedLocales: state.supportedLocales,
                     localizationsDelegates: state.localizationDelegate,
                     builder: (context, child) {
-                      return MaterialApp(
-                        navigatorKey: NavigationService.navigatorKey,
-                        theme: Theme.of(context),
-                        debugShowCheckedModeBanner: false,
-                        home: ShadAppBuilder(child: Material(child: child)),
-                        locale: state.locale,
-                        supportedLocales: state.supportedLocales,
-                        localizationsDelegates: state.localizationDelegate,
+                      return Stack(
+                        children: [
+                          MoovyGradient(),
+                          MaterialApp(
+                            navigatorKey: NavigationService.navigatorKey,
+                            theme: Theme.of(context),
+                            debugShowCheckedModeBanner: false,
+                            home: ShadAppBuilder(child: Material(child: child)),
+                            locale: state.locale,
+                            supportedLocales: state.supportedLocales,
+                            localizationsDelegates: state.localizationDelegate,
+                          )
+                        ],
                       );
                     },
                   );

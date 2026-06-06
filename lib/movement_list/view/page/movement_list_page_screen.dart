@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moovy/app_router.dart';
 import 'package:moovy/database/domain/movement/movement.dart';
+import 'package:moovy/design_system/moovy_glass.dart';
 import 'package:moovy/di.dart';
 import 'package:moovy/events/movement_changed.dart';
 import 'package:moovy/events/sign_in_sign_out.dart';
@@ -65,26 +67,31 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SummaryWidget(
-                            title: appLocalization.totalIncome,
-                            value: state.totalIncome.currency(),
-                            textColor: MovementType.income.color,
+                      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                      child: MoovyGlass(
+                        child: Padding(
+                          padding: EdgeInsetsGeometry.symmetric(vertical: 8, horizontal: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SummaryWidget(
+                                title: appLocalization.totalIncome,
+                                value: state.totalIncome.currency(),
+                                textColor: MovementType.income.color,
+                              ),
+                              SummaryWidget(
+                                title: appLocalization.totalExpense,
+                                value: state.totalExpense.currency(),
+                                textColor: MovementType.expense.color,
+                              ),
+                              SummaryWidget(
+                                title: appLocalization.total,
+                                value: state.total.currency(),
+                                textColor: state.totalColor,
+                              ),
+                            ],
                           ),
-                          SummaryWidget(
-                            title: appLocalization.totalExpense,
-                            value: state.totalExpense.currency(),
-                            textColor: MovementType.expense.color,
-                          ),
-                          SummaryWidget(
-                            title: appLocalization.total,
-                            value: state.total.currency(),
-                            textColor: state.totalColor,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     Expanded(
@@ -92,10 +99,14 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
                         itemCount: state.movements.length,
                         itemBuilder: (_, index) {
                           final movement = state.movements[index];
-                          return movementRow(movement);
+                          // return movementRow(movement);
+                          return Padding(
+                            padding: EdgeInsetsGeometry.symmetric(horizontal: 8),
+                            child: MoovyGlass(child: movementRow(movement)),
+                          );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return Divider(height: 0, thickness: 0.5);
+                          return SizedBox(height: 8);
                         },
                       ),
                     ),
@@ -155,7 +166,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
     final appLocalization = AppLocalizations.of(context)!;
     return InkWell(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
         child: Row(
           spacing: 0,
           children: [
@@ -183,7 +194,7 @@ class _MovementListPageState extends State<MovementListPage> with AutomaticKeepA
             SizedBox(width: 8),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
