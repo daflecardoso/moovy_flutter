@@ -3,17 +3,36 @@ import 'dart:io';
 import 'package:app_deploy_screenshots/app_deploy_screenshots.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moovy/core/currency/currency_manager.dart';
 import 'package:moovy/di.dart';
+import 'package:moovy/fake/fake_currency_manager.dart';
 import 'package:moovy/income_expense/income_exepense_screen.dart';
 import 'package:moovy/l10n/app_localizations.dart';
+import 'package:moovy/main.dart';
 import 'package:moovy/movement_list/view/movement_list_screen.dart';
 import 'package:moovy/profile/profile_screen.dart';
+import 'package:moovy/settings/settings_screen.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'mockup.dart';
 
+String _currencyForLang(String lang) => switch (lang) {
+  'pt' => 'brl',
+  'de' => 'eur',
+  'da' => 'dkk',
+  'zh' => 'cny',
+  'ja' => 'jpy',
+  'ko' => 'krw',
+  _ => 'usd', // en, es
+};
+
 Future<void> _setup(String lang) async {
   Intl.defaultLocale = lang;
+
+  (getIt<CurrencyManager>() as FakeCurrencyManager).currencyCode = _currencyForLang(lang);
+  final fakeCurrency = (getIt<CurrencyManager>() as FakeCurrencyManager);
+  final current = await fakeCurrency.current();
+  globalCurrencyFormat = NumberFormat.currency(symbol: current.symbol);
   await AppDeployScreenshots.loadAppFonts();
   await loadCjkFont(lang);
 }
